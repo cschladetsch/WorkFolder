@@ -2,7 +2,7 @@
 
 # Check status of each repo 
 
-repos=`find .. -maxdepth 1 -type d`
+repos=`find . -maxdepth 1 -type d`
 cur=`pwd`
 unchangedRepos=()
 
@@ -11,9 +11,78 @@ print()
 	echo -e "\e[0;$2$1"
 }
 
+divider()
+{
+	print "━━━━━━━━━━━━━━━━━━━━━━━━━━" "37m"
+}
+
+add_files()
+{
+	echo
+	print "--- Staging files." "2m"
+	git add *
+}
+
+push_files()
+{
+	echo
+	print "--- Pushing changes." "2m"
+	git push
+}
+
+commit_files()
+{
+	echo
+	print "--- Committing files." "2m"
+	git commit -m "$1"
+}
+
 noChangeFormat="1;92m"
 changedFormat="1;96m"
 
+
+add=false
+commit=false
+push=false
+
+message=""
+
+while getopts ":acpm:" opt;
+do
+	case $opt in
+		a )
+			add=true
+			print "＋ Will stage files." "2m"
+			;;
+		c )
+			commit=true
+			print "＋ Will commit files." "2m"
+			;;
+		p )
+			push=true
+			print "＋ Will push files to current branch." "2m"
+			;;
+		m )
+			if [ commit == false ]
+			then
+				echo "Not commit, message will be ignored."
+				break
+			fi
+			message=$OPTARG
+			print "→ Commit message: $message" "2m"
+			;;
+		\? )
+          print "− Invalid Option: -$OPTARG" "31m"
+          exit 1
+          ;;
+        : )
+          print "− Invalid Option: -$OPTARG requires an argument" "31m"
+          exit 1
+          ;;
+	esac
+done
+
+divider
 for var in $repos
 do
 	cd "$var"
@@ -21,13 +90,28 @@ do
 	then
 		changes=`git diff-index --quiet HEAD --`
 		result=`git status -s`
-		msg="`basename $var`"
+		name="`basename $var`"
+		if [ $name == "." ]
+		then
+			name="`basename $cur`"
+		fi
 		if [ "$result" != "" ]
 		then
-			print "> $msg: Out of date" $changedFormat
-			print "————————————————————————————————" "37m"
+			print "> $name: Out of date" $changedFormat
 			git status -sb
-			echo
+			if [ $add == true ]
+			then
+				add_files
+			fi
+			if [ $commit == true ]
+			then
+				commit_files "$message"
+			fi
+			if [ $push == true ]
+			then
+				push_files
+			fi
+			divider
 		else
 			unchangedRepos+=($var)
 		fi
@@ -36,8 +120,9 @@ do
 done
 
 print "${#unchangedRepos[@]} repos are up to date." $noChangeFormat
-for var in $unchangedRepos
+for var in ${unchangedRepos[@]};
 do
-	print "	> `basename $var`" "0m"
+	name="`basename $var`"
+	print "	> $name" "0m"
 done
 

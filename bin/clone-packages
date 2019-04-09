@@ -1,0 +1,10 @@
+#!/bin/sh
+
+declare -a packages=(colib Dekuple Flow NUnit UniRx)
+
+for pkg in "${packages[@]}"
+do
+	git clone git@github.com:LiminalVR/$pkg.git
+	echo
+done
+

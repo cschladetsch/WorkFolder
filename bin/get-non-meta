@@ -1,0 +1,13 @@
+#!/bin/sh
+
+args=()
+
+for var in "$@"
+do
+        if [ ${var##*\.} != "meta" ]; then
+                args="$args $var"
+        fi
+done
+
+echo $args
+

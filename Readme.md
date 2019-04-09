@@ -1,7 +1,7 @@
 # Liminal Working Projects folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
-All developers *must have git-bash shell installed on their workstation*.
+All developers *must have [git-bash shell](https://gitforwindows.org/) installed on their workstation*.
 
 This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/name/work`. Note that it could also be at `e:\Projects`, or wherever. *Never hard-code `~/work` into any script*. 
 

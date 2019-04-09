@@ -1,8 +1,10 @@
 # Git ignore whitelist for shared tools and utilities
 
+# But not these files...
+!.gitignore
+!bin
+!bin/**
+
 # Ignore everything
 *
 
-# But not these files...
-!.gitignore
-!/bin/*

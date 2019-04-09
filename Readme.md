@@ -1,7 +1,9 @@
 # Liminal Working Projects folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
-This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/name/work`. Note that it could also be at `e:\Projects`. The explicit location is not enforced, but for consistency it is prefered to be in `~/work`.
+This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/name/work`. Note that it could also be at `e:\Projects`, or wherever. *Never hard-code `~work` into any script*. 
+
+The explicit location is not enforced, but for consistency it is prefered to be in `~/work`. Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder.
 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 

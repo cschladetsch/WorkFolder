@@ -2,8 +2,8 @@
 
 # But not these files...
 !.gitignore
-!bin
-!bin/**
+!/bin
+!/bin/**
 
 # Ignore everything
 *

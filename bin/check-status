@@ -19,21 +19,21 @@ divider()
 add_files()
 {
 	echo
-	print "--- Staging files." "2m"
+	print "--- Staging files." "182m"
 	git add *
 }
 
 push_files()
 {
 	echo
-	print "--- Pushing changes." "2m"
+	print "--- Pushing changes." "182m"
 	git push
 }
 
 commit_files()
 {
 	echo
-	print "--- Committing files." "2m"
+	print "--- Committing files." "182m"
 	git commit -m "$1"
 }
 

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Check status of each repo 
+
+repos=`find . -maxdepth 1 -type d`
+cur=`pwd`
+
+for var in $repos 
+do
+	cd "$var"
+	if [ -d .git ]
+	then
+		result=`git status -s`
+		msg="`basename $var`"
+		if [ "$result" != "" ]
+		then
+			echo
+			echo $msg
+			git status -s
+			echo
+		else
+			msg="$msg up to date"
+			echo $msg
+		fi
+	fi
+	cd $cur
+done
+

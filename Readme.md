@@ -1,13 +1,16 @@
 # Liminal Working Projects folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
-This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/name/work`. Note that it could also be at `e:\Projects`, or wherever. *Never hard-code `~work` into any script*. 
+This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/name/work`. Note that it could also be at `e:\Projects`, or wherever. *Never hard-code `~/work` into any script*. 
+
+In fact, TODO, use $WORK_FOLDER to point to the nominal `work` folder, everywhere.
 
 The explicit location is not enforced, but for consistency it is prefered to be in `~/work`. Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder.
 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 
 ## Todo
+* Use $WORK_FOLDER to specify the root Liminal project folder for a given workstation.
 * Add `~/work/bin/enter`. This enters the general work environment.
 * Add `~/work/bin/start-project project-name`. This would create a ready-to-use project from git, including custom `enter` script for that project.
 

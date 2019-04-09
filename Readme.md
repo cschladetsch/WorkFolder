@@ -5,7 +5,7 @@ This repo is intended to be at the root of their work folder. In many cases this
 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 
-## TODO
+## Todo
 * Add `~/work/bin/enter`. This enters the general work environment.
 * Add `~/work/bin/start-project project-name`. This would create a ready-to-use project from git, including custom `enter` script for that project.
 

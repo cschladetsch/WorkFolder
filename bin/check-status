@@ -2,27 +2,42 @@
 
 # Check status of each repo 
 
-repos=`find . -maxdepth 1 -type d`
+repos=`find .. -maxdepth 1 -type d`
 cur=`pwd`
+unchangedRepos=()
 
-for var in $repos 
+print()
+{
+	echo -e "\e[0;$2$1"
+}
+
+noChangeFormat="1;92m"
+changedFormat="1;96m"
+
+for var in $repos
 do
 	cd "$var"
 	if [ -d .git ]
 	then
+		changes=`git diff-index --quiet HEAD --`
 		result=`git status -s`
 		msg="`basename $var`"
 		if [ "$result" != "" ]
 		then
-			echo
-			echo $msg
-			git status -s
+			print "> $msg: Out of date" $changedFormat
+			print "————————————————————————————————" "37m"
+			git status -sb
 			echo
 		else
-			msg="$msg up to date"
-			echo $msg
+			unchangedRepos+=($var)
 		fi
 	fi
 	cd $cur
+done
+
+print "${#unchangedRepos[@]} repos are up to date." $noChangeFormat
+for var in $unchangedRepos
+do
+	print "	> `basename $var`" "0m"
 done
 

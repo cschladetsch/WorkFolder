@@ -1,1 +1,4 @@
+#!/bin/bash
+
+# TODO: this takes too long. Make it faster.
 du -ah . | sort -n -r | head -n 20

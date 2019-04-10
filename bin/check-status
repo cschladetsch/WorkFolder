@@ -119,42 +119,6 @@ do
     esac
 done
 
-# while getopts ":acpm:" opt;
-# do
-# 	case $opt in
-# 		a )
-# 			add=true
-# 			print "＋ Will stage files." "2m"
-# 			;;
-# 		c )
-# 			commit=true
-# 			print "＋ Will commit files." "2m"
-# 			;;
-# 		p )
-# 			push=true
-# 			print "＋ Will push files to current branch." "2m"
-# 			;;
-# 		m )
-# 			if [ commit == false ]
-# 			then
-# 				echo "Not commit, message will be ignored."
-# 				break
-# 			fi
-# 			message=$OPTARG
-# 			print "→ Commit message: $message" "2m"
-# 			;;
-# 		\? )
-#           print "− Invalid Option: -$OPTARG" "31m"
-#           exit 1
-#           ;;
-#         : )
-#           print "− Invalid Option: -$OPTARG requires an argument" "31m"
-#           exit 1
-#           ;;
-# 	esac
-# done
-
-divider
 for var in $repos
 do
     cd "$var"
@@ -174,7 +138,7 @@ do
             then
                 update_repo
             fi
-            divider
+            echo
         else
             unchangedRepos+=($var)
         fi

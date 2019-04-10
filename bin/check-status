@@ -2,133 +2,183 @@
 
 # Check status of each repo 
 
+# TODO ----- Add useful help and errors
+
 repos=`find . -maxdepth 1 -type d`
 cur=`pwd`
 unchangedRepos=()
+noChangeFormat="1;92m"
+changedFormat="1;96m"
+
 echo
 
 print()
 {
-	echo -e "\e[0;$2$1"
+    echo -e "\e[$2$1\e[0m"
 }
 
 divider()
 {
-	print "━━━━━━━━━━━━━━━━━━━━━━━━━━" "37m"
+    print "━━━━━━━━━━━━━━━━━━━━━━━━━━" "37m"
 }
 
 add_files()
 {
-	echo
-	print "--- Staging files." "182m"
-	git add *
+    echo
+    print "--- Staging files." "32m"
+    git add *
+    echo
 }
 
 push_files()
 {
-	echo
-	print "--- Pushing changes." "182m"
-	git push
+    echo
+    print "--- Pushing changes." "32m"
+    git push
+    echo
 }
 
 commit_files()
 {
-	echo
-	print "--- Committing files." "182m"
-	git commit -m "$1"
+    echo
+    print "--- Committing files." "32m"
+    read -n 1 -r -p $'\e[35;1mCommit message: \e[0m' message
+    git commit -m "$message"
+    echo
 }
 
-noChangeFormat="1;92m"
-changedFormat="1;96m"
+read_input()
+{
+    while true; do
+    read -n 1 -r -p $'\e[35;1m'"$1"$'\e[0m' yn
+    case $yn in
+        [Yy]* )
+            eval $2=true;
+            break
+            ;;
+        [Nn]* )
+            eval $2=false;
+            break
+            ;;
+    esac
+done
+}
 
+update_repo()
+{
+    echo
+    read_input "Stage files    [Y/N]: " result
+    if $result
+    then
+        add_files
+    fi
 
-add=false
-commit=false
-push=false
+    read_input "Commit changes [Y/N]: " result
+    if $result
+    then
+        commit_files
+    fi
 
-message=""
+    read_input "Push changes   [Y/N]: " result
+    if $result
+    then
+        push_files
+    fi
+    
+    # read -n 1 -sr -p "Stage files    [Y/N]: " input; echo
+    # read -n 1 -sr -p "Commit changes [Y/N]: " input; echo
+    # read -n 1 -sr -p "Push changes   [Y/N]: " input; echo
+}
 
 while getopts ":acpm:" opt;
 do
-	case $opt in
-		a )
-			add=true
-			print "＋ Will stage files." "2m"
-			;;
-		c )
-			commit=true
-			print "＋ Will commit files." "2m"
-			;;
-		p )
-			push=true
-			print "＋ Will push files to current branch." "2m"
-			;;
-		m )
-			if [ commit == false ]
-			then
-				echo "Not commit, message will be ignored."
-				break
-			fi
-			message=$OPTARG
-			print "→ Commit message: $message" "2m"
-			;;
-		\? )
-          print "− Invalid Option: -$OPTARG" "31m"
-          exit 1
-          ;;
+    case $opt in
+        u )
+            update=true
+        ;;
+        \? )
+            print "− Invalid Option: -$OPTARG" "31m"
+            exit 1
+            ;;
         : )
-          print "− Invalid Option: -$OPTARG requires an argument" "31m"
-          exit 1
-          ;;
-	esac
+            print "− Invalid Option: -$OPTARG requires an argument" "31m"
+            exit 1
+            ;;
+    esac
 done
+
+# while getopts ":acpm:" opt;
+# do
+# 	case $opt in
+# 		a )
+# 			add=true
+# 			print "＋ Will stage files." "2m"
+# 			;;
+# 		c )
+# 			commit=true
+# 			print "＋ Will commit files." "2m"
+# 			;;
+# 		p )
+# 			push=true
+# 			print "＋ Will push files to current branch." "2m"
+# 			;;
+# 		m )
+# 			if [ commit == false ]
+# 			then
+# 				echo "Not commit, message will be ignored."
+# 				break
+# 			fi
+# 			message=$OPTARG
+# 			print "→ Commit message: $message" "2m"
+# 			;;
+# 		\? )
+#           print "− Invalid Option: -$OPTARG" "31m"
+#           exit 1
+#           ;;
+#         : )
+#           print "− Invalid Option: -$OPTARG requires an argument" "31m"
+#           exit 1
+#           ;;
+# 	esac
+# done
 
 divider
 for var in $repos
 do
-	cd "$var"
-	if [ -d .git ]
-	then
-		changes=`git diff-index --quiet HEAD --`
-		result=`git status -s`
-		name="`basename $var`"
-		if [ $name == "." ]
-		then
-			name="`basename $cur`"
-		fi
-		if [ "$result" != "" ]
-		then
-			print "> $name: Out of date" $changedFormat
-			git status -sb
-			if [ $add == true ]
-			then
-				add_files
-			fi
-			if [ $commit == true ]
-			then
-				commit_files $message
-			fi
-			if [ $push == true ]
-			then
-				push_files
-			fi
-			divider
-		else
-			unchangedRepos+=($var)
-		fi
-	fi
-	cd $cur
+    cd "$var"
+    if [ -d .git ]
+    then
+        result=`git status -s`
+        name="`basename $var`"
+        if [ $name == "." ]
+        then
+            name="`basename $cur`"
+        fi
+        if [ "$result" != "" ]
+        then
+            print "> $name: repo has changes." $changedFormat
+            git status -sb
+            if $update
+            then
+                update_repo
+            fi
+            divider
+        else
+            unchangedRepos+=($var)
+        fi
+    fi
+    cd $cur
 done
 
-print "${#unchangedRepos[@]} repos are up to date." $noChangeFormat
+print "${#unchangedRepos[@]} repos are unchanged." $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
 
-	name="`basename $var`"
-		if [ $name == "." ]
-		then
-			name="`basename $cur`"
-		fi
-	print "	> $name" "0m"
+    name="`basename $var`"
+        if [ $name == "." ]
+        then
+            name="`basename $cur`"
+        fi
+    print "	> $name" "0m"
 done
 

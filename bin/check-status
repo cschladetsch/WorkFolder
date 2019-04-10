@@ -24,7 +24,6 @@ divider()
 
 add_files()
 {
-    echo
     print "--- Staging files." "32m"
     git add *
     echo
@@ -32,7 +31,6 @@ add_files()
 
 push_files()
 {
-    echo
     print "--- Pushing changes." "32m"
     git push
     echo
@@ -40,7 +38,6 @@ push_files()
 
 commit_files()
 {
-    echo
     print "--- Committing files." "32m"
     read -r -p $'\e[35;1mCommit message: \e[0m' message
     git commit -m "$message"
@@ -54,10 +51,12 @@ read_input()
     case $yn in
         [Yy]* )
             eval $2=true;
+            echo
             break
             ;;
         [Nn]* )
             eval $2=false;
+            echo
             break
             ;;
     esac
@@ -90,7 +89,7 @@ update_repo()
     # read -n 1 -sr -p "Push changes   [Y/N]: " input; echo
 }
 
-while getopts ":acpm:" opt;
+while getopts ":u" opt;
 do
     case $opt in
         u )
@@ -99,10 +98,12 @@ do
         \? )
             print "− Invalid Option: -$OPTARG" "31m"
             exit 1
+            echo
             ;;
         : )
             print "− Invalid Option: -$OPTARG requires an argument" "31m"
             exit 1
+            echo
             ;;
     esac
 done
@@ -150,7 +151,7 @@ do
     then
         result=`git status -s`
         name="`basename $var`"
-        if [ $name == "." ]
+        if [ "$name" == "." ]
         then
             name="`basename $cur`"
         fi
@@ -158,7 +159,7 @@ do
         then
             print "> $name: repo has changes." $changedFormat
             git status -sb
-            if $update
+            if [ "$update" == true ]
             then
                 update_repo
             fi

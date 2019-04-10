@@ -46,7 +46,7 @@ commit_files()
 
 print_help()
 {
-    print "Shows the status of all repos in the current directory and all directories within them." "2m"
+    print "`basename $0` shows the status of all repos in the current directory and all directories within them." "2m"
     print "[-u] prompt to update all repos with changes (add, commit then push)" "2m"
     print "[-h] show this help message" "2m"
 }
@@ -90,10 +90,6 @@ update_repo()
     then
         push_files
     fi
-    
-    # read -n 1 -sr -p "Stage files    [Y/N]: " input; echo
-    # read -n 1 -sr -p "Commit changes [Y/N]: " input; echo
-    # read -n 1 -sr -p "Push changes   [Y/N]: " input; echo
 }
 
 while getopts ":uh" opt;
@@ -149,7 +145,6 @@ done
 print "${#unchangedRepos[@]} repos are unchanged." $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
-
     name="`basename $var`"
         if [ $name == "." ]
         then

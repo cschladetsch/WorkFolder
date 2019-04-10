@@ -44,6 +44,13 @@ commit_files()
     echo
 }
 
+print_help()
+{
+    print "Shows the status of all repos in the current directory and all directories within them." "2m"
+    print "[-u] prompt to update all repos with changes (add, commit then push)" "2m"
+    print "[-h] show this help message" "2m"
+}
+
 read_input()
 {
     while true; do
@@ -89,12 +96,16 @@ update_repo()
     # read -n 1 -sr -p "Push changes   [Y/N]: " input; echo
 }
 
-while getopts ":u" opt;
+while getopts ":uh" opt;
 do
     case $opt in
         u )
             update=true
-        ;;
+            ;;
+        h )
+            print_help
+            exit 0
+            ;;
         \? )
             print "− Invalid Option: -$OPTARG" "31m"
             exit 1

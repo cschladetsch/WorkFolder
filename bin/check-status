@@ -42,7 +42,7 @@ commit_files()
 {
     echo
     print "--- Committing files." "32m"
-    read -n 1 -r -p $'\e[35;1mCommit message: \e[0m' message
+    read -r -p $'\e[35;1mCommit message: \e[0m' message
     git commit -m "$message"
     echo
 }
@@ -50,7 +50,7 @@ commit_files()
 read_input()
 {
     while true; do
-    read -n 1 -r -p $'\e[35;1m'"$1"$'\e[0m' yn
+    read -n 1 -sr -p $'\e[35;1m'"$1"$'\e[0m' yn
     case $yn in
         [Yy]* )
             eval $2=true;

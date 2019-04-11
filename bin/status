@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# Check status of each repo 
+# Check status of each repo in child folders
 
-# TODO ----- Add useful help and errors
+# TODO Add useful help and errors
+# TODO Show when there are remote changes to local repos
 
 repos=`find . -maxdepth 1 -type d`
-# repos=`find . -type d`
 cur=`pwd`
 unchangedRepos=()
 noChangeFormat="1;92m"
 changedFormat="1;96m"
-
-echo
 
 print()
 {
@@ -143,14 +141,14 @@ do
     cd $cur
 done
 
-print "${#unchangedRepos[@]} repos are unchanged." $noChangeFormat
+print "No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
     name="`basename $var`"
-        if [ $name == "." ]
-        then
-            name="`basename $cur`"
-        fi
-    print "	> $name" "0m"
+#        if [ $name == "." ]
+#        then
+#            name="./`basename $cur`"
+#        fi
+    print "	$name/" "0m"
 done
 

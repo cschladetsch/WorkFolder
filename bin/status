@@ -149,7 +149,7 @@ do
     name="`basename $var`"
         if [ $name == "." ]
         then
-            name="`basename $cur`"
+            name="./`basename $cur`"
         fi
     print "	> $name" "0m"
 done

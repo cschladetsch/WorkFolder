@@ -7,5 +7,7 @@
 !.gitignore
 !/bin
 !/bin/**
+!/.proj
+!/.proj/**
 
 

@@ -12,7 +12,7 @@ The explicit location is not enforced, but for consistency it is prefered to be 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 
 ## Todo
-* Use $WORK_FOLDER to specify the root Liminal project folder for a given workstation.
+* Use $WORK\_ROOT to specify the root Liminal project folder for a given workstation, ie ~/work
 * Add `~/work/bin/enter`. This enters the general work environment.
 * Add `~/work/bin/start-project project-name`. This would create a ready-to-use project from git, including custom `enter` script for that project.
 

@@ -145,10 +145,10 @@ print "No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
     name="`basename $var`"
-        if [ $name == "." ]
-        then
-            name="./`basename $cur`"
-        fi
+#        if [ $name == "." ]
+#        then
+#            name="./`basename $cur`"
+#        fi
     print "	$name/" "0m"
 done
 

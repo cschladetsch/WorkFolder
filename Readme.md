@@ -13,6 +13,7 @@ The explicit location is not enforced, but for consistency it is prefered to be 
 * Use $WORK\_ROOT to specify the root _Liminal_ project folder for a given workstation, ie ~/work
 * Add `~/work/bin/enter`. This enters the general work environment.
 * Add `~/work/bin/start-project project-name`. This would create a ready-to-use project from git, including custom `enter` script for that project.
+* When *bootstrapping* a new project, some system (TBD) must change `Packages/manifest.json` to include references to `$WORK_ROOT/Packages/{Packagenames}`
 
 ## Contents
 * [proj](.proj) Contains top-level initialisation and entry into either $WORK_ROOT or entry into any _Liminal_ project based on `WorkFolder` structure.

@@ -5,6 +5,7 @@
 # TODO ----- Add useful help and errors
 
 repos=`find . -maxdepth 1 -type d`
+# repos=`find . -type d`
 cur=`pwd`
 unchangedRepos=()
 noChangeFormat="1;92m"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# TODO: perform one-off setup, then touch $WORK_ROOT/.proj/booted
+
+

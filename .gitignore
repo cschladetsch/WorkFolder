@@ -1,7 +1,7 @@
 # Git ignore whitelist for shared tools and utilities
 
 # Ignore everything
-/*
+*
 
 # But not these files...
 !.gitignore

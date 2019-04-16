@@ -1,20 +1,31 @@
 #!/bin/bash
 
-projectname=$1
+project_name=$1
+unity_project_name="$project_name-Unity"
+unity_version="2018.3.8f1"
+unity="/c/Program Files/Unity/Hub/Editor/$unity_version/Editor/Unity.exe"
 
 cd $WORK_DIR
-mkdir $projectname
-cd $projectname
+mkdir $project_name
+cd $project_name
+"$unity" -quit -createProject $unity_project_name
+
+our_deps="$WORK_DIR/doc/manifest-liminal.json"
+deps="$unity_project_name/Packages/manifest.json"
+jq 'reduce inputs as $i (.; .dependencies += $i.dependencies)' "$our_deps" "$deps" > tmp
+mv tmp "$deps"
 
 echo "# Readme" > Readme.md
 
-cp $WORK_DIR/doc/gitignore-std .gitignore
-
 git init .
-git remote add origin git@github.com:LiminalVR/$projectname.git
-
+git remote add origin "git@github.com:LiminalVR/$project_name.git"
+cp "$WORK_DIR/doc/gitignore-std" .gitignore
 git add .gitignore
 git add *
 git commit -m "Created"
-
 git push -u origin master
+git checkout -b develop
+git push -u origin develop
+
+"$unity" -projectPath $unity_project_name &
+

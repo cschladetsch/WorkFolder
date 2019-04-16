@@ -20,5 +20,11 @@ Brief description of each script/exe:
   * `duse`: show disk-space usage
   * `get-non-meta`: Gets a list of all files that do not have a .meta extension.
   * `list-android-packages`: lists all packages on connected Android device.
+  * `rg` [ripgrep](<https://github.com/BurntSushi/ripgrep/blob/master/README.md>)
+  * `jq` json utility
+
+
+
+
 
 

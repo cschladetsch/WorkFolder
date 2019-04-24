@@ -5,6 +5,9 @@
 
 # But not these files...
 !.gitignore
+
+!/doc
+!/doc/**
 !/bin
 !/bin/**
 !/.proj

@@ -1,4 +1,5 @@
 alias gs='git status --short --branch'
+alias gshow='git show --name-only --oneline'
 alias gl='git lg'
 alias gd='git diff'
 alias gp='git push'

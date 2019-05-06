@@ -10,4 +10,9 @@
 
 # .proj/bin should be added to PATH whenever you enter, as well as adding aliases and other helpful things
 
+alias grv='git remote -v'
+alias gbv='git branch -va'
+
+
+
 

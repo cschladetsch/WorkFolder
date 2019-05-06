@@ -10,6 +10,8 @@ cur=`pwd`
 unchangedRepos=()
 noChangeFormat="1;92m"
 changedFormat="1;96m"
+short=false
+update=false
 
 print()
 {
@@ -47,6 +49,7 @@ print_help()
 {
     print "`basename $0` shows the status of all repos in the current directory and all directories within them." "2m"
     print "[-u] prompt to update all repos with changes (add, commit then push)" "2m"
+    print "[-s] show only the repos status, hide changed files" "2m"
     print "[-h] show this help message" "2m"
 }
 
@@ -91,11 +94,22 @@ update_repo()
     fi
 }
 
-while getopts ":uh" opt;
+check_status()
+{
+    if [[ -z $(git status -s) ]]
+    then
+        echo "Repo has been changed" "$noChangeFormat"
+    fi            
+}
+
+while getopts ":ush" opt;
 do
     case $opt in
         u )
             update=true
+            ;;
+        s )
+            short=true
             ;;
         h )
             print_help
@@ -127,12 +141,18 @@ do
         fi
         if [ "$result" != "" ]
         then
-            print "> $name: repo has changes." $changedFormat
-            git status -sb
-            if [ "$update" == true ]
+            print "• $name: repo has changes." $changedFormat
+            if [ "$short" == true ]
             then
-                update_repo
-            fi
+                cd $cur
+                continue
+            else
+                git status -sb
+              if [ "$update" == true ]
+                then
+                    update_repo
+               fi
+               fi
             echo
         else
             unchangedRepos+=($var)

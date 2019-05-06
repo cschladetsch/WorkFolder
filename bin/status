@@ -141,7 +141,7 @@ do
         fi
         if [ "$result" != "" ]
         then
-            print "• $name: repo has changes." $changedFormat
+            print "• $name changed." $changedFormat
             if [ "$short" == true ]
             then
                 cd $cur

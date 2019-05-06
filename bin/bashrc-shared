@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# source this from your .bashrc file
+
 alias gs='git status --short --branch'
 alias gshow='git show --name-only --oneline'
 alias gl='git lg'

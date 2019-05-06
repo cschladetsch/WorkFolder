@@ -3,6 +3,7 @@
 # source this from your .bashrc file
 
 alias gs='git status --short --branch'
+alias gc='git commit -m'
 alias gshow='git show --name-only --oneline'
 alias gl='git lg'
 alias gd='git diff'

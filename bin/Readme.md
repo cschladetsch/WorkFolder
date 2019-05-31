@@ -22,13 +22,12 @@ Brief description of each script/exe:
   * `list-android-packages`: lists all packages on connected Android device.
   * `rg` [ripgrep](<https://github.com/BurntSushi/ripgrep/blob/master/README.md>)
   * `jq` json utility
+  * `git-lfs` redirects to `git-lfs.exe` for Ubuntu shell
 
 ## Useful links
   * Chocolatey - 
     * run the following command from an admin level command prompt.:
   
     `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
-
-
 
 

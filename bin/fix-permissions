@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ext=(html ico svg yml xml tff otf js css md cs xml txt csproj sln meta json DotSettings user vrmanifest config png tga jpeg jpg)
+
+for e in "${ext[@]}"
+do
+    cmd="find . -name \"*.$e\" -exec chmod a-x {} \;"
+    echo $cmd
+    eval $cmd
+done

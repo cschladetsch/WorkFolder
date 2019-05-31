@@ -22,6 +22,7 @@ Brief description of each script/exe:
   * `list-android-packages`: lists all packages on connected Android device.
   * `rg` [ripgrep](<https://github.com/BurntSushi/ripgrep/blob/master/README.md>)
   * `jq` json utility
+  * `git-lfs` redirects to `git-lfs.exe` for Ubuntu shell
 
 ## Useful links
   * Chocolatey - 

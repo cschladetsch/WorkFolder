@@ -14,6 +14,7 @@ alias gcs='status'
 alias h='history'
 alias g='git'
 alias gr='git remote -v'
+alias glog='git reflog'
 
 export PS1='\e[0m \[\033]0;$TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ\[\e[0m\] \e[1m'
 export PS2='-->'

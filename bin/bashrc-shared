@@ -28,4 +28,4 @@ gacp()
 
 export gacp
 
-echo "Sourced shared"
+echo "Sourced bashrc-shared"

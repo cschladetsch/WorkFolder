@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # TODO: enter $WORK_ROOT (and bootstrap if required) if executed from $WORK_ROOT
+cd "$WORK_ROOT"
+proj_enter="$pwd/.proj/enter"
+echo $proj_enter
+source $proj_enter
 
 # TODO: enter current project if it is a Liminal project. This is determined by it having a .proj folder in root
 
@@ -9,10 +13,3 @@
 # Yes, this is necessarily complicated. There will be `global` changes in $WORK_ROOT/.proj as well as per-project specific customisations in $WORK_ROOT/SomeProject/.proj
 
 # .proj/bin should be added to PATH whenever you enter, as well as adding aliases and other helpful things
-
-alias grv='git remote -v'
-alias gbv='git branch -va'
-
-
-
-

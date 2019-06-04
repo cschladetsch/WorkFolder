@@ -1,0 +1,14 @@
+using Dekuple;
+
+public interface I#SCRIPTNAME#
+    : IView<#AGENTNAME#>
+{
+
+}
+
+public class #SCRIPTNAME#
+    : ViewBase<I#AGENTNAME#>
+    , I#SCRIPTNAME#
+{
+
+}

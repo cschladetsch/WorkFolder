@@ -1,0 +1,14 @@
+using Dekuple;
+
+public interface I#SCRIPTNAME#
+    : IAgent<#MODELNAME#>
+{
+
+}
+
+public class #SCRIPTNAME#
+    : AgentBase<I#MODELNAME#>
+    , I#SCRIPTNAME#
+{
+
+}

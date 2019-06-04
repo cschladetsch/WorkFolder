@@ -1,0 +1,14 @@
+using Dekuple;
+
+public interface I#SCRIPTNAME#
+    : IModel
+{
+
+}
+
+public class #SCRIPTNAME#
+    : ModelBase
+    , I#SCRIPTNAME#
+{
+
+}

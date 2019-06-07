@@ -1,18 +1,21 @@
-alias h='history'
+# Common aliases
+
 alias g='git'
-alias gs='g status --short --branch'
-alias gc='g commit -m'
-alias gshow='g show --name-only --oneline'
 alias gl='g lg'
+alias h='history'
 alias gd='g diff'
 alias gp='g push'
 alias gu='g pull'
-alias gch='g checkout'
-alias gcs='status'
-alias gr='g remote -v'
 alias glog='g reflog'
-alias gpu='gp upstream'
+alias gch='g checkout'
+alias gc='g commit -m'
+alias gr='g remote -v'
 alias gppu='gp && gpu'
+alias gpu='gp upstream'
+alias cdw='pushd $WORK_DIR'
 alias grhh='git reset --hard HEAD'
+alias gs='g status --short --branch'
+alias gshow='g show --name-only --oneline'
 
 echo_verbose 2 "...aliases"
+

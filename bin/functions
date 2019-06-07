@@ -1,3 +1,8 @@
+# Common functions
+#
+# Remember to export functions at the end,
+# if you wish them to be used outside of this script.
+
 echo_verbose()
 {
     if [ $WORK_DIR_VERBOSE -ge $1 ]; then
@@ -24,11 +29,11 @@ f()
 
 help()
 {
-    echo "gacp - git add commit push"
-    ecgi "f - find"
+    echo start $WORK_DIR/doc/Readme.md
+    start $WORK_DIR/doc/Readme.md
 }
 
-
+# Export functions
 export gacp f help
 
 echo_verbose 2 "...functions"

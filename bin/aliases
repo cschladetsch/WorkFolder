@@ -1,0 +1,17 @@
+alias h='history'
+alias g='git'
+alias gs='g status --short --branch'
+alias gc='g commit -m'
+alias gshow='g show --name-only --oneline'
+alias gl='g lg'
+alias gd='g diff'
+alias gp='g push'
+alias gu='g pull'
+alias gch='g checkout'
+alias gcs='status'
+alias gr='g remote -v'
+alias glog='g reflog'
+alias gpu='gp upstream'
+alias gppu='gp && gpu'
+
+echo_verbose 2 "...aliases"

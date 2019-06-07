@@ -1,0 +1,35 @@
+echo_verbose()
+{
+    if [ $WORK_DIR_VERBOSE -ge $1 ]; then
+        shift
+        echo "$*"
+    fi
+}
+
+gacp()
+{
+    if [ $* == ""]; then
+        echo "Need commit message"
+        exit 1
+    fi
+    git add *
+    git commit -m "$*"
+    git push
+}
+
+f()
+{
+    find . -name $*
+}
+
+help()
+{
+    echo "gacp - git add commit push"
+    ecgi "f - find"
+}
+
+
+export gacp f help
+
+echo_verbose 2 "...functions"
+

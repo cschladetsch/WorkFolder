@@ -1,19 +1,5 @@
-[user]
-	name = Jaris
-	email = jaris@liminalvr.com
-[difftool "sourcetree"]
-	cmd = '' \"$LOCAL\" \"$REMOTE\"
-[mergetool "sourcetree"]
-	cmd = "'' "
-	trustExitCode = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [credential]
 	helper = wincred
-
 [alias]
     df = difftool -y
     st = status

@@ -1,11 +1,19 @@
 # Work Scripts
 
-Contains a set of 
+Contains a set of
 * bash scripts
-* Windows batch files, 
+* Windows batch files,
 * Binary executables
 
 That are to be available on all _Liminal_ workstations.
+
+## Verbosity
+Change global environment variable WORK\_DIR\_VERBOSE:
+* 0. Show no messages
+* 1. Show basic messages
+* 2. Show more things.
+
+In general, the higher the number, the more detail you will get when starting a new shell.
 
 ## Contents
 Brief description of each script/exe:

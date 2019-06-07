@@ -13,5 +13,6 @@ alias gr='g remote -v'
 alias glog='g reflog'
 alias gpu='gp upstream'
 alias gppu='gp && gpu'
+alias grhh='git reset --hard HEAD'
 
 echo_verbose 2 "...aliases"

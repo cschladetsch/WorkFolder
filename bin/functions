@@ -1,3 +1,4 @@
+#!/bin/bash
 # Common functions
 #
 # Remember to export functions at the end,
@@ -13,7 +14,7 @@ echo_verbose()
 
 gacp()
 {
-    if [ $* == "" ]; then
+    if [ "$*" == "" ]; then
         echo "Need commit message"
         exit 1
     fi

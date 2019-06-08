@@ -1,6 +1,5 @@
 #!/bin/bash
-
-# source this from your .bashrc file
+# Source this from your .bashrc file.
 
 export PS1='\e[0m \[\033]0; $? $TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ\[\e[0m\] \e[1m'
 export PS2='-->'
@@ -8,4 +7,5 @@ export PS2='-->'
 source $WORK_BIN/functions
 source $WORK_BIN/aliases
 
-echo_verbose 1 "Started"
+echo_verbose 0 "Started Liminal"
+

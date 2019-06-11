@@ -6,10 +6,7 @@
 
 echo_verbose()
 {
-    if [ $WORK_DIR_VERBOSE -ge $1 ]; then
-        shift
-        echo "$*"
-    fi
+	echo "$*"
 }
 
 gacp()

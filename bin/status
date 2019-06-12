@@ -116,6 +116,7 @@ checkout()
 		then
 			echo "$var to $branch"
 			git checkout $branch
+			git pull
 		fi
 		cd $cur
 	done

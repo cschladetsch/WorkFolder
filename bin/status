@@ -50,6 +50,7 @@ print_help()
     print "`basename $0` shows the status of all repos in the current directory and all directories within them." "2m"
     print "[-u] prompt to update all repos with changes (add, commit then push)" "2m"
     print "[-s] show only the repos status, hide changed files" "2m"
+    print "[-c] checkout all repos to given branch name" "2m"
     print "[-h] show this help message" "2m"
 }
 
@@ -98,18 +99,40 @@ check_status()
 {
     if [[ -z $(git status -s) ]]
     then
-        echo "Repo has been changed" "$noChangeFormat"
+        print "Repo has been changed" "$noChangeFormat"
     fi            
 }
 
-while getopts ":ush" opt;
+checkout()
+{
+	branch="$1"
+	print "Checking out branch $branch for all Packages" "31m"
+	
+	cur=`pwd`
+	for var in $repos
+	do
+		cd "$var"
+		if [ -d .git ]
+		then
+			echo "$var to $branch"
+			git checkout $branch
+		fi
+		cd $cur
+	done
+}
+
+while getopts ":ushc" opt;
 do
     case $opt in
         u )
-            update=true
+            update=tru
             ;;
         s )
             short=true
+            ;;
+        c )
+            checkout $2
+	    exit 0
             ;;
         h )
             print_help

@@ -192,6 +192,8 @@ do
 #        then
 #            name="./`basename $cur`"
 #        fi
-    print "	$name/" "0m"
+    branch=`cd $name && git branch | grep \* | cut -d ' ' -f2`
+    print "	$name ($branch)" "0m"
+    cd $cur
 done
 

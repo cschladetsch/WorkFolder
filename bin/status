@@ -192,7 +192,7 @@ do
 #        then
 #            name="./`basename $cur`"
 #        fi
-    branch=`cd $name && git branch | grep \* | cut -d ' ' -f2`
+    branch=`cd $name && git rev-parse --abbrev-ref HEAD`
     print "	$name ($branch)" "0m"
     cd $cur
 done

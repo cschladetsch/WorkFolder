@@ -1,13 +1,15 @@
 # Liminal Working Projects folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
-See [Installer](https://github.com/LiminalVR/WorkFolderInstaller) for a Gui solution and to stop reading this document.
+See [Installer](https://github.com/LiminalVR/WorkFolderInstaller) for a Gui for setup.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
 
-This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/user-name/work`. Note that it could also be at `e:\Projects`, (`/e/Projects` in git-bash syntax) or wherever. Specifically: *Never hard-code `~/work` into any script*. 
+This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/user-name/work`. Note that it could also be at `e:\Projects`, (`/e/Projects` in git-bash syntax) or wherever. Specifically: *Never hard-code `~/work` into any script*. Rather, use `$WORK_DIR` and `$REPOS_DIR` for repositories.
 
-The explicit location is not enforced, but for consistency it is prefered to be in `~/work`. Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder specified in `$WORK_DIR` environment variable.
+Internal packages are always at `$WORK_DIR\Packages`.
+
+Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder specified in `$WORK_DIR` environment variable.
 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 

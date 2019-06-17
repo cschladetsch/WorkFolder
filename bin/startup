@@ -5,6 +5,7 @@ export PS1='\e[0m \[\033]0; $? $TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]
 export PS2='-->'
 
 export WORK_BIN=$WORK_DIR/bin
+export PATH=$PATH:$WORK_BIN
 source $WORK_BIN/functions
 source $WORK_BIN/aliases
 

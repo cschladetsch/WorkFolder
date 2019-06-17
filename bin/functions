@@ -4,9 +4,14 @@
 # Remember to export functions at the end,
 # if you wish them to be used outside of this script.
 
+export WORK_VERBOSE=1
+
 echo_verbose()
 {
-	echo "$*"
+    if [ $WORK_VERBOSE -ge "$1" ]; then
+        shift
+        echo "$*"
+    fi
 }
 
 gacp()

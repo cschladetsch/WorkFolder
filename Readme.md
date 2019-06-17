@@ -5,12 +5,12 @@ Contains common functionality used by all developers at [Liminal](www.liminalvr.
 
 This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/user-name/work`. Note that it could also be at `e:\Projects`, (`/e/Projects` in git-bash syntax) or wherever. Specifically: *Never hard-code `~/work` into any script*. 
 
-The explicit location is not enforced, but for consistency it is prefered to be in `~/work`. Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder specified in `$WORK_ROOT` environment variable.
+The explicit location is not enforced, but for consistency it is prefered to be in `~/work`. Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder specified in `$WORK_DIR` environment variable.
 
 *NOTE* Some hand-holding may be required for artists unfamiliar with using `bash`.
 
 ## Todo
-* Use $WORK\_ROOT to specify the root _Liminal_ project folder for a given workstation, ie ~/work
+* Use $WORK\_DIR to specify the root _Liminal_ project folder for a given workstation, ie ~/work
 * Add `~/work/bin/enter`. This enters the general work environment.
 * Add `~/work/bin/start-project project-name`. This would create a ready-to-use project from git, including custom `enter` script for that project.
 * When *bootstrapping* a new project, some system (TBD) must change `Packages/manifest.json` to include references to `$WORK_ROOT/Packages/{Packagenames}`

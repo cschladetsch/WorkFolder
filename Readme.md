@@ -1,4 +1,4 @@
-# Liminal Working Projects folder
+# Liminal Working Folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
 See [Installer](https://github.com/LiminalVR/WorkFolderInstaller) for a Gui for setup.
@@ -24,5 +24,5 @@ Whenever `~/work` folder is referenced in the documentation or wiki, it is a syn
 * [bin/](bin) Contains often used [shell scripts](bin/Readme.md) and other tools
 * [doc/](doc) Contains top-level project-agnostic [documentation](doc/Readme.md). TODO. For example, *GitCommands.md*
 * _Packages/_ Contains all **Unity3d** Packages used across folders. Note that this is a folder that contains a collection of other git repos that are *not* sub-modules. By Placing them all here, then `ProjectName/ProjectName-Unity/Packages/manifest.json` can find packages by default by hard-wiring references. This is not ideal, but still practical.
-* _InternalPackages_ ??
+* _InternalPackages_ Live at `$WORK_DIR/Packages`.
 * _ExternalPackages_ ??

@@ -20,6 +20,11 @@ gacp()
     git push
 }
 
+unity_log()
+{
+    tail $* ~/AppData/Local/Unity/Editor/Editor.log
+}
+
 f()
 {
     find . -name $*
@@ -32,7 +37,7 @@ help()
 }
 
 # Export functions
-export gacp f help
+export gacp f help unity_log
 
 echo_verbose 2 "...functions"
 

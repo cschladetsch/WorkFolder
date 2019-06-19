@@ -165,7 +165,7 @@ do
         fi
         if [ "$result" != "" ]
         then
-            print "• $name changed." $changedFormat
+            print "❎ $name changed." $changedFormat
             if [ "$verbose" == false ]
             then
                 cd $cur
@@ -185,14 +185,10 @@ do
     cd $cur
 done
 
-print "No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
+print "☑  No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
     name="`basename $var`"
-#        if [ $name == "." ]
-#        then
-#            name="./`basename $cur`"
-#        fi
     branch=`cd $name && git rev-parse --abbrev-ref HEAD`
     print "	$name ($branch)" "0m"
     cd $cur

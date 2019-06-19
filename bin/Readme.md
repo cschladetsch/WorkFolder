@@ -18,6 +18,14 @@ Change global environment variable `WORK_DIR_VERBOSE`:
 
 In general, the higher the number, the more detail you will get when starting a new shell.
 
+## Python
+These scripts rely on Python. To setup:
+1. Install [Python](https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe) into `c:\Python`. Note that this is *not* the default install location.
+1. Open a `git-bash` shell as **Administrator**.
+1. Say `ln -s /c/Python/python.exe /usr/bin/python`
+
+Then you can make python scripts starting with the shebang `#!/usr/bin/python`
+
 ## Contents
 Brief description of each script/exe:
   * `functions` Global functions.

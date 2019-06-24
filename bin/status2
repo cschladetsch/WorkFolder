@@ -1,0 +1,38 @@
+#!/c/Python/python
+import os
+import sys
+import getopt
+
+def main(argv):
+    cur = os.getcwd()
+    dirs = os.listdir(cur)
+
+    update = False
+    verbose = False
+    checkout = False
+
+    try:
+        opts, args = getopt.getopt(argv, "huvc:",["branch="])
+    except getopt.GetoptError:
+      print('Invalid arguments.')
+
+    for opt, arg in opts:
+      if opt == '-h':
+          show_help()
+          sys.exit()
+      elif opt == '-u':
+          update = True
+      elif opt == '-v':
+          print('verbose')
+      elif opt in ('-c', '--branch'):
+         branch = arg
+         print(f"checkout {branch}")
+
+    for d in dirs:
+        if os.path.isdir(d + "\\.git"):
+            os.chdir(d)
+
+def show_help():
+    print("Help text")
+
+main(sys.argv[1:])

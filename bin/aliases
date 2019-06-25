@@ -15,7 +15,7 @@ alias gppu='gp && gpu'
 alias gpu='gp upstream'
 alias cdw='pushd /w'
 alias grhh='git reset --hard HEAD'
-alias gs='g status --short --branch'
+#alias gs='g status --short --branch'
 alias gshow='g show --name-only --oneline'
 alias python='winpty ~/AppData/Local/Programs/Python/Python37/python.exe'
 

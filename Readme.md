@@ -1,9 +1,11 @@
 # Liminal Working Folder
 Contains common functionality used by all developers at [Liminal](www.liminalvr.com).
 
-See [Installer](https://github.com/LiminalVR/WorkFolderInstaller) for a Gui for setup.
-
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
+
+**All developers *must* have their `work` folder mapped to `w:`**.
+
+- This can be done by follow the steps laid out [here](doc/SubstSetup.md)
 
 This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/user-name/work`. Note that it could also be at `e:\Projects`, (`/e/Projects` in git-bash syntax) or wherever. Specifically: *Never hard-code `~/work` into any script*. Rather, use `$WORK_DIR` and `$REPOS_DIR` for repositories.
 

@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# If in a Git folder, get the brief status,
+# else use $WORK_DIR/bin/status to get the status
+# of all repos in this folder.
+
 if [ -d .git ]
 then
     git status -sb
 else
     status
 fi
+

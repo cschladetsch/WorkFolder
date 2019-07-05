@@ -10,6 +10,10 @@ options='--browse'
 
 cp $template_msg_fname $msg_fname
 vi $msg_fname
+if [ $? -ne 0 ]; then
+	echo "Cancelled"
+	exit
+fi
 
 echo eval $base_cmd -b $target_branch $options --file $msg_fname
 eval $base_cmd -b $target_branch $options --file $msg_fname

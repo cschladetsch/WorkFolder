@@ -1,8 +1,9 @@
 # Common aliases
 
-alias g='git'
-alias gl='g lg'
 alias h='history'
+alias g='git'
+alias gll='g lg'
+alias gl='gll | head -5'
 alias gd='g diff'
 alias gf='g fetch'
 alias gp='g push'
@@ -13,14 +14,14 @@ alias gc='g commit -m'
 alias gr='g remote -v'
 alias gppu='gp && gpu'
 alias gpu='gp upstream'
-alias cdw='cd /w'
-alias grhh='git reset --hard HEAD'
+alias grhh='g reset --hard HEAD'
 alias gs='g status --short --branch'
 alias gshow='g show --name-only --oneline'
-alias python='winpty ~/AppData/Local/Programs/Python/Python37/python.exe'
-
 alias hi='hub issue --color'
 
-echo_verbose 2 "...aliases"
+alias cdw='cd /w'
+alias cdp='cd /w/Packages'
+alias cdr='cd /w/repos'
 
+echo_verbose 2 "...aliases"
 

@@ -27,6 +27,10 @@ function current_repo()
     while [ ! -d .git ]; do
         cd ..
         result=`pwd`
+        if [ `pwd` == "/" ]; then
+            result=""
+            break
+        fi
     done
     echo $result
     cd $cur
@@ -45,7 +49,7 @@ function current_repo()
 # The current directory is saved and restored as
 # you switch between repos in `current_repo`.current.
 #
-function go()
+function go_impl()
 {
     cur=`pwd`
     repos_path="/w/repos/"
@@ -57,8 +61,10 @@ function go()
     fi
 
     cur=`current_repo`
-    echo_verbose 4 "Saving current `pwd` to $cur/.current"
-    echo `pwd` > $cur/.current
+    if [ -n $cur ]; then
+        echo_verbose 4 "Saving current `pwd` to $cur/.current"
+        echo `pwd` > $cur/.current
+    fi
 
     echo_verbose 3 "Go to repo:"
     count=0
@@ -69,12 +75,16 @@ function go()
         then
             array+=($var)
             name="`basename $var`"
+            root=`current_repo`
+            if [ -e $root/.current ]; then
+                current="`cat $root/.current`"
+            fi
             if [ $print -ge 1 ]; then
                 if [ $var == $cur ]
                 then
-                    echo -e "\e[92m$count $name\e[0m"
+                    echo -e "\e[92m$count $name\e[0m $current"
                 else
-                    echo -e "$count $name"
+                    echo -e "$count $name $current"
                 fi
             fi
             ((count++))
@@ -96,6 +106,18 @@ function go()
     else
         cd "$dest"
     fi
+}
+
+go()
+{
+    #echo `go_impl $*` | column -t -s' '
+    go_impl $*
+}
+
+
+gor()
+{
+    cd `current_root`
 }
 
 #

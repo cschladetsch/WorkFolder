@@ -77,7 +77,9 @@ function go_impl()
             name="`basename $var`"
             root=`current_repo`
             if [ -e $root/.current ]; then
-                current="`cat $root/.current`"
+                last=`cat $root/.current`
+                last=`echo $last | cut -c10-`
+                current="\e[90m$last\e[0m"
             fi
             if [ $print -ge 1 ]; then
                 if [ $var == $cur ]
@@ -117,7 +119,7 @@ go()
 
 gor()
 {
-    cd `current_root`
+    cd `current_repo`
 }
 
 #

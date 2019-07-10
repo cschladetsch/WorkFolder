@@ -1,5 +1,8 @@
 # Generic LiminalVR .gitignore file
 
+# used by /w/bin/go
+/.current
+
 # Unity output folders
 /Library/
 /Builds/

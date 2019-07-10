@@ -10,38 +10,51 @@ echo_verbose()
 {
     if [ $WORK_VERBOSE -ge "$1" ]; then
         shift
-        echo "$*"
+        echo -e "$*"
     fi
 }
 
 function go()
 {
-    cur = $(pwd)
-    repos_path = "/w/repos/"
-    repos = `find $repos_path -maxdepth 1 -type d`
-    array = ()
+    cur=$(pwd)
+    repos_path="/w/repos/"
+    repos=`find $repos_path -maxdepth 1 -type d`
+    array=()
+    print=1
+    if [ -n "$1" ]; then
+        print=0
+    fi
 
-    echo_verbose 2 -e "\e[95mGo to repo:\e[0m"
-    count = 0
+    echo_verbose 3 "Go to repo:"
+    count=0
     for var in $repos
     do
         cd "$var"
         if [ -d .git ]
         then
-            array += ($var)
-            name = "`basename $var`"
-            if [ $var == $cur ]
-            then
-                echo -e "\e[92m$count) $name\e[0m"
-            else
-                echo -e "\e[34m$count)\e[0m $name"
+            array+=($var)
+            name="`basename $var`"
+            if [ $print -ge 1 ]; then
+                if [ $var == $cur ]
+                then
+                    echo -e "\e[92m$count $name\e[0m"
+                else
+                    echo -e "$count $name"
+                fi
             fi
             ((count++))
         fi
     done
-    read -rsn1 input
+
+    if [ $print -eq 1 ]; then
+        read -rsn1 input
+    else
+        input=$1
+    fi
+
     dest=${array[input]}
-    echo_verbose 2 -e "\e[96mGoing to → $dest\e[0m"
+    echo_verbose 2 "→ $dest"
+
     cd "$dest"
 }
 
@@ -72,7 +85,7 @@ help()
 }
 
 # Export functions
-export gacp f help unity_log gorepo
+export gacp f help unity_log go
 
 echo_verbose 2 "...functions"
 

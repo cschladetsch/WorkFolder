@@ -56,31 +56,33 @@ function go_impl()
     repos=`find $repos_path -maxdepth 1 -type d`
     array=()
     print=1
+
+    # don't list options if an argument is provided
     if [ -n "$1" ]; then
         print=0
     fi
 
+    # save current folder
     cur=`current_repo`
-    if [ -n $cur ]; then
-        echo_verbose 4 "Saving current `pwd` to $cur/.current"
-        echo `pwd` > $cur/.current
-    fi
+    echo_verbose 4 "Saving current `pwd` to $cur/.current"
+    echo `pwd` > $cur/.current
 
     echo_verbose 3 "Go to repo:"
     count=0
     for var in $repos
     do
         cd "$var"
-        if [ -d .git ]
-        then
+        if [ -d .git ]; then
             array+=($var)
             name="`basename $var`"
             root=`current_repo`
+
             if [ -e $root/.current ]; then
                 last=`cat $root/.current`
                 last=`echo $last | cut -c10-`
                 current="\e[90m$last\e[0m"
             fi
+
             if [ $print -ge 1 ]; then
                 if [ $var == $cur ]
                 then
@@ -89,10 +91,12 @@ function go_impl()
                     echo -e "$count $name $current"
                 fi
             fi
+
             ((count++))
         fi
     done
 
+    # only read input if no args given
     if [ $print -eq 1 ]; then
         read -rsn1 input
     else
@@ -115,7 +119,6 @@ go()
     #echo `go_impl $*` | column -t -s' '
     go_impl $*
 }
-
 
 gor()
 {

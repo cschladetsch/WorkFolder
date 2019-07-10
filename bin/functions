@@ -14,34 +14,34 @@ echo_verbose()
     fi
 }
 
-function gorepo()
+function go()
 {
-    cur=$(pwd)
-    repos_path="/w/repos/"
-    repos=`find $repos_path -maxdepth 1 -type d`
-    array=()
+    cur = $(pwd)
+    repos_path = "/w/repos/"
+    repos = `find $repos_path -maxdepth 1 -type d`
+    array = ()
 
-    echo -e "\e[95mGo to repo:\e[0m"
-    count=0
+    echo_verbose 2 -e "\e[95mGo to repo:\e[0m"
+    count = 0
     for var in $repos
     do
         cd "$var"
         if [ -d .git ]
         then
-            array+=($var)
-            name="`basename $var`"
+            array += ($var)
+            name = "`basename $var`"
             if [ $var == $cur ]
             then
-                echo -e "\e[92m[$count] $name\e[0m"
+                echo -e "\e[92m$count) $name\e[0m"
             else
-                echo -e "\e[34m[$count]\e[0m $name"
+                echo -e "\e[34m$count)\e[0m $name"
             fi
             ((count++))
         fi
     done
     read -rsn1 input
     dest=${array[input]}
-    echo -e "\e[96mGoing to → $dest\e[0m"
+    echo_verbose 2 -e "\e[96mGoing to → $dest\e[0m"
     cd "$dest"
 }
 
@@ -68,7 +68,6 @@ f()
 
 help()
 {
-    echo start $WORK_DIR/doc/Readme.md
     start $WORK_DIR/doc/Readme.md
 }
 

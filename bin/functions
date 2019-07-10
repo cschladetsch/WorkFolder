@@ -6,6 +6,9 @@
 
 export WORK_VERBOSE=1
 
+#
+# Condtionally echo
+#
 echo_verbose()
 {
     if [ $WORK_VERBOSE -ge "$1" ]; then
@@ -14,9 +17,37 @@ echo_verbose()
     fi
 }
 
+#
+# Echo the root folder of the current repo.
+#
+function current_repo()
+{
+    cur=`pwd`
+    result=$cur
+    while [ ! -d .git ]; do
+        cd ..
+        result=`pwd`
+    done
+    echo $result
+    cd $cur
+}
+
+#
+# Go to a repository.
+# 
+# If no arguments are given, a list of repos
+# is shown to select from. God help you if you
+# have more than 9 repos.
+#
+# If an argument is given, it is interpreted as
+# a repo number.
+#
+# The current directory is saved and restored as
+# you switch between repos in `current_repo`.current.
+#
 function go()
 {
-    cur=$(pwd)
+    cur=`pwd`
     repos_path="/w/repos/"
     repos=`find $repos_path -maxdepth 1 -type d`
     array=()
@@ -24,6 +55,10 @@ function go()
     if [ -n "$1" ]; then
         print=0
     fi
+
+    cur=`current_repo`
+    echo_verbose 4 "Saving current `pwd` to $cur/.current"
+    echo `pwd` > $cur/.current
 
     echo_verbose 3 "Go to repo:"
     count=0
@@ -55,9 +90,17 @@ function go()
     dest=${array[input]}
     echo_verbose 2 "→ $dest"
 
-    cd "$dest"
+    if [ -e $dest/.current ]; then
+        echo_verbose 2 "Restoring"
+        cd `cat $dest/.current`
+    else
+        cd "$dest"
+    fi
 }
 
+#
+# Git Add, Commit and Push
+#
 gacp()
 {
     if [ "$*" == "" ]; then
@@ -69,16 +112,27 @@ gacp()
     git push
 }
 
+#
+# Show the end of the current Unity3d log
+#
 unity_log()
 {
     tail $* ~/AppData/Local/Unity/Editor/Editor.log
 }
 
+#
+# An alias find.
+#
+# Should probably be an alias.
+#
 f()
 {
     find . -name $*
 }
 
+#
+# Show help
+#
 help()
 {
     start $WORK_DIR/doc/Readme.md

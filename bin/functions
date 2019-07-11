@@ -76,6 +76,8 @@ function go_impl()
             array+=($var)
             name="`basename $var`"
             root=`current_repo`
+	    current=`echo $root | cut -c10-`
+	    current="\e[90m$current\e[0m"
 
             if [ -e $root/.current ]; then
                 last=`cat $root/.current`

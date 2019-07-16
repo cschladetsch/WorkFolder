@@ -1,11 +1,8 @@
 namespace App
 {
     using System;
-
     using External;
-
     using Internal;
-
     using Symbol = Namespace.Symbol;
 
     /// <summary>
@@ -34,6 +31,8 @@ namespace App
         private const int _const;
         private int _prop { get; set };
         private int _field;
+        [Attribute]
+        private Foo _foo;
 
         public static void Bar()
         {
@@ -54,7 +53,7 @@ namespace App
         public void Bar()
         {
         }
-        
+
         internal void Bar()
         {
         }
@@ -68,3 +67,4 @@ namespace App
         }
     }
 }
+

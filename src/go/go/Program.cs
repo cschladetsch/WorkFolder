@@ -1,4 +1,4 @@
-using static System.IO.File;
+﻿using static System.IO.File;
 
 namespace go
 {
@@ -20,6 +20,17 @@ namespace go
 
     /// <summary>
     /// The caller will change directory to the output if it exists.
+    ///
+    /// This requires /w/bin/functions as well.
+    ///
+    /// Usage:
+    ///     λ go
+    ///         show a list of repos, each preceeded by a number
+    ///     λ go n
+    ///         go to the nth repo.
+    ///     λ go -
+    ///         go to the last thing you went from.
+    ///
     /// </summary>
     internal class Program
     {

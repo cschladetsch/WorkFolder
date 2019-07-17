@@ -76,8 +76,8 @@ function go_impl()
             array+=($var)
             name="`basename $var`"
             root=`current_repo`
-	    current=`echo $root | cut -c10-`
-	    current="\e[90m$current\e[0m"
+            current=`echo $root | cut -c10-`
+            current="\e[90m$current\e[0m"
 
             if [ -e $root/.current ]; then
                 last=`cat $root/.current`
@@ -116,10 +116,20 @@ function go_impl()
     fi
 }
 
-go()
+slow-go()
 {
     #echo `go_impl $*` | column -t -s' '
     go_impl $*
+}
+
+go()
+{
+    dest=`go.impl.exe $*`
+    if [ -e "$dest" ]; then
+        cd $dest
+    else
+        go.impl
+    fi
 }
 
 gor()

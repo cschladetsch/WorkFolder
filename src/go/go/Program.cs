@@ -1,6 +1,4 @@
-﻿using static System.IO.File;
-
-namespace go
+﻿namespace go
 {
     using System.IO;
     using System.Linq;
@@ -93,7 +91,7 @@ namespace go
         {
             var n = 0;
             foreach (var repo in _repos)
-                WriteLine($"{n++} {repo.Name} @{repo.CurrentPath.Substring(ReposRoot.Length)}");
+                WriteLine($"{n++} {repo.Name} @{repo.CurrentPath.Substring(ReposRoot.Length).Replace("\\", "/")}");
 
             return 0;
         }

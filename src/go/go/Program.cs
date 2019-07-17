@@ -1,37 +1,59 @@
+using static System.IO.File;
+
 namespace go
 {
-    using System;
     using System.IO;
     using System.Linq;
     using System.Collections.Generic;
+
+    using static System.IO.Directory;
+    using static System.IO.File;
+    using static System.IO.Path;
+    using static System.Console;
 
     internal class Repo
     {
         public string Name;
         public string CurrentPath;
         public string CurrentName;
-        //public string GitName;
     }
 
+    /// <summary>
+    /// The caller will change directory to the output if it exists.
+    /// </summary>
     internal class Program
     {
         private const string ReposRoot = @"w:\repos\";
+        private const string Previous = @"w:\repos\.prev";
         private readonly List<Repo> _repos = new List<Repo>();
 
         private static int Main(string[] args)
             => new Program().Run(args);
 
-        private int Run(string[] args)
+        private int Run(IReadOnlyList<string> args)
         {
             GetRepos();
 
-            if (args.Length == 0)
+            if (args.Count == 0)
                 return ShowRepos();
 
-            if (args[0] == "-c")
-                return ClearCurrents();
+            if (args[0] == "-")
+                return GotoPrev();
 
-            return GotoRepo(int.Parse(args[0]));
+            return args[0] == "-c"
+                ? ClearCurrents()
+                : GotoRepo(int.Parse(args[0]));
+        }
+
+        private static int GotoPrev()
+        {
+            if (!File.Exists(Previous))
+                return 1;
+
+            WriteLine(ReadAllText(Previous));
+            WriteAllText(Previous, GetCurrentDirectory());
+
+            return 0;
         }
 
         private int ClearCurrents()
@@ -44,13 +66,13 @@ namespace go
 
         private void GetRepos()
         {
-            foreach (var fi in Directory.GetDirectories(ReposRoot))
+            foreach (var repo in GetDirectories(ReposRoot))
             {
-                var combine = Path.Combine(fi, ".current");
+                var combine = Combine(repo, ".current");
                 _repos.Add(new Repo
                 {
-                    Name = Path.GetFileName(fi),
-                    CurrentPath = File.Exists(combine) ? File.ReadAllText(combine) : fi,
+                    Name = GetFileName(repo),
+                    CurrentPath = File.Exists(combine) ? ReadAllText(combine) : repo,
                     CurrentName = combine
                 });
             }
@@ -60,7 +82,7 @@ namespace go
         {
             var n = 0;
             foreach (var repo in _repos)
-                Console.WriteLine($"{n++} {repo.Name} @{repo.CurrentPath.Substring(ReposRoot.Length)}");
+                WriteLine($"{n++} {repo.Name} @{repo.CurrentPath.Substring(ReposRoot.Length)}");
 
             return 0;
         }
@@ -73,31 +95,27 @@ namespace go
             var dest = _repos[number];
             var curRepo = GetCurrentRepo();
             if (!string.IsNullOrEmpty(curRepo))
-                File.WriteAllText(Path.Combine(curRepo, ".current"), Directory.GetCurrentDirectory());
+                WriteAllText(Combine(curRepo, ".current"), GetCurrentDirectory());
 
-            Console.WriteLine(dest.CurrentPath);
+            WriteAllText(Previous, GetCurrentDirectory());
+            WriteLine(dest.CurrentPath);
             return 0;
         }
 
         private static string GetCurrentRepo()
         {
-            string GetRepo(string folder)
+            var folder = GetCurrentDirectory();
+            while (true)
             {
-                while (true)
-                {
-                    var directories = Directory.EnumerateDirectories(folder).Select(Path.GetFileName).ToArray();
-                    if (directories.Contains(".git"))
-                        return folder;
+                if (EnumerateDirectories(folder).Select(GetFileName).Contains(".git"))
+                    return folder;
 
-                    var parent = Directory.GetParent(folder);
-                    if (parent == null)
-                        return string.Empty;
+                var parent = GetParent(folder);
+                if (parent == null)
+                    return string.Empty;
 
-                    folder = parent.FullName;
-                }
+                folder = parent.FullName;
             }
-
-            return GetRepo(Directory.GetCurrentDirectory());
         }
     }
 }

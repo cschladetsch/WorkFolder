@@ -1,0 +1,13 @@
+{
+  "category": "Energy",
+  "name": "Experience Name",
+  "description":
+    "Description of the experience to be shown in the Experience Overview in the App.",
+  "author": "Name of Author(s)",
+  "limappGuid": "bae74961-49bd-4eb0-87c3-fad518e23f20",
+  "audioClipGuid": "00000000-0000-0000-0000-000000000000",
+  "iconGuid": "00000000-0000-0000-0000-000000000000",
+  "duration": "5 minutes",
+  "tags" : "some,tags"
+}
+

@@ -19,16 +19,17 @@
     /// <summary>
     /// The caller will change directory to the output if it exists.
     ///
-    /// This requires /w/bin/functions as well.
+    /// This requires /w/bin/functions.go as well.
     ///
     /// Usage:
+    /// <code>
     ///     λ go
-    ///         show a list of repos, each preceeded by a number
+    ///         show a list of repos, each preceeded by a number.
     ///     λ go n
     ///         go to the nth repo.
     ///     λ go -
     ///         go to the last thing you went from.
-    ///
+    /// </code>
     /// </summary>
     internal class Program
     {
@@ -103,10 +104,11 @@
 
             var dest = _repos[number];
             var curRepo = GetCurrentRepo();
+            var wd = GetCurrentDirectory();
             if (!string.IsNullOrEmpty(curRepo))
-                WriteAllText(Combine(curRepo, ".current"), GetCurrentDirectory());
+                WriteAllText(Combine(curRepo, ".current"), wd);
 
-            WriteAllText(Previous, GetCurrentDirectory());
+            WriteAllText(Previous, wd);
             WriteLine(dest.CurrentPath);
             return 0;
         }

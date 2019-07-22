@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Make a new issue using hub.
+
+base_cmd='hub issue create'
+target_branch='develop'
+msg_fname='/w/tmp/issue.md'
+template_msg_fname='/w/doc/default/Issue.md'
+
+cp $template_msg_fname $msg_fname
+vi $msg_fname
+if [ $? -ne 0 ]; then
+	echo "Cancelled"
+	exit
+fi
+
+echo eval $base_cmd $options -F $msg_fname $*
+eval $base_cmd $options -F $msg_fname --browse $*
+

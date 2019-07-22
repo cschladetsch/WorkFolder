@@ -48,6 +48,12 @@ Brief description of each script/exe:
   * `rg` [ripgrep](<https://github.com/BurntSushi/ripgrep/blob/master/README.md>).
   * `jq` *Json* utility.
   * `git-lfs` Redirects to `git-lfs.exe` for Ubuntu shell.
+  * `hi` Show issues in current repo.
+  * `issue` Make a new issue.
+
+## Todo
+
+`hi #num` - browse to given issue.
 
 ## Verbosity
 

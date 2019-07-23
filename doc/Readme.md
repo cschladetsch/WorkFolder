@@ -25,9 +25,7 @@ There are a number of default files that are used to populate a new project:
 Nothing at the moment.
 
 ## Contact
-
 [Christian](mailto:christian@liminalvr.com)
-
 [Jaris](mailto:jaris@liminalvr.com)
 
 

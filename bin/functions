@@ -124,11 +124,20 @@ slow-go()
 
 go()
 {
-    dest=`go.impl.exe $*`
-    if [ -e "$dest" ]; then
-        cd $dest
+    cmd='go.impl.exe $*'
+    eval $cmd 1> /w/tmp/next 2> /w/tmp/transist
+    transist=`cat /w/tmp/transist`
+    next=`cat /w/tmp/next`
+
+    arr=($transist)
+    for f in "${arr[@]}"; do
+       [[ -f $f ]] && . $f --source-only || echo "$f not found."
+    done
+
+    if [ ! -z $next ]; then
+        eval 'cd $next'
     else
-        go.impl
+        go.impl.exe
     fi
 }
 

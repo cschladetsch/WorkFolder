@@ -1,4 +1,6 @@
-﻿namespace go
+﻿using System;
+
+namespace go
 {
     using System.IO;
     using System.Linq;
@@ -42,7 +44,18 @@
         private readonly List<Repo> _repos = new List<Repo>();
 
         private static int Main(string[] args)
-            => new Program().Run(args);
+        {
+            try
+            {
+                return new Program().Run(args);
+            }
+            catch (Exception e)
+            {
+                WriteLine(e);
+            }
+
+            return -1;
+        }
 
         private int Run(IReadOnlyList<string> args)
         {

@@ -129,10 +129,12 @@ go()
     #cat /w/tmp/transist
     #cat /w/tmp/next
     transist=`cat /w/tmp/transist`
+    #echo $transist
+    arr=($transist)
+    for f in "${arr[@]}"; do
+       [[ -f $f ]] && . $f --source-only || echo "$f not found"
+    done 
 
-    if [ ! -z $transist ]; then
-        source $transist
-    fi
     next=`cat /w/tmp/next`
     if [ ! -z $next ]; then
         eval 'cd $next'

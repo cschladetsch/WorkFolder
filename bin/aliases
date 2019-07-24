@@ -19,6 +19,7 @@ alias gs='g status --short --branch'
 alias gshow='g show --name-only --oneline'
 alias hi='hub issue --color'
 alias python='winpty python.exe'
+alias ss='ls && gs && gl'
 
 alias cdw='cd /w'
 alias cdp='cd /w/Packages'

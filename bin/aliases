@@ -20,7 +20,6 @@ alias gshow='g show --name-only --oneline'
 alias hi='hub issue --color'
 alias python='winpty python.exe'
 alias glhf='ls && gs && gl'
-alias gacps='gacp "Update Shared."'
 alias gag='git add .gitignore'
 
 alias cdw='cd /w'

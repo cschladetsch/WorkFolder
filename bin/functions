@@ -126,16 +126,14 @@ go()
 {
     cmd='go.impl.exe $*'
     eval $cmd 1> /w/tmp/next 2> /w/tmp/transist
-    #cat /w/tmp/transist
-    #cat /w/tmp/next
     transist=`cat /w/tmp/transist`
-    #echo $transist
+    next=`cat /w/tmp/next`
+
     arr=($transist)
     for f in "${arr[@]}"; do
-       [[ -f $f ]] && . $f --source-only || echo "$f not found"
-    done 
+       [[ -f $f ]] && . $f --source-only || echo "$f not found."
+    done
 
-    next=`cat /w/tmp/next`
     if [ ! -z $next ]; then
         eval 'cd $next'
     else

@@ -134,7 +134,7 @@
             if (File.Exists($@"w:\repos\{dest.Name}\.enter"))
             {
                 if (!string.IsNullOrEmpty(leaveEnter))
-                    leaveEnter += " ; ";
+                    leaveEnter += "\n";
                 leaveEnter += enter;
             }
 

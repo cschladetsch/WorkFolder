@@ -19,6 +19,8 @@ alias gs='g status --short --branch'
 alias gshow='g show --name-only --oneline'
 alias hi='hub issue --color'
 alias python='winpty python.exe'
+alias glhf='ls && gs && gl'
+alias gai='git add -f .gitignore'
 
 alias cdw='cd /w'
 alias cdp='cd /w/Packages'

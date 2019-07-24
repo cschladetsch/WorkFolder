@@ -19,7 +19,11 @@
     /// <summary>
     /// The caller will change directory to the output if it exists.
     ///
-    /// This requires /w/bin/functions.go as well.
+    /// stderror is what to execute before moving.
+    ///
+    /// stdout is where to move to.
+    ///
+    /// NOTE: This requires /w/bin/functions as well.
     ///
     /// Usage:
     /// <code>
@@ -97,6 +101,8 @@
             return 0;
         }
 
+        private const string GitBash = @"C:\Program Files\Git\git-bash.exe";
+
         private int GotoRepo(int number)
         {
             if (number < 0 || number >= _repos.Count)
@@ -105,12 +111,34 @@
             var dest = _repos[number];
             var curRepo = GetCurrentRepo();
             var wd = GetCurrentDirectory();
-            if (!string.IsNullOrEmpty(curRepo))
-                WriteAllText(Combine(curRepo, ".current"), wd);
 
+            LeaveEnter(curRepo, wd, dest);
             WriteAllText(Previous, wd);
             WriteLine(dest.CurrentPath);
+
             return 0;
+        }
+
+        private static void LeaveEnter(string curRepo, string wd, Repo dest)
+        {
+            var leaveEnter = string.Empty;
+            if (!string.IsNullOrEmpty(curRepo))
+            {
+                WriteAllText(Combine(curRepo, ".current"), wd);
+                var leave = $"/w/repos/{Path.GetFileName(curRepo)}/.leave";
+                if (File.Exists($@"{curRepo}\.leave"))
+                    leaveEnter += leave;
+            }
+
+            var enter = $@"/w/repos/{dest.Name}/.enter";
+            if (File.Exists($@"w:\repos\{dest.Name}\.enter"))
+            {
+                if (!string.IsNullOrEmpty(leaveEnter))
+                    leaveEnter += " ; ";
+                leaveEnter += enter;
+            }
+
+            Error.WriteLine(leaveEnter);
         }
 
         private static string GetCurrentRepo()

@@ -124,11 +124,16 @@ slow-go()
 
 go()
 {
-    dest=`go.impl.exe $*`
-    if [ -e "$dest" ]; then
-        cd $dest
-    else
-        go.impl
+    cmd='go.impl.exe $*'
+    eval $cmd 1> /w/tmp/next 2> /w/tmp/transist
+    #cat /w/tmp/transist
+    #cat /w/tmp/next
+
+    if [ -e /w/tmp/transist ]; then
+        eval `cat /w/tmp/transist`
+    fi
+    if [ -e /w/tmp/next ]; then
+        eval 'cd `cat /w/tmp/next`'
     fi
 }
 

@@ -1,4 +1,4 @@
-# Project Name
+# Go to repo
 *go* allows the user to switch between *git* repositories quickly, while remembering where it came from when later re-entering a repo.
 
 ## Usage

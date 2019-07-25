@@ -1,0 +1,93 @@
+[
+    {
+        "guid": "cac944e6-ac7f-4b7f-bbe0-eab98856f731",
+        "name": "Default Config 1",
+        "description": "sdgfdfg fds ghfdsgh ",
+        "uri": "https://liminal-resources.s3.ap-southeast-2.amazonaws.com/app/Config/DefaultConfig.json",
+        "version": "2019-07-18T11-00-00"
+    },
+    {
+        "guid": "b65ea665-3d86-46e6-8313-a3c9568af0c8",
+        "name": "Orom Metadata",
+        "description": "Metadata for the Orom/Emulator experience #23",
+        "uri": "https://liminal-resources.s3.ap-southeast-2.amazonaws.com/app/Limapp/app_23_emulator_v5.limapp.json",
+        "version": "2019-07-18T00-00-00"
+    },
+    {
+        "guid": "e1c8d80a-5071-4c84-adf1-0dba5ed0700e",
+        "name": "Test Config",
+        "description": "A test configuration for an application with 1 category and 2 experiences.",
+        "uri": "https://liminal-resources.s3.ap-southeast-2.amazonaws.com/app/Config/TestConfig2.json",
+        "version": "2019-07-18T00-00-00"
+    },
+    {
+        "guid": "8326c263-af61-4e86-99a4-d6ac7985a186",
+        "name": "Dog Splash",
+        "description": "A dog.",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Texture/Dog.jpg",
+        "version": "2019-07-18T12-00-00"
+    },
+    {
+        "guid": "c1fcba12-1f6b-496c-a431-eea28220f314",
+        "name": "Orom Emulator",
+        "description": "Experience #23 for emulator.",
+        "uri": "https://liminal-resources.s3.ap-southeast-2.amazonaws.com/app/Limapp/app_23_emulator_v5.limapp",
+        "version": "2019-07-18T00-00-00"
+    },
+    {
+        "guid": "ee96d630-542c-45d1-8ad4-68e8693ed387",
+        "name": "Splat Metadata",
+        "description": "Metadata for #3 emulator experience.",
+        "uri": "https://liminal-resources.s3.ap-southeast-2.amazonaws.com/app/Limapp/app_3_emulator_v6.limapp.json",
+        "version": "2019-07-18T00-00-00"
+    },
+    {
+        "guid": "f9227edb-d404-44a8-a140-0a38b49e7594",
+        "name": "Splat Icon",
+        "description": "An icon for the Splat! experience.",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/Icons/3_panel.jpg",
+        "version": "19-07-18T053502"
+    },
+    {
+        "guid": "3ec914b8-2785-4f90-b549-70fb7fa758d4",
+        "name": "Splat GearVr",
+        "description": "The Gear Vr limapp for Splat",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/GearVr/Splat-GearVr.limapp",
+        "version": "19-07-18T054526"
+    },
+    {
+        "guid": "6540760d-0c6d-4986-a437-b4895bd1b931",
+        "name": "Redwood GearVr",
+        "description": "",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/GearVr/Redwood-GearVr.limapp",
+        "version": "19-07-18T055438"
+    },
+    {
+        "guid": "4c9b1bf7-3fd1-4d39-bfd4-f37fa0d259c5",
+        "name": "Redwood Metadata",
+        "description": "",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/Redwood-Metadata.json",
+        "version": "19-07-18T055839"
+    },
+    {
+        "guid": "b5e62330-cbca-4b46-9165-cd715c5797ad",
+        "name": "Redwood Emulator",
+        "description": "",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/Emulator/Redwood-Emulator.limapp",
+        "version": "19-07-18T060123"
+    },
+    {
+        "guid": "17695366-da11-4683-bf8f-244c5eea5fa5",
+        "name": "Liminal Splash",
+        "description": "",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Texture/Liminal.jpg",
+        "version": "19-07-18T060656"
+    },
+    {
+        "guid": "b23d6dd5-4692-4b8b-a7de-9df1ed07a3c4",
+        "name": "Splat Emulator",
+        "description": "",
+        "uri": "https://liminal-resources.s3-ap-southeast-2.amazonaws.com/app/Limapp/Emulator/Splat-Emulator.limapp",
+        "version": "19-07-19T041748"
+    }
+]

@@ -120,8 +120,6 @@ namespace go
             return 0;
         }
 
-        private const string _gitBash = @"C:\Program Files\Git\git-bash.exe";
-
         private int GotoRepo(int number)
         {
             if (number < 0 || number >= _repos.Count)

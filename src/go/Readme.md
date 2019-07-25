@@ -14,6 +14,14 @@ Go to the given repo, first remembering where we are so a later *go* to this rep
 go -
 ```
 Return to the previous repo and restoring its path.
+```
+go -k or -clear
+```
+Clear all `.current` files in all repos.
+```
+go -c or -current
+```
+Go to root of current repo.
 
 If a file called `.enter` exists in the current repo before it is entered, it will be executed.
 

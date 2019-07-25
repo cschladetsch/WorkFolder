@@ -167,17 +167,15 @@ namespace go
             if (!string.IsNullOrEmpty(curRepo))
             {
                 WriteAllText(Combine(curRepo, ".current"), wd);
-                var leave = $"/w/repos/{Path.GetFileName(curRepo)}/.leave";
                 if (File.Exists($@"{curRepo}\.leave"))
-                    leaveEnter += leave;
+                    leaveEnter += $"/w/repos/{GetFileName(curRepo)}/.leave";
             }
 
-            var enter = $@"/w/repos/{dest.Name}/.enter";
             if (File.Exists($@"w:\repos\{dest.Name}\.enter"))
             {
                 if (!string.IsNullOrEmpty(leaveEnter))
                     leaveEnter += "\n";
-                leaveEnter += enter;
+                leaveEnter += $@"/w/repos/{dest.Name}/.enter";
             }
 
             if (!string.IsNullOrEmpty(leaveEnter))

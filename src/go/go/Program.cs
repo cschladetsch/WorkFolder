@@ -9,11 +9,12 @@ namespace go
     using static System.IO.Directory;
     using static System.IO.File;
     using static System.IO.Path;
-    using static System.Console;
+    using static Console;
 
     internal class Repo
     {
         public string Name;
+        public string FullPath;
         public string CurrentPath;
         public string CurrentName;
     }
@@ -99,6 +100,7 @@ namespace go
                 _repos.Add(new Repo
                 {
                     Name = GetFileName(repo),
+                    FullPath = repo,
                     CurrentPath = File.Exists(combine) ? ReadAllText(combine) : repo,
                     CurrentName = combine
                 });
@@ -109,12 +111,16 @@ namespace go
         {
             var n = 0;
             foreach (var repo in _repos)
-                WriteLine($"{n++} {repo.Name} @{repo.CurrentPath.Substring(ReposRoot.Length).Replace("\\", "/")}");
+            {
+                //Write($"--- {repo.FullPath} / {GetCurrentDirectory()} ---");
+                var format = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower()) ? "\x1b[92m\x1b[1m" : "\x1b[37m";
+                WriteLine($"{format}{n++} {repo.Name} \x1b[2m@{repo.CurrentPath.Substring(ReposRoot.Length).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
+            }
 
             return 0;
         }
 
-        private const string GitBash = @"C:\Program Files\Git\git-bash.exe";
+        private const string _gitBash = @"C:\Program Files\Git\git-bash.exe";
 
         private int GotoRepo(int number)
         {

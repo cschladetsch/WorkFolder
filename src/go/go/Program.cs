@@ -31,16 +31,21 @@ namespace go
     /// Usage:
     /// <code>
     ///     λ go
-    ///         show a list of repos, each preceeded by a number.
+    ///         Show a list of repos, each preceeded by a number.
     ///     λ go n
-    ///         go to the nth repo.
+    ///         Go to the nth repo.
     ///     λ go -
-    ///         go to the last thing you went from.
+    ///         Go to the last thing you went from.
+    ///     λ go -current || -c
+    ///         Go to root of current repo.
+    ///     λ go -clear || -k
+    ///         Clear all .current files in repos.
     /// </code>
     /// </summary>
     internal class Program
     {
         private const string ReposRoot = @"w:\repos\";
+        private const string PackagesRoot = @"w:\Packages\";
         private const string Previous = @"w:\repos\.prev";
         private readonly List<Repo> _repos = new List<Repo>();
 
@@ -65,12 +70,20 @@ namespace go
             if (args.Count == 0)
                 return ShowRepos();
 
-            if (args[0] == "-")
-                return GotoPrev();
+            switch (args[0])
+            {
+                case "-":
+                    return GotoPrev();
+                case "-current":
+                case "-c":
+                    WriteLine("/w" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
+                    return 0;
+                case "-clear":
+                case "-k":
+                    return ClearCurrents();
+            }
 
-            return args[0] == "-c"
-                ? ClearCurrents()
-                : GotoRepo(int.Parse(args[0]));
+            return GotoRepo(int.Parse(args[0]));
         }
 
         private static int GotoPrev()
@@ -94,7 +107,7 @@ namespace go
 
         private void GetRepos()
         {
-            foreach (var repo in GetDirectories(ReposRoot))
+            foreach (var repo in GetDirectories(ReposRoot).Concat(GetDirectories(PackagesRoot)))
             {
                 var combine = Combine(repo, ".current");
                 _repos.Add(new Repo
@@ -109,18 +122,27 @@ namespace go
 
         private int ShowRepos()
         {
+            string Substring(Repo repo)
+            {
+                var path = repo.FullPath.Replace("/", "\\");
+                var trim = path.IndexOf("\\", StringComparison.Ordinal);
+                if (!path.Contains("Packages"))
+                    trim = path.IndexOf("\\", trim + 1, StringComparison.Ordinal);
+                return path.Substring(trim + 1);
+            }
+
             var n = 0;
             foreach (var repo in _repos)
             {
-                //Write($"--- {repo.FullPath} / {GetCurrentDirectory()} ---");
-                var format = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower()) ? "\x1b[92m\x1b[1m" : "\x1b[37m";
-                WriteLine($"{format}{n++} {repo.Name} \x1b[2m@{repo.CurrentPath.Substring(ReposRoot.Length).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
+                var current = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower());
+                var format = current
+                    ? "\x1b[92m\x1b[1m"
+                    : repo.FullPath.Contains("Packages") ? "\x1b[36m" : "\x1b[37m";
+                WriteLine($"{format}{n++} {repo.Name} \x1b[2m@{Substring(repo).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
             }
 
             return 0;
         }
-
-        private const string _gitBash = @"C:\Program Files\Git\git-bash.exe";
 
         private int GotoRepo(int number)
         {

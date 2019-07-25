@@ -125,7 +125,7 @@ namespace go
         {
             string Substring(Repo repo)
             {
-                var path = repo.FullPath.Replace("/", "\\");
+                var path = repo.CurrentPath.Replace("/", "\\");
                 var trim = path.IndexOf("\\", StringComparison.Ordinal);
                 if (!path.Contains("Packages"))
                     trim = path.IndexOf("\\", trim + 1, StringComparison.Ordinal);
@@ -180,7 +180,8 @@ namespace go
                 leaveEnter += enter;
             }
 
-            Error.WriteLine(leaveEnter);
+            if (!string.IsNullOrEmpty(leaveEnter))
+                Error.WriteLine(leaveEnter);
         }
 
         private static string GetCurrentRepo()

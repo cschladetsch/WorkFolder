@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Console = System.Console;
 
 namespace go
 {
+    using System;
     using System.IO;
     using System.Linq;
     using System.Collections.Generic;
@@ -153,14 +154,14 @@ namespace go
             var curRepo = GetCurrentRepo();
             var wd = GetCurrentDirectory();
 
-            LeaveEnter(curRepo, wd, dest);
+            LeaveThenEnter(curRepo, wd, dest);
             WriteAllText(Previous, wd);
             WriteLine(dest.CurrentPath);
 
             return 0;
         }
 
-        private static void LeaveEnter(string curRepo, string wd, Repo dest)
+        private static void LeaveThenEnter(string curRepo, string wd, Repo dest)
         {
             var leaveEnter = string.Empty;
             if (!string.IsNullOrEmpty(curRepo))
@@ -184,17 +185,17 @@ namespace go
 
         private static string GetCurrentRepo()
         {
-            var folder = GetCurrentDirectory();
+            var current = GetCurrentDirectory();
             while (true)
             {
-                if (EnumerateDirectories(folder).Select(GetFileName).Contains(".git"))
-                    return folder;
+                if (EnumerateDirectories(current).Select(GetFileName).Contains(".git"))
+                    return current;
 
-                var parent = GetParent(folder);
+                var parent = GetParent(current);
                 if (parent == null)
                     return string.Empty;
 
-                folder = parent.FullName;
+                current = parent.FullName;
             }
         }
     }

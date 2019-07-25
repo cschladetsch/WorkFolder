@@ -25,6 +25,7 @@ alias gai='git add -f .gitignore'
 alias cdw='cd /w'
 alias cdp='cd /w/Packages'
 alias cdr='cd /w/repos'
+alias cdd='cd `go.impl -c`'
 
 echo_verbose 2 "...aliases"
 

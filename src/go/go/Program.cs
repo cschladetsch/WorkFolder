@@ -139,7 +139,10 @@ namespace go
                 var format = current
                     ? "\x1b[92m\x1b[1m"
                     : repo.FullPath.Contains("Packages") ? "\x1b[36m" : "\x1b[37m";
-                WriteLine($"{format}{n++:00} {repo.Name} \x1b[2m@{Substring(repo).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
+                var st = n++.ToString();
+                if (st.Length == 1)
+                    st = $"{st} ";
+                WriteLine($"{format}{st} {repo.Name} \x1b[2m@{Substring(repo).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
             }
 
             return 0;

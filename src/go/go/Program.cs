@@ -1,4 +1,5 @@
-﻿using Console = System.Console;
+﻿using System.Text;
+using Console = System.Console;
 
 namespace go
 {
@@ -66,6 +67,7 @@ namespace go
 
         private int Run(IReadOnlyList<string> args)
         {
+            GetFavourites();
             GetRepos();
 
             if (args.Count == 0)
@@ -85,6 +87,15 @@ namespace go
             }
 
             return GotoRepo(int.Parse(args[0]));
+        }
+
+        private void GetFavourites()
+        {
+            if (!File.Exists($"{ReposRoot}/.favourites"))
+                File.Create($"{ReposRoot}/.favourites");
+
+            var favouritesText = File.ReadAllText($"{ReposRoot}/.favourites");
+            string[] favourites = favouritesText.Split(',');
         }
 
         private static int GotoPrev()
@@ -121,13 +132,31 @@ namespace go
             }
         }
 
+        private void WriteFormat(string text, IEnumerable<string> format)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var str in format)
+                sb.Append(str);
+
+            Write($"{sb}{text}\x1b[0m");
+        }
+
+        private void WriteLineFormat(string text, IEnumerable<string> format)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var str in format)
+                sb.Append(str);
+
+            WriteLine($"{sb}{text}\x1b[0m");
+        }
+
         private int ShowRepos()
         {
             string Substring(Repo repo)
             {
-                var path = repo.CurrentPath.Replace("/", "\\");
-                var trim = path.IndexOf("\\", StringComparison.Ordinal);
-                if (!path.Contains("Packages"))
+                var path = repo.CurrentPath.Replace("/", "\\"); // Make `/` consistent.
+                var trim = path.IndexOf("\\", StringComparison.Ordinal); // get the index of `\`.
+                if (!path.Contains("Packages")) // if not a package.
                     trim = path.IndexOf("\\", trim + 1, StringComparison.Ordinal);
                 return path.Substring(trim + 1);
             }
@@ -136,13 +165,48 @@ namespace go
             foreach (var repo in _repos)
             {
                 var current = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower());
-                var format = current
-                    ? "\x1b[92m\x1b[1m"
-                    : repo.FullPath.Contains("Packages") ? "\x1b[36m" : "\x1b[37m";
-                WriteLine($"{format}{n++:00} {repo.Name} \x1b[2m@{Substring(repo).Replace("\\", "/").Replace("\n", "")}\x1b[0m");
+                var mainFormat = new List<string>();
+                if (current)
+                {
+                    mainFormat.Add(Format.LightGreen);
+                    mainFormat.Add(Format.Bold);
+                }
+                else if (repo.FullPath.Contains("Packages"))
+                    mainFormat.Add(Format.Cyan);
+                else
+                    mainFormat.Add(Format.LightGrey);
+
+                var pathFormat = new List<string>(mainFormat) {Format.Dim};
+
+                WriteFormat($"{n++:00} {repo.Name}", mainFormat);
+                WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
             }
 
             return 0;
+        }
+
+        private static class Format
+        {
+            public static string Default = "\x1b[39m";
+            public static string Black = "\x1b[30m";
+            public static string Red = "\x1b[31m";
+            public static string Green = "\x1b[32m";
+            public static string Yellow = "\x1b[33m";
+            public static string Blue = "\x1b[34m";
+            public static string Magenta = "\x1b[35m";
+            public static string Cyan = "\x1b[36m";
+            public static string LightGrey = "\x1b[37m";
+            public static string DarkGrey = "\x1b[90m";
+            public static string LightRed = "\x1b[91m";
+            public static string LightGreen = "\x1b[92m";
+            public static string LightYellow = "\x1b[93m";
+            public static string LightBlue = "\x1b[94m";
+            public static string LightMagenta = "\x1b[95m";
+            public static string LightCyan = "\x1b[96m";
+            public static string White = "\x1b[97m";
+
+            public static string Bold = "\x1b[1m";
+            public static string Dim = "\x1b[2m";
         }
 
         private int GotoRepo(int number)

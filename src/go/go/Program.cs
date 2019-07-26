@@ -1,4 +1,5 @@
-﻿using Console = System.Console;
+﻿using System.Text;
+using Console = System.Console;
 
 namespace go
 {
@@ -66,6 +67,7 @@ namespace go
 
         private int Run(IReadOnlyList<string> args)
         {
+            GetFavourites();
             GetRepos();
 
             if (args.Count == 0)
@@ -85,6 +87,15 @@ namespace go
             }
 
             return GotoRepo(int.Parse(args[0]));
+        }
+
+        private void GetFavourites()
+        {
+            if (!File.Exists($"{ReposRoot}/.favourites"))
+                File.Create($"{ReposRoot}/.favourites");
+
+            var favouritesText = File.ReadAllText($"{ReposRoot}/.favourites");
+            string[] favourites = favouritesText.Split(',');
         }
 
         private static int GotoPrev()
@@ -121,14 +132,22 @@ namespace go
             }
         }
 
-        private void WriteFormat(string text, string format)
+        private void WriteFormat(string text, IEnumerable<string> format)
         {
-            Write($"{format}{text}\x1b[0m");
+            StringBuilder sb = new StringBuilder();
+            foreach (var str in format)
+                sb.Append(str);
+
+            Write($"{sb}{text}\x1b[0m");
         }
 
-        private void WriteLineFormat(string text, string format)
+        private void WriteLineFormat(string text, IEnumerable<string> format)
         {
-            WriteLine($"{format}{text}\x1b[0m");
+            StringBuilder sb = new StringBuilder();
+            foreach (var str in format)
+                sb.Append(str);
+
+            WriteLine($"{sb}{text}\x1b[0m");
         }
 
         private int ShowRepos()
@@ -146,11 +165,19 @@ namespace go
             foreach (var repo in _repos)
             {
                 var current = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower());
-                var mainFormat =
-                    current
-                    ? new[] {Format.LightGreen, Format.Bold}
-                    : repo.FullPath.Contains("Packages") ? new[]{Format.Cyan} : new[]{Format.LightGrey};
-                var pathFormat = mainFormat + "\x1b[2m";
+                var mainFormat = new List<string>();
+                if (current)
+                {
+                    mainFormat.Add(Format.LightGreen);
+                    mainFormat.Add(Format.Bold);
+                }
+                else if (repo.FullPath.Contains("Packages"))
+                    mainFormat.Add(Format.Cyan);
+                else
+                    mainFormat.Add(Format.LightGrey);
+
+                var pathFormat = new List<string>(mainFormat) {Format.Dim};
+
                 WriteFormat($"{n++:00} {repo.Name}", mainFormat);
                 WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
             }

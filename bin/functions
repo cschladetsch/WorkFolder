@@ -129,16 +129,17 @@ go()
     transist=`cat /w/tmp/transist`
     next=`cat /w/tmp/next`
 
-    arr=($transist)
-    for f in "${arr[@]}"; do
-       [[ -f $f ]] && . $f --source-only || echo "$f not found."
-    done
-
     if [ ! -z $next ]; then
         eval 'cd $next'
     else
         go.impl.exe
+        return 0
     fi
+
+    arr=($transist)
+    for f in "${arr[@]}"; do
+       [[ -f $f ]] && . $f --source-only || echo "$f not found."
+    done
 }
 
 gor()

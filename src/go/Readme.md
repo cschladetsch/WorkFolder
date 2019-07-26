@@ -3,17 +3,25 @@
 
 ## Usage
 ```
-go
+λ go
 ```
 Shows a list of repos, prefixed with a number.
 ```
-go n
+λ go n
 ```
 Go to the given repo, first remembering where we are so a later *go* to this repo will restore the local path.
 ```
-go -
+λ go -
 ```
 Return to the previous repo and restoring its path.
+```
+λ go -k or -clear
+```
+Clear all `.current` files in all repos.
+```
+λ go -c or -current
+```
+Go to root of current repo.
 
 If a file called `.enter` exists in the current repo before it is entered, it will be executed.
 

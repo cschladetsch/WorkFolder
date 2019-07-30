@@ -1,11 +1,11 @@
-﻿using System.Text;
-using Console = System.Console;
+﻿using Console = System.Console;
 
 namespace go
 {
     using System;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Collections.Generic;
 
     using static System.IO.Directory;
@@ -90,9 +90,7 @@ namespace go
         }
 
         private static string Sanitise(string input)
-        {
-            return input.Replace("/", "\\");
-        }
+            => input.Replace("/", "\\");
 
         private void GetFavourites()
         {
@@ -137,23 +135,19 @@ namespace go
             }
         }
 
-        private void WriteFormat(string text, IEnumerable<string> format)
+        private static string Format(string text, IEnumerable<string> format)
         {
             var sb = new StringBuilder();
             foreach (var str in format)
                 sb.Append(str);
-
-            Write($"{sb}{text}\x1b[0m");
+            return $"{sb}{text}\x1b[0m";
         }
 
-        private void WriteLineFormat(string text, IEnumerable<string> format)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var str in format)
-                sb.Append(str);
+        private static void WriteFormat(string text, IEnumerable<string> format)
+            => Write(Format(text, format));
 
-            WriteLine($"{sb}{text}\x1b[0m");
-        }
+        private static void WriteLineFormat(string text, IEnumerable<string> format)
+            => WriteLine(Format(text, format));
 
         private int ShowRepos()
         {

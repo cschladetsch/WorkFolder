@@ -89,6 +89,11 @@ namespace go
             return GotoRepo(int.Parse(args[0]));
         }
 
+        private static string Sanitise(string input)
+        {
+            return input.Replace("/", "\\");
+        }
+
         private void GetFavourites()
         {
             if (!File.Exists($"{ReposRoot}/.favourites"))
@@ -125,8 +130,8 @@ namespace go
                 _repos.Add(new Repo
                 {
                     Name = GetFileName(repo),
-                    FullPath = repo,
-                    CurrentPath = File.Exists(combine) ? ReadAllText(combine) : repo,
+                    FullPath = Sanitise(repo),
+                    CurrentPath = Sanitise(File.Exists(combine) ? ReadAllText(combine) : repo),
                     CurrentName = combine
                 });
             }
@@ -154,11 +159,10 @@ namespace go
         {
             string Substring(Repo repo)
             {
-                var path = repo.CurrentPath.Replace("/", "\\"); // Make `/` consistent.
-                var trim = path.IndexOf("\\", StringComparison.Ordinal); // get the index of `\`.
-                if (!path.Contains("Packages")) // if not a package.
-                    trim = path.IndexOf("\\", trim + 1, StringComparison.Ordinal);
-                return path.Substring(trim + 1);
+                var nameIndex = repo.CurrentPath.IndexOf(repo.Name, StringComparison.Ordinal);
+                var nameSub = repo.CurrentPath.Substring(0, nameIndex-1);
+                var parentIndex = nameSub.LastIndexOf("\\", StringComparison.Ordinal);
+                return repo.CurrentPath.Substring(parentIndex+1);
             }
 
             var n = 0;
@@ -178,7 +182,7 @@ namespace go
 
                 var pathFormat = new List<string>(mainFormat) {Format.Dim};
 
-                WriteFormat($"{n++:00} {repo.Name}", mainFormat);
+                WriteFormat(++n < 10 ? $"{n: 0} {repo.Name}" : $"{n:00} {repo.Name}", mainFormat);
                 WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
             }
 

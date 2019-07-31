@@ -122,6 +122,12 @@ slow-go()
     go_impl $*
 }
 
+statuscs()
+{
+    cmd='status.impl.exe $*'
+    eval $cmd
+}
+
 go()
 {
     cmd='go.impl.exe $*'
@@ -188,7 +194,7 @@ help()
 }
 
 # Export functions
-export gacp f help unity_log go
+export gacp f help unity_log go statuscs
 
 echo_verbose 2 "...functions"
 

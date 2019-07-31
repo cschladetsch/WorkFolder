@@ -7,7 +7,7 @@ When an update is made, the user updates their work folder with:
 
 ```bash
 $ cd $WORK_DIR
-$ git checkout origin develop && git pull
+$ git checkout origin liminal && git pull
 ```
 
 If this doesn't work, see *Contacts* below.

@@ -13,7 +13,7 @@ $ git checkout origin liminal && git pull
 If this doesn't work, see *Contacts* below.
 
 ## Contents
-* **Git-Commands.md**. A useful resource for common `git` commands used at Liminal.
+* **GitCommands.md**. A useful resource for common `git` commands used at Liminal.
 
 ### doc/defaults
 There are a number of default files that are used to populate a new project:

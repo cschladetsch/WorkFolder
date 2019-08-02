@@ -1,5 +1,6 @@
 # Common aliases
 
+alias ls='ls --color -h'
 alias h='history'
 alias g='git'
 alias gll='g lg'

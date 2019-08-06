@@ -90,7 +90,7 @@ namespace go
         }
 
         private static string Sanitise(string input)
-            => input.Replace("/", "\\");
+            => input.Replace("\\", "/");
 
         private void GetFavourites()
         {
@@ -155,13 +155,13 @@ namespace go
             {
                 var nameIndex = repo.CurrentPath.IndexOf(repo.Name, StringComparison.Ordinal);
                 var nameSub = repo.CurrentPath.Substring(0, nameIndex-1);
-                var parentIndex = nameSub.LastIndexOf("\\", StringComparison.Ordinal);
+                var parentIndex = nameSub.LastIndexOf("/", StringComparison.Ordinal);
                 return repo.CurrentPath.Substring(parentIndex+1);
             }
 
-            var n = 0;
-            foreach (var repo in _repos)
+            for (var n = 0; n < _repos.Count; n++)
             {
+                var repo = _repos[n];
                 var current = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower());
                 var mainFormat = new List<string>();
                 if (current)
@@ -176,7 +176,7 @@ namespace go
 
                 var pathFormat = new List<string>(mainFormat) {ColorFormat.Dim};
 
-                WriteFormat(++n < 10 ? $"{n - 1: 0} {repo.Name}" : $"{n:00} {repo.Name}", mainFormat);
+                WriteFormat(n < 10 ? $"{n: 0} {repo.Name}" : $"{n:00} {repo.Name}", mainFormat);
                 WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
             }
 

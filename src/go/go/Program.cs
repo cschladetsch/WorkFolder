@@ -38,7 +38,7 @@ namespace go
     ///         Go to the nth repo.
     ///     λ go -
     ///         Go to the last thing you went from.
-    ///     λ go -current || -c
+    ///     λ go -current || -c || -root
     ///         Go to root of current repo.
     ///     λ go -clear || -k
     ///         Clear all .current files in repos.
@@ -81,6 +81,7 @@ namespace go
                     return GotoPrev();
                 case "-c":
                 case "-current":
+                case "-root":
                     WriteLine("/w" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
                     return 0;
                 case "-k":

@@ -1,4 +1,4 @@
-# Work-Folder Documentation
+# WorkFolder Documentation
 If you have this file locally, you probably have the _Liminal_ work-station folder setup installed. If not, see [WorkFolder](https://github.com/LiminalVR/WorkFolder).
 
 The general idea of `WorkFolder` is that we can all share the same development environment across multiple machines.
@@ -6,8 +6,7 @@ The general idea of `WorkFolder` is that we can all share the same development e
 When an update is made, the user updates their work folder with:
 
 ```bash
-$ cd $WORK_DIR
-$ git checkout origin liminal && git pull
+$ cd /w && git pull
 ```
 
 If this doesn't work, see *Contacts* below.

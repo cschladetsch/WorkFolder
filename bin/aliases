@@ -31,6 +31,7 @@ alias cdd='cd `go.impl -c`'
 alias unity='go -unity'
 alias app='cd `go.impl -unity`/App'
 alias root='cd `go.impl -current`'
+alias repos='cd /w/repos'
 
 echo_verbose 2 "...aliases"
 

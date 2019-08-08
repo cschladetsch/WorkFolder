@@ -8,10 +8,10 @@ namespace go
     using System.Text;
     using System.Collections.Generic;
 
-    using static System.IO.Directory;
+    using static Console;
     using static System.IO.File;
     using static System.IO.Path;
-    using static Console;
+    using static System.IO.Directory;
 
     internal class Repo
     {
@@ -42,6 +42,8 @@ namespace go
     ///         Go to root of current repo.
     ///     λ go -clear || -k
     ///         Clear all .current files in repos.
+    ///     λ go -unity || -u
+    ///         Change to Assets folder of first found Unity3d project.
     /// </code>
     /// </summary>
     internal class Program
@@ -59,7 +61,7 @@ namespace go
             }
             catch (Exception e)
             {
-                WriteLine(e);
+                WriteLine($"{ColorFormat.LightRed}{e.Message}");
             }
 
             return -1;
@@ -77,12 +79,12 @@ namespace go
             {
                 case "-":
                     return GotoPrev();
-                case "-current":
                 case "-c":
+                case "-current":
                     WriteLine("/w" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
                     return 0;
-                case "-clear":
                 case "-k":
+                case "-clear":
                     return ClearCurrents();
                 case "-u":
                 case "-unity":
@@ -92,25 +94,28 @@ namespace go
             return GotoRepo(int.Parse(args[0]));
         }
 
-        private int FindUnityProject()
+        private static int FindUnityProject()
         {
-            var current = GetCurrentRepo();
-            var proj = EnumerateDirectories(current, "Assets", SearchOption.AllDirectories).FirstOrDefault(d => !d.Contains(".git"));
+            var proj = EnumerateDirectories(GetCurrentRepo(), "Assets", SearchOption.AllDirectories)
+                .FirstOrDefault(d => !d.Contains(".git"));
             if (proj != null)
                 WriteLine($"/w/{Sanitise(proj.Substring(3))}");
+
             return 0;
         }
 
         private static string Sanitise(string input)
             => input.Replace("\\", "/");
 
-        private void GetFavourites()
+        private static void GetFavourites()
         {
             if (!File.Exists($"{ReposRoot}/.favourites"))
-                File.Create($"{ReposRoot}/.favourites");
+                Create($"{ReposRoot}/.favourites");
 
             var favouritesText = File.ReadAllText($"{ReposRoot}/.favourites");
-            string[] favourites = favouritesText.Split(',');
+            var favourites = favouritesText.Split(',');
+
+            throw new NotImplementedException("Favorites");
         }
 
         private static int GotoPrev()
@@ -136,13 +141,13 @@ namespace go
         {
             foreach (var repo in GetDirectories(ReposRoot).Concat(GetDirectories(PackagesRoot)))
             {
-                var combine = Combine(repo, ".current");
+                var current = Combine(repo, ".current");
                 _repos.Add(new Repo
                 {
                     Name = GetFileName(repo),
                     FullPath = Sanitise(repo),
-                    CurrentPath = Sanitise(File.Exists(combine) ? ReadAllText(combine) : repo),
-                    CurrentName = combine
+                    CurrentPath = Sanitise(File.Exists(current) ? ReadAllText(current) : repo),
+                    CurrentName = current
                 });
             }
         }
@@ -152,6 +157,7 @@ namespace go
             var sb = new StringBuilder();
             foreach (var str in format)
                 sb.Append(str);
+
             return $"{sb}{text}\x1b[0m";
         }
 
@@ -166,9 +172,9 @@ namespace go
             string Substring(Repo repo)
             {
                 var nameIndex = repo.CurrentPath.IndexOf(repo.Name, StringComparison.Ordinal);
-                var nameSub = repo.CurrentPath.Substring(0, nameIndex-1);
+                var nameSub = repo.CurrentPath.Substring(0, nameIndex - 1);
                 var parentIndex = nameSub.LastIndexOf("/", StringComparison.Ordinal);
-                return repo.CurrentPath.Substring(parentIndex+1);
+                return repo.CurrentPath.Substring(parentIndex + 1);
             }
 
             for (var n = 0; n < _repos.Count; n++)

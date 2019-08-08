@@ -84,9 +84,21 @@ namespace go
                 case "-clear":
                 case "-k":
                     return ClearCurrents();
+                case "-u":
+                case "-unity":
+                    return FindUnityProject();
             }
 
             return GotoRepo(int.Parse(args[0]));
+        }
+
+        private int FindUnityProject()
+        {
+            var current = GetCurrentRepo();
+            var proj = EnumerateDirectories(current, "Assets", SearchOption.AllDirectories).FirstOrDefault(d => !d.Contains(".git"));
+            if (proj != null)
+                WriteLine($"/w/{Sanitise(proj.Substring(3))}");
+            return 0;
         }
 
         private static string Sanitise(string input)

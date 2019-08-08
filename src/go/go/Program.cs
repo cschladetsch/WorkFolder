@@ -69,7 +69,7 @@ namespace go
 
         private int Run(IReadOnlyList<string> args)
         {
-            GetFavourites();
+            //GetFavourites();
             GetRepos();
 
             if (args.Count == 0)

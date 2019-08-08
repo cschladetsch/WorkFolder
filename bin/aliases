@@ -28,6 +28,8 @@ alias cdw='cd /w'
 alias cdp='cd /w/Packages'
 alias cdr='cd /w/repos'
 alias cdd='cd `go.impl -c`'
+alias unity='go -unity'
+alias root='cd `go.impl -current`'
 
 echo_verbose 2 "...aliases"
 

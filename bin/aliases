@@ -24,6 +24,7 @@ alias python='winpty python.exe'
 alias glhf='ls && gs && gl'
 alias gai='git add -f .gitignore'
 
+alias gdl="gd ':*.cs'"
 alias cdw='cd /w'
 alias cdp='cd /w/Packages'
 alias cdr='cd /w/repos'

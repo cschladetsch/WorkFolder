@@ -193,8 +193,13 @@ help()
     start $WORK_DIR/doc/Readme.md
 }
 
+first()
+{
+    cd `find . -type d -name $1 -print -quit`
+}
+
 # Export functions
-export gacp f help unity_log go statuscs
+export gacp f help unity_log go statuscs first
 
 echo_verbose 2 "...functions"
 

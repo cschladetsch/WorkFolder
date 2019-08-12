@@ -1,19 +1,4 @@
-alias gs='git status --short --branch'
-alias gshow='git show --name-only --oneline'
-alias gl='git lg'
-alias gd='git diff'
-alias gp='git push'
-alias gu='git pull'
-alias gch='git checkout'
-alias gcs='status'
-alias h='history'
-alias g='git'
-
-export PS1='\e[0m \[\033]0;$TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ\[\e[0m\] \e[1m'
-export PS2='-->'
-
 trap 'echo -n -e "\e[0m"' DEBUG
-
-cd ~/work
-
+cd "/w"
+source "/w/bin/startup"
 export PATH=$PATH:~/work/bin

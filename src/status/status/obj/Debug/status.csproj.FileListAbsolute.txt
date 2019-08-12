@@ -1,0 +1,8 @@
+W:\bin\status.impl.exe.config
+W:\bin\status.impl.exe
+W:\bin\status.impl.pdb
+W:\src\status\status\obj\Debug\status.csprojAssemblyReference.cache
+W:\src\status\status\obj\Debug\status.csproj.CoreCompileInputs.cache
+W:\src\status\status\obj\Debug\status.impl.exe
+W:\src\status\status\obj\Debug\status.impl.pdb
+W:\src\status\status\obj\Debug\status.csproj.CopyComplete

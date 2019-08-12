@@ -33,5 +33,10 @@ alias app='cd `go.impl -unity`/App'
 alias root='cd `go.impl -current`'
 alias repos='cd /w/repos'
 
+# short-short cuts
+alias u='unity'
+alias a='app'
+alias r='root'
+
 echo_verbose 2 "...aliases"
 

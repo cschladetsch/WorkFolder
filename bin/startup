@@ -7,6 +7,11 @@ export PATH=$PATH:$WORK_BIN
 source $WORK_BIN/functions
 source $WORK_BIN/aliases
 
+# Create a gobal gitignore from the default if there isn't one.
+if [ ! -f ~/.gitignore ]; then
+	ln -s /w/doc/default/gitignore-global ~/.gitignore
+fi
+
 export PS1='\e[0m \[\033]0; $? $TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ\[\e[0m\] \e[1m'
 export PS2='-->'
 

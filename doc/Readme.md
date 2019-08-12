@@ -11,6 +11,10 @@ $ cd /w && git pull
 
 If this doesn't work, see *Contacts* below.
 
+# FAQ
+
+List problems that you solved.
+
 ## Contents
 * **GitCommands.md**. A useful resource for common `git` commands used at Liminal.
 

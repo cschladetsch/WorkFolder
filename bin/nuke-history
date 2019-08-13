@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Nuke a file or folder completely from all git history.
+# Obviously, be careful with this.
+
+if [ -z $1 ]; then
+    echo "Usage: $0 folder or patj"
+    echo "WARNING: This will nuke files and all history of those files for the repo."
+fi
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $1" HEAD

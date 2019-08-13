@@ -8,4 +8,13 @@ $ git checkout d7c2579 -- Readme.md # Restore a file from a given commit.
 
 ```
 
+## To make an old commit the HEAD of a branch
+```bash
+$ git checkout <OLD_COMMIT>
+$ git branch temp
+$ git checkout temp
+$ git branch -f master temp
+$ git checkout master
+$ git branch -d temp
+```
 

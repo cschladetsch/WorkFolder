@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Management.Automation.Language;
 using System.Text;
 using NGit.Diff;
 using Tamir.SharpSsh.java.lang;
@@ -74,27 +76,50 @@ namespace status
             var outOfDate = mods.Any() || adds.Any() || rem.Any() || changed.Any()
                 || missing.Any() || untracked.Any();
 
-            WriteLine(outOfDate ? $"\x1b[2m\x1b[91mChanges.\x1b[0m" : $"\x1b[2mClean.\x1b[0m");
+            WriteLine(outOfDate
+                ? $"\x1b[2m\x1b[91mChanges.\x1b[0m"
+                : $"\x1b[2mClean.\x1b[0m");
+
             if (outOfDate && _verbose)
             {
-                Info($"Modified", mods);
-                Info($"Added", adds);
-                Info($"Removed", rem);
-                Info($"Changed", changed);
-                Info($"Deleted", missing);
-                Info($"Untracked", untracked);
+                Info(dir, $"Modified", mods);
+                Info(dir, $"Added", adds);
+                Info(dir, $"Removed", rem);
+                Info(dir, $"Changed", changed);
+                Info(dir, $"Deleted", missing);
+                Info(dir, $"Untracked", untracked);
             }
         }
 
-        private static void Info(string title, ICollection<string> mods)
+        private static void Info(string root, string title, ICollection<string> mods)
         {
-            if (mods.Count == 0)
-                return;
+            //if (mods.Count == 0)
+            //    return;
+            //var subs = new List<string>();
+            //foreach (var sub in GetDirectories(root))
+            //{
+            //    var s = GetDirectories(sub, ".git", SearchOption.AllDirectories)
+            //        .Select(d => new DirectoryInfo(d).Parent?.Name).ToArray();
+            //    if (s.Length == 0)
+            //        return;
+            //    subs.AddRange(s);
+            //    foreach (var p in s)
+            //        WriteLine(p);
+            //}
 
             var sb = new StringBuilder();
             sb.Append($"  {title}:\n");
             foreach (var item in mods)
+            {
+                // ignore submodules
+                //if (EnumerateDirectories("/w/repos/" + item).Any(d => d == ".git"))
+                //    continue;
+
+                // TODO: HACK!!
+                //if (item.Contains("Shared"))
+                //    continue;
                 sb.AppendLine($"    {item}");
+            }
 
             Write(sb.ToString());
         }

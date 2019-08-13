@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Management.Automation.Language;
-using System.Text;
-using NGit.Diff;
-using Tamir.SharpSsh.java.lang;
-
-namespace status
+﻿namespace status
 {
     using System;
     using System.Linq;
+    using System.Text;
+    using System.Collections.Generic;
     using NGit.Api;
     using NGit.Util;
     using Sharpen;
@@ -43,10 +38,10 @@ namespace status
             if (args.Length > 0 && args[0] == "-v")
                 _verbose = true;
 
-            return GetRepos();
+            return ShowRepos();
         }
 
-        private int GetRepos()
+        private int ShowRepos()
         {
             var dirs = GetDirectories(GetCurrentDirectory());
             var repos = dirs.Where(d => Exists(Combine(d, ".git"))).ToList();
@@ -82,12 +77,12 @@ namespace status
 
             if (outOfDate && _verbose)
             {
-                Info(dir, $"Modified", mods);
-                Info(dir, $"Added", adds);
-                Info(dir, $"Removed", rem);
-                Info(dir, $"Changed", changed);
-                Info(dir, $"Deleted", missing);
-                Info(dir, $"Untracked", untracked);
+                Info(dir, "Modified", mods);
+                Info(dir, "Added", adds);
+                Info(dir, "Removed", rem);
+                Info(dir, "Changed", changed);
+                Info(dir, "Deleted", missing);
+                Info(dir, "Untracked", untracked);
             }
         }
 

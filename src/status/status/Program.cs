@@ -58,7 +58,7 @@ namespace status
 
         private void GetStatus(string dir)
         {
-            Write($"{dir}: ");
+            Write($"{dir.Substring(dir.LastIndexOf("\\", StringComparison.Ordinal) + 1)}: ");
             var git = Git.Open(new FilePath(dir), FS.Detect(false));
             var repository = git.GetRepository();
             repository.ScanForRepoChanges();
@@ -74,14 +74,14 @@ namespace status
             var outOfDate = mods.Any() || adds.Any() || rem.Any() || changed.Any()
                 || missing.Any() || untracked.Any();
 
-            WriteLine(outOfDate ? $"\x1b[2m\x1b[91mLocal has been modified.\x1b[0m" : $"\x1b[2mNo changes to local.\x1b[0m");
+            WriteLine(outOfDate ? $"\x1b[2m\x1b[91mChanges.\x1b[0m" : $"\x1b[2mClean.\x1b[0m");
             if (outOfDate && _verbose)
             {
                 Info($"Modified", mods);
                 Info($"Added", adds);
                 Info($"Removed", rem);
                 Info($"Changed", changed);
-                Info($"Missing", missing);
+                Info($"Deleted", missing);
                 Info($"Untracked", untracked);
             }
         }
@@ -92,9 +92,9 @@ namespace status
                 return;
 
             var sb = new StringBuilder();
-            sb.Append($"\t{title}:\n");
+            sb.Append($"  {title}:\n");
             foreach (var item in mods)
-                sb.AppendLine($"\t\t{item}");
+                sb.AppendLine($"    {item}");
 
             Write(sb.ToString());
         }

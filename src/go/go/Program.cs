@@ -234,8 +234,7 @@ namespace go
                     ShowRepos();
                     return -1;
                 case 1:
-                    WriteLine(_repos[matches[0]].CurrentPath);
-                    break;
+                    return GotoNumberedRepo(matches[0]);
                 default:
                     Error.WriteLine($"Multiple matches for '{text}':");
                     foreach (var m in matches)

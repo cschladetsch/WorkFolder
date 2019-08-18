@@ -1,4 +1,5 @@
-﻿using Console = System.Console;
+﻿using System.Configuration;
+using Console = System.Console;
 
 namespace go
 {
@@ -92,7 +93,7 @@ namespace go
                     return FindUnityProject();
             }
 
-            return GotoRepo(int.Parse(args[0]));
+            return GotoRepo(args[0]);
         }
 
         private static int FindUnityProject()
@@ -202,7 +203,106 @@ namespace go
             return 0;
         }
 
-        private int GotoRepo(int number)
+        private int GotoRepo(string text)
+        {
+            if (int.TryParse(text, out var number))
+                return GotoNumberedRepo(number);
+
+            //var closest = int.MaxValue;
+            var matches = new List<int>();
+            int index = -1, n = 0;
+            foreach (var repo in _repos.Select(r => r.Name))
+            {
+                //var distance = LevenshteinDistance(text.ToLower(), repo.ToLower());
+                //WriteLine($"dist {text} {repo} == {distance}");
+                //if (distance <= closest)
+                //{
+                //    closest = distance;
+                //    index = n;
+                //    matches.Add(index);
+                //}
+
+                //WriteLine($"{repo.ToLower()} {text}");
+                if (repo.ToLower().StartsWith(text))
+                    matches.Add(n);
+                ++n;
+            }
+
+            switch (matches.Count)
+            {
+                case 0:
+                    ShowRepos();
+                    return -1;
+                case 1:
+                    WriteLine(_repos[matches[0]].CurrentPath);
+                    break;
+                default:
+                    Error.WriteLine($"Multiple matches for '{text}':");
+                    foreach (var m in matches)
+                        Error.WriteLine($"\t{_repos[m].Name}");
+                    return -1;
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Computes the Levenshtein Distance between two enumerables.
+        /// </summary>
+        public static int LevenshteinDistance<T>(IEnumerable<T> x, IEnumerable<T> y)
+            where T : IEquatable<T>
+        {
+            if (x == null)
+                throw new ArgumentNullException(nameof(x));
+            if (y == null)
+                throw new ArgumentNullException(nameof(y));
+
+            var first = x as IList<T> ?? new List<T>(x);
+            var second = y as IList<T> ?? new List<T>(y);
+
+            int n = first.Count, m = second.Count;
+            if (n == 0)
+                return m;
+            if (m == 0)
+                return n;
+
+            // Rather than maintain an entire matrix (which would require O(n*m) space),
+            // just store the current row and the next row, each of which has a length m+1,
+            // so just O(m) space. Initialize the current row.
+            int curRow = 0, nextRow = 1;
+
+            var rows = new[] {new int[m + 1], new int[m + 1]};
+            for (var j = 0; j <= m; ++j)
+                rows[curRow][j] = j;
+
+            for (var i = 1; i <= n; ++i)
+            {
+                rows[nextRow][0] = i;
+                for (var j = 1; j <= m; ++j)
+                {
+                    var dist1 = rows[curRow][j] + 1;
+                    var dist2 = rows[nextRow][j - 1] + 1;
+                    var dist3 = rows[curRow][j - 1] + (first[i - 1].Equals(second[j - 1]) ? 0 : 1);
+
+                    rows[nextRow][j] = Math.Min(dist1, Math.Min(dist2, dist3));
+                }
+
+                if (curRow == 0)
+                {
+                    curRow = 1;
+                    nextRow = 0;
+                }
+                else
+                {
+                    curRow = 0;
+                    nextRow = 1;
+                }
+            }
+
+            return rows[curRow][m];
+        }
+
+        private int GotoNumberedRepo(int number)
         {
             if (number < 0 || number >= _repos.Count)
                 return 1;
@@ -216,8 +316,8 @@ namespace go
             WriteLine(dest.CurrentPath);
 
             return 0;
-        }
 
+        }
         private static void LeaveThenEnter(string curRepo, string wd, Repo dest)
         {
             var leaveEnter = string.Empty;

@@ -4,11 +4,158 @@
 # Remember to export functions at the end,
 # if you wish them to be used outside of this script.
 
+export WORK_VERBOSE=1
+
+#
+# Condtionally echo
+#
 echo_verbose()
 {
-	echo "$*"
+    if [ $WORK_VERBOSE -ge "$1" ]; then
+        shift
+        echo -e "$*"
+    fi
 }
 
+#
+# Echo the root folder of the current repo.
+#
+function current_repo()
+{
+    cur=`pwd`
+    result=$cur
+    while [ ! -d .git ]; do
+        cd ..
+        result=`pwd`
+        if [ `pwd` == "/" ]; then
+            result=""
+            break
+        fi
+    done
+    echo $result
+    cd $cur
+}
+
+#
+# Go to a repository.
+# 
+# If no arguments are given, a list of repos
+# is shown to select from. God help you if you
+# have more than 9 repos.
+#
+# If an argument is given, it is interpreted as
+# a repo number.
+#
+# The current directory is saved and restored as
+# you switch between repos in `current_repo`.current.
+#
+function go_impl()
+{
+    cur=`pwd`
+    repos_path="/w/repos/"
+    repos=`find $repos_path -maxdepth 1 -type d`
+    array=()
+    print=1
+
+    # don't list options if an argument is provided
+    if [ -n "$1" ]; then
+        print=0
+    fi
+
+    # save current folder
+    cur=`current_repo`
+    echo_verbose 4 "Saving current `pwd` to $cur/.current"
+    echo `pwd` > $cur/.current
+
+    echo_verbose 3 "Go to repo:"
+    count=0
+    for var in $repos
+    do
+        cd "$var"
+        if [ -d .git ]; then
+            array+=($var)
+            name="`basename $var`"
+            root=`current_repo`
+            current=`echo $root | cut -c10-`
+            current="\e[90m$current\e[0m"
+
+            if [ -e $root/.current ]; then
+                last=`cat $root/.current`
+                last=`echo $last | cut -c10-`
+                current="\e[90m$last\e[0m"
+            fi
+
+            if [ $print -ge 1 ]; then
+                if [ $var == $cur ]
+                then
+                    echo -e "\e[92m$count $name\e[0m $current"
+                else
+                    echo -e "$count $name $current"
+                fi
+            fi
+
+            ((count++))
+        fi
+    done
+
+    # only read input if no args given
+    if [ $print -eq 1 ]; then
+        read -rsn1 input
+    else
+        input=$1
+    fi
+
+    dest=${array[input]}
+    echo_verbose 2 "→ $dest"
+
+    if [ -e $dest/.current ]; then
+        echo_verbose 2 "Restoring"
+        cd `cat $dest/.current`
+    else
+        cd "$dest"
+    fi
+}
+
+slow-go()
+{
+    #echo `go_impl $*` | column -t -s' '
+    go_impl $*
+}
+
+statuscs()
+{
+    cmd='status.impl.exe $*'
+    eval $cmd
+}
+
+go()
+{
+    cmd='go.impl.exe $*'
+    eval $cmd 1> /w/tmp/next 2> /w/tmp/transist
+    transist=`cat /w/tmp/transist`
+    next=`cat /w/tmp/next`
+
+    if [ ! -z $next ]; then
+        eval 'cd $next'
+    else
+        go.impl.exe
+        return 0
+    fi
+
+    arr=($transist)
+    for f in "${arr[@]}"; do
+       [[ -f $f ]] && . $f --source-only || echo "$f not found."
+    done
+}
+
+gor()
+{
+    cd `current_repo`
+}
+
+#
+# Git Add, Commit and Push
+#
 gacp()
 {
     if [ "$*" == "" ]; then
@@ -20,19 +167,39 @@ gacp()
     git push
 }
 
+#
+# Show the end of the current Unity3d log
+#
+unity_log()
+{
+    tail $* ~/AppData/Local/Unity/Editor/Editor.log
+}
+
+#
+# An alias find.
+#
+# Should probably be an alias.
+#
 f()
 {
     find . -name $*
 }
 
+#
+# Show help
+#
 help()
 {
-    echo start $WORK_DIR/doc/Readme.md
     start $WORK_DIR/doc/Readme.md
 }
 
+first()
+{
+    cd `find . -type d -name $1 -print -quit`
+}
+
 # Export functions
-export gacp f help
+export gacp f help unity_log go statuscs first
 
 echo_verbose 2 "...functions"
 

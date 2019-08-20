@@ -1,19 +1,20 @@
-## Show all untracked files
+# Useful Git Commands
 
 ```bash
-> git ls-files . --ignored --exclude-standard --others
+$ git remote update	# update remote refs
+$ git status -uno	# tell if you're ahead or behind or diverged
+$ git show-branch \*master # show commits in all branches with name 'master' in them
+$ git checkout d7c2579 -- Readme.md # Restore a file from a given commit.
+
 ```
 
-## Delete Branches
-
-### Local
-
+## To make an old commit the HEAD of a branch
 ```bash
-> git branch -d branch
-```
-
-### Remote
-```bash
-> git push origin --delete branch
+$ git checkout <OLD_COMMIT>
+$ git branch temp
+$ git checkout temp
+$ git branch -f master temp
+$ git checkout master
+$ git branch -d temp
 ```
 

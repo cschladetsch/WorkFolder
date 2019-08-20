@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hub --help $1 | pandoc > /w/tmp/foo.html && start /w/tmp/foo.html

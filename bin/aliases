@@ -1,21 +1,45 @@
 # Common aliases
 
-alias g='git'
-alias gl='g lg'
+alias ls='ls --color -h'
 alias h='history'
+alias g='git'
+alias gll='g lg'
+alias gl='gll | head -5'
 alias gd='g diff'
+alias gf='g fetch'
 alias gp='g push'
 alias gu='g pull'
-alias glog='g reflog'
+alias glog='g reflog --color | head -5'
 alias gch='g checkout'
 alias gc='g commit -m'
 alias gr='g remote -v'
 alias gppu='gp && gpu'
 alias gpu='gp upstream'
-alias cdw='pushd $WORK_DIR'
-alias grhh='git reset --hard HEAD'
+alias gac='g add * && gc'
+alias grhh='g reset --hard HEAD'
 alias gs='g status --short --branch'
 alias gshow='g show --name-only --oneline'
+alias hi='hub issue --color'
+alias python='winpty python.exe'
+alias glhf='ls && gs && gl'
+alias gai='git add -f .gitignore'
+
+alias gdl="gd ':*.cs'"
+alias cdw='cd /w'
+alias cdp='cd /w/Packages'
+alias cdr='cd /w/repos'
+alias cdd='cd `go.impl -c`'
+alias unity='go -unity'
+alias app='cd `go.impl -unity`/App'
+alias root='cd `go.impl -current`'
+alias repos='cd /w/repos'
+alias st='status.impl'
+alias gop='cd /w/Packages'
+
+# short-short cuts
+alias u='unity'
+alias a='app'
+alias r='root'
 
 echo_verbose 2 "...aliases"
 

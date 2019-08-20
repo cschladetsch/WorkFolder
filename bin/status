@@ -10,7 +10,7 @@ cur=`pwd`
 unchangedRepos=()
 noChangeFormat="1;92m"
 changedFormat="1;96m"
-short=false
+verbose=false
 update=false
 
 print()
@@ -49,7 +49,7 @@ print_help()
 {
     print "`basename $0` shows the status of all repos in the current directory and all directories within them." "2m"
     print "[-u] prompt to update all repos with changes (add, commit then push)" "2m"
-    print "[-s] show only the repos status, hide changed files" "2m"
+    print "[-v] show the full status of the repos" "2m"
     print "[-c] checkout all repos to given branch name" "2m"
     print "[-h] show this help message" "2m"
 }
@@ -116,19 +116,20 @@ checkout()
 		then
 			echo "$var to $branch"
 			git checkout $branch
+			git pull
 		fi
 		cd $cur
 	done
 }
 
-while getopts ":ushc" opt;
+while getopts ":uvhc" opt;
 do
     case $opt in
         u )
-            update=tru
+            update=true
             ;;
-        s )
-            short=true
+        v )
+            verbose=true
             ;;
         c )
             checkout $2
@@ -164,8 +165,8 @@ do
         fi
         if [ "$result" != "" ]
         then
-            print "• $name changed." $changedFormat
-            if [ "$short" == true ]
+            print "❎ $name changed." $changedFormat
+            if [ "$verbose" == false ]
             then
                 cd $cur
                 continue
@@ -184,14 +185,12 @@ do
     cd $cur
 done
 
-print "No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
+print "☑  No local changes in ${#unchangedRepos[@]} repos:" $noChangeFormat
 for var in ${unchangedRepos[@]};
 do
     name="`basename $var`"
-#        if [ $name == "." ]
-#        then
-#            name="./`basename $cur`"
-#        fi
-    print "	$name/" "0m"
+    branch=`cd $name && git rev-parse --abbrev-ref HEAD`
+    print "	$name ($branch)" "0m"
+    cd $cur
 done
 

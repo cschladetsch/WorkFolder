@@ -13,4 +13,7 @@
 !/.proj
 !/.proj/**
 
+*.ilk
+*.pdb
+
 

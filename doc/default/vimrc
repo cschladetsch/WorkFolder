@@ -1,0 +1,27 @@
+set nocompatible
+filetype indent plugin on
+syntax on
+set mouse=a
+set autoindent
+set number
+set relativenumber
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+endif
+
+set encoding=utf-8
+set list listchars=tab:→\ ,trail:·
+set list
+
+set cursorline
+
+"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=red ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+set noswapfile
+

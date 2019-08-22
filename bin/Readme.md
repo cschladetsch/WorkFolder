@@ -1,6 +1,6 @@
 # Work/Bin
 
-This is part of the [WorkFolder](<https://github.com/LiminalVR/WorkFolder>) system, which in turn is based on `git-bash`.
+This is part of the [WorkFolder](<https://github.com/cschladetsch/WorkFolder>) system, which in turn is based on `git-bash`.
 
 Contains a set of:
 
@@ -9,30 +9,7 @@ Contains a set of:
 * *Windows* batch files.
 * Cross-platform *.Net* binary executables.
 
-These are available on all _Liminal_ workstations.
-
-## Python
-Some of these scripts rely on *Python*.  To install Python:
-
-### Linux
-
-Do nothing.
-
-### macOS
-
-Do nothing.
-
-### Windows
-
-1. Install [Python](https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe) into `c:\Python`. **Note** that this is *not* the default install location, so you can't just click Next, Next, etc.
-1. Open a `git-bash` shell as **Administrator**.
-1. Say `ln -s /c/Python/python.exe /usr/bin/python`. This creates a symbolic link to the Windows-space Python interpreter for the `git-bash` (*MING64*) environment.
-
-Then you can make python scripts starting with the *shebang* `#!/usr/bin/python`. 
-
-This approach means that the scripts will work on *macOS*, *Windows*, or *Linux*.
-
-One day we may have to make an *iPhone* or *Linux* app. Or, *gasp*, we may use Ubuntu as a work environment. I don't want everything to go down in flames in either case.
+These are available on all workstations.
 
 ## Contents
 
@@ -50,6 +27,10 @@ Brief description of each script/exe:
   * `git-lfs` Redirects to `git-lfs.exe` for Ubuntu shell.
   * `hi` Show issues in current repo.
   * `issue` Make a new issue.
+  * `go` Fast way to switch between repos.
+  * `mpr` Fast way to make a *Pull Request*.
+  * `issue` Fast way to make an issue for current repo.
+  * `r` Go to root of current repo.
 
 ## Todo
 

@@ -18,3 +18,7 @@ $ git checkout master
 $ git branch -d temp
 ```
 
+## To cleanup stale references to remote branches
+```bash
+git remote update origin --prune
+```

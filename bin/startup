@@ -12,10 +12,22 @@ if [ ! -f ~/.gitignore ]; then
 	ln -s /w/doc/default/gitignore-global ~/.gitignore
 fi
 
-export PS1='\e[0m \[\033]0; $? $TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ\[\e[0m\] \e[1m'
-export PS2='-->'
+CLEAR='\[\e[0m\]'
+YELLOW='\[\e[33m\]'
+CYAN='\[\e[36m\]'
+BRANCH='`__git_ps1`'
+DIM='\[\e[2m\]'
+LAMBDA='λ'
+BOLD='\[\e[1m\]'
+TITLE="\[\e]0;\w\a"
+HIST='\!'
+DIR='\w'
+MAGENTA='\[\e[35m\]'
+STATUS='$?'
+
+export PS1="$TITLE$CLEAR\n$HIST $MAGENTA($STATUS) $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
+export PS2='»»» '
 
 export PATH=$PATH:'/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/Roslyn'
 
 echo_verbose 1 "Started Liminal"
-

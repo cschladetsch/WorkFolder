@@ -35,6 +35,7 @@ alias root='cd `go.impl -current`'
 alias repos='cd /w/repos'
 alias st='status.impl'
 alias gop='cd /w/Packages'
+alias git-tip='git-tip | sed 1,2d'
 
 # short-short cuts
 alias u='unity'

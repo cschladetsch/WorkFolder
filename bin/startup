@@ -31,3 +31,6 @@ export PS2='»»» '
 export PATH=$PATH:'/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/Roslyn'
 
 echo_verbose 1 "Started Liminal"
+echo
+echo "`git-tip`"
+

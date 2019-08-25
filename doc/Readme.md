@@ -11,6 +11,16 @@ $ cd /w && git pull
 
 If this doesn't work, see *Contacts* below.
 
+## Installers
+
+Installing `git-tip`.
+
+First, install [npm](https://nodejs.org/en/). Then install `git-tip` via:
+
+```bash
+$ npm install --global git-tip
+```
+
 # FAQ
 
 List problems that you solved.

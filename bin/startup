@@ -25,7 +25,7 @@ DIR='\w'
 MAGENTA='\[\e[35m\]'
 STATUS='$?'
 
-export PS1="$TITLE$CLEAR\n$HIST $MAGENTA$STATUS $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
+export PS1="$TITLE$CLEAR$HIST $MAGENTA$STATUS $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '
 
 export PATH=$PATH:'/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/Roslyn'

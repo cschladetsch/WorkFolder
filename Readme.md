@@ -1,4 +1,4 @@
-# Working Folder
+# Working Folder ![Icon](/doc/icon.png)
 Contains common functionality used by a collection of developers.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.

@@ -19,6 +19,11 @@
         public static string LightMagenta = "\x1b[95m";
         public static string LightCyan = "\x1b[96m";
         public static string White = "\x1b[97m";
+        public static string BgGreen = "\x1b[42m";
+        public static string BgDarkGrey = "\x1b[100m";
+        public static string BgLightGrey = "\x1b[47m";
+        public static string BgLightBlue = "\x1b[104m";
+        public static string BgBlack = "\x1b[40m";
 
         public static string Bold = "\x1b[1m";
         public static string Dim = "\x1b[2m";

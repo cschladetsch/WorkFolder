@@ -179,25 +179,36 @@ namespace go
                 return repo.CurrentPath.Substring(parentIndex + 1);
             }
 
-            for (var n = 0; n < _repos.Count; n++)
+            var repos = _repos.Where(r => !r.FullPath.Contains("Packages")).ToList();
+            var packages = _repos.Where(r => r.FullPath.Contains("Packages")).ToList();
+
+            WriteLineFormat($"\n> Repos", new List<string> { ColorFormat.Blue, ColorFormat.Bold });
+            var defaultFormat = new List<string> { ColorFormat.LightGrey };
+            var curFormat = new List<string> { ColorFormat.BgLightBlue, ColorFormat.Black };
+            int count = 0;
+            foreach (var repo in repos)
             {
-                var repo = _repos[n];
-                var current = GetCurrentDirectory().ToLower().Contains(repo.FullPath.ToLower());
-                var mainFormat = new List<string>();
-                if (current)
-                {
-                    mainFormat.Add(ColorFormat.LightGreen);
-                    mainFormat.Add(ColorFormat.Bold);
-                }
-                else if (repo.FullPath.Contains("Packages"))
-                    mainFormat.Add(ColorFormat.Cyan);
-                else
-                    mainFormat.Add(ColorFormat.LightGrey);
+                var format = defaultFormat;
+                if (Sanitise(GetCurrentDirectory().ToLower()).Contains(repo.FullPath.ToLower()))
+                    format = curFormat;
 
-                var pathFormat = new List<string>(mainFormat) {ColorFormat.Dim};
-
-                WriteFormat(n < 10 ? $"{n: 0} {repo.Name}" : $"{n:00} {repo.Name}", mainFormat);
+                var pathFormat = new List<string>(format) { ColorFormat.Dim };
+                WriteFormat(count < 10 ? $"{count: 0} {repo.Name}" : $"{count:00} {repo.Name}", format);
                 WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
+                ++count;
+            }
+
+            WriteLineFormat($"\n> Packages", new List<string> { ColorFormat.Blue, ColorFormat.Bold });
+            foreach (var package in packages)
+            {
+                var format = defaultFormat;
+                if (Sanitise(GetCurrentDirectory().ToLower()).Contains(package.FullPath.ToLower()))
+                    format = curFormat;
+
+                var pathFormat = new List<string>(format) { ColorFormat.Dim };
+                WriteFormat(count < 10 ? $"{count: 0} {package.Name}" : $"{count:00} {package.Name}", format);
+                WriteLineFormat($" @{Substring(package).Replace("\\", "/").Replace("\n", "")}", pathFormat);
+                ++count;
             }
 
             return 0;
@@ -270,7 +281,7 @@ namespace go
             // so just O(m) space. Initialize the current row.
             int curRow = 0, nextRow = 1;
 
-            var rows = new[] {new int[m + 1], new int[m + 1]};
+            var rows = new[] { new int[m + 1], new int[m + 1] };
             for (var j = 0; j <= m; ++j)
                 rows[curRow][j] = j;
 

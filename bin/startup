@@ -51,7 +51,7 @@ run-git-help()
 {
     cmd=`cat /w/tmp/last-gt-cmd`
     echo -e "\e[2mRunning \e[0;35m$cmd\e[0m"
-    eval $cmd
+    eval "$cmd"
 }
 
 alias gte=run-git-help

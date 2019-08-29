@@ -39,18 +39,21 @@ show-git-tip()
     tip=`git-tip`
     title=`echo $tip | head -1`
     text=`echo $tip | tail -n +2`
-    echo -e "\e[32m$title" >&2
+    echo -e "\e[32m$title"
     echo -e "\e[92m$text"
+    echo "$text" > /w/tmp/last-gt-cmd
+    unset IFS
 }
 
 show-git-tip
 
 run-git-help()
 {
-    eval `gt >&1`
+    cmd=`cat /w/tmp/last-gt-cmd`
+    echo -e "Running\e[74m$cmd"
+    eval $cmd
 }
 
 alias gte=run-git-help
-
 
 

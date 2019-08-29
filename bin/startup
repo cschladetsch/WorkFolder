@@ -39,10 +39,18 @@ show-git-tip()
     tip=`git-tip`
     title=`echo $tip | head -1`
     text=`echo $tip | tail -n +2`
-    echo -e "\e[32m$title"
+    echo -e "\e[32m$title" >&2
     echo -e "\e[92m$text"
 }
 
 show-git-tip
+
+run-git-help()
+{
+    eval `gt >&1`
+}
+
+alias gte=run-git-help
+
 
 

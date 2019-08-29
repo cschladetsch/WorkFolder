@@ -44,3 +44,5 @@ alias r='root'
 
 echo_verbose 2 "...aliases"
 
+alias gt='show-git-tip'
+

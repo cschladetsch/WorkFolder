@@ -35,6 +35,7 @@ echo
 
 show-git-tip()
 {
+    IFS="=>"
     tip=`git-tip`
     title=`echo $tip | head -1`
     text=`echo $tip | tail -n +2`

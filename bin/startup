@@ -50,7 +50,7 @@ show-git-tip
 run-git-help()
 {
     cmd=`cat /w/tmp/last-gt-cmd`
-    echo -e "Running \e[92m$cmd"
+    echo -e "\e[2mRunning \e[0;35m$cmd\e[0m"
     eval $cmd
 }
 

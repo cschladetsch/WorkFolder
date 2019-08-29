@@ -184,7 +184,7 @@ namespace go
 
             WriteLineFormat($"\n> Repos", new List<string> { ColorFormat.Blue, ColorFormat.Bold });
             var defaultFormat = new List<string> { ColorFormat.LightGrey };
-            var curFormat = new List<string> { ColorFormat.BgLightBlue, ColorFormat.Black };
+            var curFormat = new List<string> { "\x1b[48;5;240m", ColorFormat.White, ColorFormat.Bold };
             int count = 0;
             foreach (var repo in repos)
             {

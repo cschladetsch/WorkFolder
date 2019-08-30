@@ -15,7 +15,6 @@ fi
 CLEAR='\[\e[0m\]'
 YELLOW='\[\e[33m\]'
 CYAN='\[\e[36m\]'
-BRANCH='`__git_ps1`'
 DIM='\[\e[2m\]'
 LAMBDA='λ'
 BOLD='\[\e[1m\]'
@@ -24,6 +23,12 @@ HIST='\!'
 DIR='\w'
 MAGENTA='\[\e[35m\]'
 STATUS='$?'
+
+export GIT_PS1_SHOWDIRTYSTATE=true
+#export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM="auto name"
+export GIT_PS1_SHOWCOLORHINTS=true
+BRANCH='`__git_ps1`'
 
 export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '

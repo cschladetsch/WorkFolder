@@ -1,14 +1,25 @@
 #!/bin/bash
 
+title=`cat /w/tmp/last-gt-title`
 contents=`cat /w/tmp/last-gt-cmd`
-echo ${contents:3} > /w/tmp/gtee
-vi /w/tmp/gtee
+out=/w/tmp/gtee
+
+echo -e "$CLEAR"
+cat << EOT > $out
+#!/bin/bash
+
+# $title
+${contents:3}
+EOT
+
+vi $out
 
 if [ $? != 0 ];
 then
+  echo "Cancelled"
   exit 1
 fi
 
-echo -e "\e[2mRunning \e[0;35m`cat /w/tmp/gtee`\e[0m"
-sh /w/tmp/gtee $*
+echo -e "\e[2mRunning \e[0;35m`cat $out`\e[0m"
+sh $out $*
 

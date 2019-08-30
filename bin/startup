@@ -42,6 +42,7 @@ show-git-tip()
     echo -e "\e[32m$title"
     echo -e "\e[92m$text"
     echo "$text" > /w/tmp/last-gt-cmd
+    echo "$title" > /w/tmp/last-gt-title
     unset IFS
 }
 

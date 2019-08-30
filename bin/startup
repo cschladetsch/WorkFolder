@@ -12,6 +12,7 @@ if [ ! -f ~/.gitignore ]; then
 	ln -s /w/doc/default/gitignore-global ~/.gitignore
 fi
 
+<<<<<<< HEAD
 CLEAR='\[\e[0m\]'
 YELLOW='\[\e[33m\]'
 CYAN='\[\e[36m\]'

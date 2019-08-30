@@ -1,4 +1,4 @@
-# Generic LiminalVR .gitignore file for top-level.
+# Generic .gitignore file for top-level folder of a project in $WORK_DRIVE/repos
 
 /.current
 /Builds

@@ -12,7 +12,6 @@ if [ ! -f ~/.gitignore ]; then
 	ln -s /w/doc/default/gitignore-global ~/.gitignore
 fi
 
-<<<<<<< HEAD
 CLEAR='\[\e[0m\]'
 YELLOW='\[\e[33m\]'
 CYAN='\[\e[36m\]'
@@ -36,7 +35,7 @@ export PS2='»»» '
 
 export PATH=$PATH:'/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/Roslyn'
 
-echo_verbose 1 "Started Liminal"
+echo_verbose 1 "Started"
 echo
 
 show-git-tip()

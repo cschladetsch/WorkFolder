@@ -1,8 +1,8 @@
 # Making a New Project
 
-This document describes the process to make a new _Liminal_ project.
+This document describes the process to make a new project.
 
-* Create a new repo on [Liminal's GitHub](https://github.com/LiminalVR) called `ProjectName`.
+* Create a new repo on GitHub or whatever called `ProjectName`.
 * Open a shell and type the following:
 ```bash
 $ cdr

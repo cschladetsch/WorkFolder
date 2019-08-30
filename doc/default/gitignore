@@ -1,6 +1,6 @@
-# Generic LiminalVR .gitignore file
+# Generic .gitignore file
 
-# used by /w/bin/go
+# used by $WORK_DRIVE/bin/go
 /.current
 
 # Unity output folders

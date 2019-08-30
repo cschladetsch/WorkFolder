@@ -1,9 +1,9 @@
 #!/bin/bash
 project_name=$1
-remote="https://github.com/LiminalVR/$project_name.git"
+remote="https://github.com/cschladetsch/$project_name.git"
 unity_project_name="$project_name-Unity"
 doc_defaults="$WORK_DIR/doc/default"
-template="https://github.com/LiminalVR/TemplateUnityProject.git"
+template="https://github.com/cschladetsch/TemplateUnityProject.git"
 
 if [ `pwd` != $WORK_DIR ]; then
     echo "Must run this from a work folder"

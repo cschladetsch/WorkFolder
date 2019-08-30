@@ -1,0 +1,14 @@
+#!/bin/bash
+
+contents=`cat /w/tmp/last-gt-cmd`
+echo ${contents:3} > /w/tmp/gtee
+vi /w/tmp/gtee
+
+if [ $? != 0 ];
+then
+  exit 1
+fi
+
+echo -e "\e[2mRunning \e[0;35m`cat /w/tmp/gtee`\e[0m"
+sh /w/tmp/gtee $*
+

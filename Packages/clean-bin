@@ -1,2 +1,3 @@
   #!/bin/sh
   find . -name bin -or -name obj -exec rm -rf {} \;
+  find . -name \*.dll -exec rm -rf {} \;

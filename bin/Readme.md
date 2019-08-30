@@ -17,6 +17,7 @@ Brief description of each script/exe:
   * `functions` Global functions.
   * `aliases` Global aliases.
   * `status` Prints the current status of all git repositories in the current directory.
+      * `statuscs` is a Wip C# implementation.
   * `clone-packages` Clones the current set of internal Unity packages into the current directory.
   * `diff-so-fancy` Makes nicer git diff output.
   * `duse` Show disk-space usage.
@@ -31,6 +32,23 @@ Brief description of each script/exe:
   * `mpr` Fast way to make a *Pull Request*.
   * `issue` Fast way to make an issue for current repo.
   * `r` Go to root of current repo.
+
+### Git-Tip
+
+See [git-tip](https://github.com/git-tips/tips) to install. You will need `npm`.
+Change the file at 'which `git-tip`' as follows at the start of the file:
+
+```bash
+#basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+basedir=$(dirname "$(echo "$0")")
+```
+For some reason the `sed` command doesn't work with `git-bash` and this is a work-around.
+
+  * `gt` show a git-hint.
+  * `gt item` show all hints about `item`.
+  * `gte` perform the action given in the hint directly.
+  * `gtee` perform the action given in the hint after editing it with `vi`. Cancel the action by leaving `vi` with `:cq`.
+  * *Note* It would be nice to be able to select a tip from multiple tips to be used with `gtee`.
 
 ## Todo
 

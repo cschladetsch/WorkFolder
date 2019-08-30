@@ -35,8 +35,14 @@ echo
 
 show-git-tip()
 {
+    if [ ! -z $1 ]; then
+        echo -e "\e[92m"
+        git-tip $1 | tail -n +1
+        echo -e "\e[0m"
+        return
+    fi
     IFS="=>"
-    tip=`git-tip`
+    tip=`git-tip $* | tail -n +3`
     title=`echo $tip | head -1`
     text=`echo $tip | tail -n +2`
     echo -e "\e[32m$title"

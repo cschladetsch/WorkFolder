@@ -1,4 +1,5 @@
-﻿using Console = System.Console;
+﻿using System.Net.Mime;
+using Console = System.Console;
 
 namespace go
 {
@@ -49,8 +50,8 @@ namespace go
     internal class Program
     {
         private readonly string RootLetter;
-        private string DosDrive => $"{RootLetter}:\\";
-        private string BashDrive => $"/{RootLetter}/";
+        private string DosDrive => $@"{RootLetter}:\";
+        private string BashDrive => $@"/{RootLetter}/";
         private string ReposRoot => $@"{DosDrive}\repos\";
         private string PackagesRoot => $@"{DosDrive}\Packages\";
         private string Previous => $@"{DosDrive}\repos\.prev";
@@ -72,7 +73,13 @@ namespace go
 
         Program()
         {
-            RootLetter = Environment.GetEnvironmentVariable("WORK_ROOT");
+            RootLetter = Environment.GetEnvironmentVariable("WORK_LETTER");
+
+            if (string.IsNullOrEmpty(RootLetter))
+            {
+                Error.WriteLine("No WORK_LETTER found");
+                Environment.Exit(1);
+            }
         }
 
         private int Run(IReadOnlyList<string> args)

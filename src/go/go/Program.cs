@@ -95,7 +95,7 @@ namespace go
                 case "-c":
                 case "-current":
                 case "-root":
-                    WriteLine("/w" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
+                    WriteLine($"/{_rootLetter}" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
                     return 0;
                 case "-k":
                 case "-clear":
@@ -108,12 +108,12 @@ namespace go
             return GotoRepo(args[0]);
         }
 
-        private static int FindUnityProject()
+        private int FindUnityProject()
         {
             var proj = EnumerateDirectories(GetCurrentRepo(), "Assets", SearchOption.AllDirectories)
                 .FirstOrDefault(d => !d.Contains(".git"));
             if (proj != null)
-                WriteLine($"/w/{Sanitise(proj.Substring(3))}");
+                WriteLine($"/{_rootLetter}/{Sanitise(proj.Substring(3))}");
 
             return 0;
         }
@@ -260,21 +260,21 @@ namespace go
             return 0;
 
         }
-        private static void LeaveThenEnter(string curRepo, string wd, Repo dest)
+        private void LeaveThenEnter(string curRepo, string wd, Repo dest)
         {
             var leaveEnter = string.Empty;
             if (!string.IsNullOrEmpty(curRepo))
             {
                 WriteAllText(Combine(curRepo, ".current"), wd);
                 if (File.Exists($@"{curRepo}\.leave"))
-                    leaveEnter += $"/w/repos/{GetFileName(curRepo)}/.leave";
+                    leaveEnter += $"/{_rootLetter}/repos/{GetFileName(curRepo)}/.leave";
             }
 
-            if (File.Exists($@"w:\repos\{dest.Name}\.enter"))
+            if (File.Exists($@"{_rootLetter}:\repos\{dest.Name}\.enter"))
             {
                 if (!string.IsNullOrEmpty(leaveEnter))
                     leaveEnter += "\n";
-                leaveEnter += $@"/w/repos/{dest.Name}/.enter";
+                leaveEnter += $@"/{_rootLetter}/repos/{dest.Name}/.enter";
             }
 
             if (!string.IsNullOrEmpty(leaveEnter))

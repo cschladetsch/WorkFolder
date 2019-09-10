@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Console = System.Console;
+﻿using Console = System.Console;
 
 namespace go
 {
@@ -34,7 +33,7 @@ namespace go
     /// Usage:
     /// <code>
     ///     λ go
-    ///         Show a list of repos, each preceeded by a number.
+    ///         Show a list of repos, each preceded by a number.
     ///     λ go n
     ///         Go to the nth repo.
     ///     λ go -
@@ -49,9 +48,9 @@ namespace go
     /// </summary>
     internal class Program
     {
-        private readonly string RootLetter;
-        private string DosDrive => $@"{RootLetter}:\";
-        private string BashDrive => $@"/{RootLetter}/";
+        private readonly string _rootLetter;
+        private string DosDrive => $@"{_rootLetter}:\";
+        private string BashDrive => $@"/{_rootLetter}/";
         private string ReposRoot => $@"{DosDrive}\repos\";
         private string PackagesRoot => $@"{DosDrive}\Packages\";
         private string Previous => $@"{DosDrive}\repos\.prev";
@@ -71,13 +70,13 @@ namespace go
             return -1;
         }
 
-        Program()
+        private Program()
         {
-            RootLetter = Environment.GetEnvironmentVariable("WORK_LETTER");
+            _rootLetter = Environment.GetEnvironmentVariable("WORK_LETTER");
 
-            if (string.IsNullOrEmpty(RootLetter))
+            if (string.IsNullOrEmpty(_rootLetter))
             {
-                Error.WriteLine("No WORK_LETTER found");
+                Error.WriteLine("No WORK_LETTER found.");
                 Environment.Exit(1);
             }
         }
@@ -121,17 +120,6 @@ namespace go
 
         private static string Sanitise(string input)
             => input.Replace("\\", "/");
-
-        private void GetFavourites()
-        {
-            if (!File.Exists($"{ReposRoot}/.favourites"))
-                Create($"{ReposRoot}/.favourites");
-
-            var favouritesText = File.ReadAllText($"{ReposRoot}/.favourites");
-            var favourites = favouritesText.Split(',');
-
-            throw new NotImplementedException("Favorites");
-        }
 
         private int GotoPrev()
         {
@@ -232,21 +220,10 @@ namespace go
             if (int.TryParse(text, out var number))
                 return GotoNumberedRepo(number);
 
-            //var closest = int.MaxValue;
             var matches = new List<int>();
-            int index = -1, n = 0;
+            var n = 0;
             foreach (var repo in _repos.Select(r => r.Name))
             {
-                //var distance = LevenshteinDistance(text.ToLower(), repo.ToLower());
-                //WriteLine($"dist {text} {repo} == {distance}");
-                //if (distance <= closest)
-                //{
-                //    closest = distance;
-                //    index = n;
-                //    matches.Add(index);
-                //}
-
-                //WriteLine($"{repo.ToLower()} {text}");
                 if (repo.ToLower().StartsWith(text))
                     matches.Add(n);
                 ++n;
@@ -265,62 +242,6 @@ namespace go
                         Error.WriteLine($"\t{_repos[m].Name}");
                     return -1;
             }
-        }
-
-        /// <summary>
-        /// Computes the Levenshtein Distance between two enumerables.
-        /// </summary>
-        public static int LevenshteinDistance<T>(IEnumerable<T> x, IEnumerable<T> y)
-            where T : IEquatable<T>
-        {
-            if (x == null)
-                throw new ArgumentNullException(nameof(x));
-            if (y == null)
-                throw new ArgumentNullException(nameof(y));
-
-            var first = x as IList<T> ?? new List<T>(x);
-            var second = y as IList<T> ?? new List<T>(y);
-
-            int n = first.Count, m = second.Count;
-            if (n == 0)
-                return m;
-            if (m == 0)
-                return n;
-
-            // Rather than maintain an entire matrix (which would require O(n*m) space),
-            // just store the current row and the next row, each of which has a length m+1,
-            // so just O(m) space. Initialize the current row.
-            int curRow = 0, nextRow = 1;
-
-            var rows = new[] { new int[m + 1], new int[m + 1] };
-            for (var j = 0; j <= m; ++j)
-                rows[curRow][j] = j;
-
-            for (var i = 1; i <= n; ++i)
-            {
-                rows[nextRow][0] = i;
-                for (var j = 1; j <= m; ++j)
-                {
-                    var dist1 = rows[curRow][j] + 1;
-                    var dist2 = rows[nextRow][j - 1] + 1;
-                    var dist3 = rows[curRow][j - 1] + (first[i - 1].Equals(second[j - 1]) ? 0 : 1);
-
-                    rows[nextRow][j] = Math.Min(dist1, Math.Min(dist2, dist3));
-                }
-
-                if (curRow == 0)
-                {
-                    curRow = 1;
-                    nextRow = 0;
-                }
-                else
-                {
-                    curRow = 0;
-                    nextRow = 1;
-                }
-            }
-
-            return rows[curRow][m];
         }
 
         private int GotoNumberedRepo(int number)

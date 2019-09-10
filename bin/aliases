@@ -1,5 +1,7 @@
 # Common aliases
 
+alias ga='git add'
+alias gagi='git add .gitignore'
 alias ls='ls --color -h'
 alias h='history'
 alias g='git'

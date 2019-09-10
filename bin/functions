@@ -52,7 +52,7 @@ function current_repo()
 function go_impl()
 {
     cur=`pwd`
-    repos_path="/w/repos/"
+    repos_path="/$WORK_LETTER/repos/"
     repos=`find $repos_path -maxdepth 1 -type d`
     array=()
     print=1
@@ -131,9 +131,9 @@ statuscs()
 go()
 {
     cmd='go.impl.exe $*'
-    eval $cmd 1> /w/tmp/next 2> /w/tmp/transist
-    transist=`cat /w/tmp/transist`
-    next=`cat /w/tmp/next`
+    eval $cmd 1> /$WORK_LETTER/tmp/next 2> /$WORK_LETTER/tmp/transist
+    transist=`cat /$WORK_LETTER/tmp/transist`
+    next=`cat /$WORK_LETTER/tmp/next`
 
     if [ ! -z $next ]; then
         eval 'cd $next'

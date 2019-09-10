@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using Console = System.Console;
+﻿using Console = System.Console;
 
 namespace go
 {
@@ -49,9 +48,12 @@ namespace go
     /// </summary>
     internal class Program
     {
-        private const string ReposRoot = @"w:\repos\";
-        private const string PackagesRoot = @"w:\Packages\";
-        private const string Previous = @"w:\repos\.prev";
+        private readonly string RootLetter;
+        private string DosDrive => $"{RootLetter}:\\";
+        private string BashDrive => $"/{RootLetter}/";
+        private string ReposRoot => $@"{DosDrive}\repos\";
+        private string PackagesRoot => $@"{DosDrive}\Packages\";
+        private string Previous => $@"{DosDrive}\repos\.prev";
         private readonly List<Repo> _repos = new List<Repo>();
 
         private static int Main(string[] args)
@@ -68,9 +70,13 @@ namespace go
             return -1;
         }
 
+        Program()
+        {
+            RootLetter = Environment.GetEnvironmentVariable("WORK_ROOT");
+        }
+
         private int Run(IReadOnlyList<string> args)
         {
-            //GetFavourites();
             GetRepos();
 
             if (args.Count == 0)
@@ -109,7 +115,7 @@ namespace go
         private static string Sanitise(string input)
             => input.Replace("\\", "/");
 
-        private static void GetFavourites()
+        private void GetFavourites()
         {
             if (!File.Exists($"{ReposRoot}/.favourites"))
                 Create($"{ReposRoot}/.favourites");
@@ -120,7 +126,7 @@ namespace go
             throw new NotImplementedException("Favorites");
         }
 
-        private static int GotoPrev()
+        private int GotoPrev()
         {
             if (!File.Exists(Previous))
                 return 1;
@@ -252,8 +258,6 @@ namespace go
                         Error.WriteLine($"\t{_repos[m].Name}");
                     return -1;
             }
-
-            return 0;
         }
 
         /// <summary>

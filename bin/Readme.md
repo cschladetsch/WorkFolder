@@ -35,7 +35,7 @@ Brief description of each script/exe:
 
 ### Git-Tip
 
-See [git-tip](https://github.com/git-tips/tips) to install. You will need `npm`.
+See [git-tip](https://github.com/git-tips/tips) to install. You will need `npm`. https://nodejs.org/en/
 Change the file at 'which `git-tip`' as follows at the start of the file:
 
 ```bash

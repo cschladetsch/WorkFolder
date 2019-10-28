@@ -1,5 +1,5 @@
 # Working Folder ![Icon](/doc/icon.png)
-Contains common functionality used by a collection of developers.
+Contains common functionality used by a collection of developers, to assist with dealing with many repositories. It also contains common scripts and aliases so that any dev can work confidently on another's machine.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
 

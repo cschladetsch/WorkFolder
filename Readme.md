@@ -3,7 +3,7 @@ Contains common functionality used by a collection of developers.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
 
-**All developers *must* have their `work` folder mapped to `w:`**.
+All developers *must* have their `work` folder mapped to a logical drive. Typically this is `w:`, but it could be anything.
 
 - This can be done by follow the steps laid out [here](doc/SubstSetup.md)
 
@@ -22,17 +22,12 @@ Whenever `~/work` folder is referenced in the documentation or wiki, it is a syn
 * [repos/](repos) Contains all work repos. This can be a symbolic link to another folder or even another drive.
 * [src/](src) Source for tools in `$WORK_DIR/bin`.
 
-=======
 # Working Folder
 Contains common functionality shared by a group of developers.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
 
-**All developers *must* have their `work` folder mapped to `w:`**.
-
-- This can be done by follow the steps laid out [here](doc/SubstSetup.md)
-
-Internal packages are always at `$WORK_DIR\Packages`.
+Internal Unity3d and other packages are always at `$WORK_DIR\Packages`.
 
 Whenever `~/work` folder is referenced in the documentation or wiki, it is a synonym for this root work folder specified in `$WORK_DIR` environment variable.
 

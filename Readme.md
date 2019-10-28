@@ -3,7 +3,7 @@ Contains common functionality used by a collection of developers.
 
 **All developers _must_ have [git-bash shell](https://gitforwindows.org/) installed on their workstation**.
 
-All developers *must* have their `work` folder mapped to a logical drive, and designated by the system environment variable WORK_DIR. Typically this is `w:`, but it could be anything.
+All developers *must* have their `work` folder mapped to a logical drive, and designated by the system environment variable `WORK_DIR`. Typically this is `w:`, but it could be anything.
 
 - This can be done by follow the steps laid out [here](doc/SubstSetup.md)
 

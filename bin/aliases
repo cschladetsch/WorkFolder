@@ -27,16 +27,16 @@ alias glhf='ls && gs && gl'
 alias gai='git add -f .gitignore'
 
 alias gdl="gd ':*.cs'"
-alias cdw='cd /w'
-alias cdp='cd /w/Packages'
-alias cdr='cd /w/repos'
+alias cdw='cd $WORK_DIR'
+alias cdp='cd $WORK_DIR/Packages'
+alias cdr='cd $WORK_DIR/repos'
 alias cdd='cd `go.impl -c`'
 alias unity='go -unity'
 alias app='cd `go.impl -unity`/App'
 alias root='cd `go.impl -current`'
 alias repos='cd /w/repos'
 alias st='status.impl'
-alias gop='cd /w/Packages'
+alias gop='cd $WORK_DIR/Packages'
 alias git-tip='git-tip | sed 1,2d'
 
 # short-short cuts

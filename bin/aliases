@@ -49,3 +49,4 @@ echo_verbose 2 "...aliases"
 alias git-tip='~/AppData/Roaming/npm/git-tip'
 alias gt='show-git-tip'
 
+alias msbuild='msbuild.exe'

@@ -8,6 +8,9 @@
 # used by $WORK_DRIVE/bin/go
 /.current
 
+.idea
+Logs
+
 # Unity output folders
 /Library/
 /Builds/

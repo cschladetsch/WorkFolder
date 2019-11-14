@@ -1,5 +1,3 @@
-# Common aliases
-
 alias ga='git add'
 alias gagi='git add .gitignore'
 alias ls='ls --color -h'
@@ -25,7 +23,6 @@ alias hi='hub issue --color'
 alias python='winpty python.exe'
 alias glhf='ls && gs && gl'
 alias gai='git add -f .gitignore'
-
 alias gdl="gd ':*.cs'"
 alias cdw='cd $WORK_DIR'
 alias cdp='cd $WORK_DIR/Packages'
@@ -38,15 +35,12 @@ alias repos='cd /w/repos'
 alias st='status.impl'
 alias gop='cd $WORK_DIR/Packages'
 alias git-tip='git-tip | sed 1,2d'
-
-# short-short cuts
 alias u='unity'
 alias a='app'
 alias r='root'
+alias git-tip='~/AppData/Roaming/npm/git-tip'
+alias gt='show-git-tip'
+alias msbuild='msbuild.exe'
 
 echo_verbose 2 "...aliases"
 
-alias git-tip='~/AppData/Roaming/npm/git-tip'
-alias gt='show-git-tip'
-
-alias msbuild='msbuild.exe'

@@ -9,7 +9,7 @@ source $WORK_BIN/aliases
 
 # Create a gobal gitignore from the default if there isn't one.
 if [ ! -f ~/.gitignore ]; then
-	ln -s $WORK_ROOT/doc/default/gitignore-global ~/.gitignore
+	cp $WORK_ROOT/doc/default/gitignore-global ~/.gitignore
 fi
 
 CLEAR='\[\e[0m\]'
@@ -32,8 +32,6 @@ BRANCH='`__git_ps1`'
 
 export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '
-
-export PATH=$PATH:'/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/Roslyn'
 
 echo_verbose 1 "Started"
 echo

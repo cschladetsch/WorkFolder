@@ -4,8 +4,8 @@
 
 base_cmd='hub pull-request'
 target_branch='develop'
-msg_fname='/w/tmp/pr.md'
-template_msg_fname='/w/doc/default/pr.md'
+msg_fname="/$WORK_LETTER/tmp/pr.md"
+template_msg_fname="/$WORK_LETTER/doc/default/pr.md"
 options='--browse'
 
 cp $template_msg_fname $msg_fname

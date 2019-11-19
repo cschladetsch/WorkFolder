@@ -64,7 +64,7 @@ namespace go
             }
             catch (Exception e)
             {
-                WriteLine($"{ColorFormat.LightRed}{e.Message}");
+                WriteLine($"\n{ColorFormat.LightRed}{e.Message}\n");
             }
 
             return -1;

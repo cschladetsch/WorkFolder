@@ -46,3 +46,4 @@ alias msbuild='msbuild.exe'
 
 echo_verbose 2 "...aliases"
 
+alias gb='git branch -va'

@@ -52,7 +52,7 @@ Everyone in the company - or anywhere else - is free to edit this document. Just
 
 These rules apply only for internal development purposes.
 
-### General
+## 1. General
 There are some common rules that apply in all cases:
 1. Bullet points should start with a capital and end with punctuation.
 1. Must add new clauses or sub-clauses at the end of any list in this document.
@@ -102,7 +102,7 @@ There are some common rules that apply in all cases:
 
     Rationale: Disambiguation. See [Mebibyte](https://en.wikipedia.org/wiki/Mebibyte). Basically, if you mean 1000 bytes, say a kilobyte (KB). If you mean 2^10 or 1024 bytes, say [kibibyte](https://www.google.com/search?q=kibibyte) (KiB).
 
-## Unity3d
+## 2. Unity3d
 
 The current state of _Unity3d_, especially as it relates to Vr, is chaotic. This is not expected to change as new hardware and software is rapidly introduced.
 
@@ -124,7 +124,7 @@ To that end:
 9. Do not call objects in the scene or prefabs GameObject.
 13. Should Learn _bash_, _vi_ and _git_ from the command-line.
 
-## Git
+## 3. Git
 
 Using [git](https://git-scm.com/) is considered a part of professional competency **.** You should feel comfortable to use it without breaking things - just as much as using _Maya_ or _PhotoShop_ or _Visual Studio_ or _Unity3d_.
 
@@ -136,76 +136,69 @@ Git is assuredly complicated. There are ways to make it easier to use:
 
 1. `master` branch must always build and run.
 1.1 Do not touch master branch.
-2. develop branch should always build and run.
-3. Do not do things you do not understand.
+1. develop branch should always build and run.
+1. Do not do things you do not understand.
         1. Be very careful with rebase.
-4. Should use _WorkFolder_ system.
+1. Should use _WorkFolder_ system.
         1. Will become a _must_ soon.
         2. Makes the next two points redundant.
-5. Should use [git-flow](https://www.google.com/search?q=git+flow) (nothing to install, but a step to prepare).
+1. Should use [git-flow](https://www.google.com/search?q=git+flow) (nothing to install, but a step to prepare).
         1. `git flow init`
-6. Must use [git-lfs](https://git-lfs.github.com/) (nothing to install, but a step to prepare).
+1. Must use [git-lfs](https://git-lfs.github.com/) (nothing to install, but a step to prepare).
         1. `git lfs install`
-7. Should branch from develop.
+1. Should branch from develop.
         1. Unless in a small isolated team.
         2. Rather, use branches via _git-flow_.
         3. You can branch from a specific branch using git-flow.
               1. git-flow **-b source-branch** …
-                  1. The default source branch is develop.
-8. Do not make any changes to any git work-flow without discussing with Cto first.
-9. Must not touch master branch.
-        1. The only thing to do on master is either merge from develop if you&#39;re team lead, or
-        2. Make a hotfix that goes through a _Pull Request_.
-        3. As a corollary, the git log for master must only have merge,tag and hotfix commits.
-        4. This excludes Unity3d Packages which anyone can pull master.
-        5. Package development is only done by leads on develop or _git-flow_ branches from develop.
-10. Must go through a peer-reviewed _Pull Request_ when merging to develop.
+              1. The default source branch is develop.
+1. Do not make any changes to any git work-flow without discussing with Cto first.
+1. Must not touch master branch.
+        1. The only thing to do on master is either merge from develop if you're team lead, or
+        1. Make a hotfix that goes through a _Pull Request_.
+        1. As a corollary, the git log for master must only have merge,tag and hotfix commits.
+        1. This excludes Unity3d Packages which anyone can pull master.
+        1. Package development is only done by leads on develop or _git-flow_ branches from develop.
+1. Must go through a peer-reviewed _Pull Request_ when merging to develop.
          1. Except for changes to scene or prefabs, then it&#39;s a should.
-11. Do what you want on branches other than develop or master.
+1. Do what you want on branches other than develop or master.
          1. You can share branches! Just pull someone else&#39;s branch.
-         2. You do not have to &#39;share&#39; only via develop or
-12. Must use lower-dashed-case for git branch names.
-
-### Make a Pull Request
-
-_Pull Requests_ (PRs) are an important part of the development process.
+         1. You do not have to &#39;share&#39; only via develop or
+1. Must use lower-dashed-case for git branch names.
 
 1. Always merge develop before you make a PR.
-2. To make a Pull Request, say
+1. To make a Pull Request, say
      1. `λ mpr`
-3. Or browse to:
      1. https://github.com/**[company]**/**[repo-name]**/pull/new/develop
-4. How to do this via a Gui is left up to you.
-5. Do not make PRs to master. Team leads will deal with with master.
-
-### Review a Pull Request
+1. How to do this via a Gui is left up to you.
+1. Do not make PRs to master. Team leads will deal with with master.
 
 1. As a reviewer, you should first pull the branch and ensure it builds and runs locally.
 
-## Maya/Modelling
+## 5. Maya/Modelling
 
 1. Must use 1 unit = 1 meter.
 1. Must export using [_Left-handed Coordinates_](https://www.evl.uic.edu/ralph/508S98/coordinates.html)
 	1. Right is +x, Up is +y, Forward is +z.
-3. Should Must use [.fbx](https://en.wikipedia.org/wiki/FBX) for source.
-4. Items should must import and work without needing to be scaled/rotated/offset Unity3d-side.
+1. Should Must use [.fbx](https://en.wikipedia.org/wiki/FBX) for source.
+1. Items should must import and work without needing to be scaled/rotated/offset Unity3d-side.
 
-## Photoshop/Images
+## 6. Photoshop/Images
 
 1. Should use [.png](https://en.wikipedia.org/wiki/Portable_Network_Graphics) for source images.
-2. Must use [_ASTC_](https://en.wikipedia.org/wiki/Adaptive_Scalable_Texture_Compression)[compression](https://en.wikipedia.org/wiki/Adaptive_Scalable_Texture_Compression) for import.
+1. Must use [_ASTC_](https://en.wikipedia.org/wiki/Adaptive_Scalable_Texture_Compression)[compression](https://en.wikipedia.org/wiki/Adaptive_Scalable_Texture_Compression) for import.
      1. If in doubt, default to 4x4 compression.
-     2. Note that 4x4 is smaller (more compressed/noisy) than 8x8 etc.
-     3. Do not confuse with [ATSC](https://en.wikipedia.org/wiki/ATSC_tuner) (as I often do).
-3. Should not include .psd files as assets in Unity3d.
+     1. Note that 4x4 is smaller (more compressed/noisy) than 8x8 etc.
+     1. Do not confuse with [ATSC](https://en.wikipedia.org/wiki/ATSC_tuner) (as I often do).
+1. Should not include .psd files as assets in Unity3d.
      1. Break out components into separate well-named assets.
 
-## Audio
+## 7. Audio
 
 1. Should use lossless format for source audio, such as flac or very high 320+bps compressed.
 2. Must use [.ogg](https://xiph.org/vorbis/) for import.
 
-## C#
+## 8. C#
 
 See reference code.
 
@@ -215,9 +208,9 @@ Feel free to correct any problems and submit a _Pull Request_.
 
 1. All coders *should* use [_ReSharper Pro_](https://www.jetbrains.com/resharper/).
 2. Must use spaces rather than tab characters.
-  3. Tab must be 4 spaces.
+  1. Tab must be 4 spaces.
      Rationale: Consistent readability across all platforms and editors, both local and remote, such as GitHub Pull Requests.
-       1. You will be fired if you mix tabs and spaces in the same file.
+  1. You will be fired if you mix tabs and spaces in the same file.
 4. If a given code-line has over 90 characters, it should be wrapped.
      1. If it has over 110 it must be wrapped.
    Rationale: Readability within the context of a vertically-split tab in _Visual Studio_.

@@ -79,6 +79,7 @@ There are some common rules that apply in all cases:
      2. [_Unity3d_](http://www.unity3d.com) Object names.
      3. Script names or script contents, or
      4. git branch names.
+     5. When using Markdown, use \``backticks`\` around such items.
 11. Should use ext for all file names.
 12. Should not use any underscores, dashes, spaces, or fullstops in any names.
 12. Acronyms such as ABC should be spelled Abc.

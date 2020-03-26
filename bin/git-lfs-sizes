@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git lfs ls-files | cut -d ' ' -f 3 | xargs du -h | sort -h

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Show a list of files, with their sizes in human-readable form
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+files=$(find . -name $@)
+
+for file in $files
+do
+    size=`stat --printf=%s $file`
+    fmt=`numfmt --to=iec-i --suffix=B --padding=7 $size`
+    echo -e "$file: ${RED}$fmt${NC}"
+done

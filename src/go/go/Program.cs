@@ -29,6 +29,7 @@ namespace go
     /// stdout is where to move to.
     ///
     /// NOTE: This requires /w/bin/functions as well.
+    /// NOTE: The first argument is always the mapped drive letter of the work folder.
     ///
     /// Usage:
     /// <code>
@@ -48,7 +49,7 @@ namespace go
     /// </summary>
     internal class Program
     {
-        private readonly string _rootLetter;
+        private string _rootLetter;
         private string DosDrive => $@"{_rootLetter}:\";
         private string BashDrive => $@"/{_rootLetter}/";
         private string ReposRoot => $@"{DosDrive}\repos\";
@@ -70,25 +71,17 @@ namespace go
             return -1;
         }
 
-        private Program()
-        {
-            _rootLetter = Environment.GetEnvironmentVariable("WORK_LETTER");
-
-            if (string.IsNullOrEmpty(_rootLetter))
-            {
-                Error.WriteLine("No WORK_LETTER found.");
-                Environment.Exit(1);
-            }
-        }
-
         private int Run(IReadOnlyList<string> args)
         {
+            // first argument has to be the drive letter of work folder root
+            _rootLetter = args[0];
+
             GetRepos();
 
-            if (args.Count == 0)
+            if (args.Count == 1)
                 return ShowRepos();
 
-            switch (args[0])
+            switch (args[1])
             {
                 case "-":
                     return GotoPrev();

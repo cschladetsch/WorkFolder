@@ -1,0 +1,7 @@
+#!/bin/sh
+
+git flow init
+git lfs install
+git lfs track "*.jpg" "*.jpeg" "*.tga" "*.dll" "*.fbx" "*.mp3" "*.ogg"
+
+

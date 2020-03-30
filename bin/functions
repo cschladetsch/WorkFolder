@@ -56,7 +56,7 @@ statuscs()
 #
 go()
 {
-    cmd="go.impl.exe $WORK_LETTER $*"
+    cmd="go.impl.exe $*"
     eval $cmd 1> /$WORK_LETTER/tmp/next 2> /$WORK_LETTER/tmp/transist
     transist=`cat /$WORK_LETTER/tmp/transist`
     next=`cat /$WORK_LETTER/tmp/next`
@@ -64,7 +64,7 @@ go()
     if [ ! -z $next ]; then
         eval 'cd $next'
     else
-        go.impl.exe $WORK_LETTER
+        go.impl.exe 
         return 0
     fi
 

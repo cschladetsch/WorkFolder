@@ -49,7 +49,7 @@ namespace go
     /// </summary>
     internal class Program
     {
-        private string _rootLetter;
+        private string _rootLetter = "w";
         private string DosDrive => $@"{_rootLetter}:\";
         private string BashDrive => $@"/{_rootLetter}/";
         private string ReposRoot => $@"{DosDrive}\repos\";
@@ -73,15 +73,12 @@ namespace go
 
         private int Run(IReadOnlyList<string> args)
         {
-            // first argument has to be the drive letter of work folder root
-            _rootLetter = args[0];
-
             GetRepos();
 
             if (args.Count == 1)
                 return ShowRepos();
 
-            switch (args[1])
+            switch (args[0])
             {
                 case "-":
                     return GotoPrev();

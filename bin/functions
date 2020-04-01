@@ -56,17 +56,16 @@ statuscs()
 #
 go()
 {
+    if [ -z "$*" ]; then
+        go.impl.exe
+        return 0
+    fi
     cmd="go.impl.exe $*"
     eval $cmd 1> /$WORK_LETTER/tmp/next 2> /$WORK_LETTER/tmp/transist
     transist=`cat /$WORK_LETTER/tmp/transist`
     next=`cat /$WORK_LETTER/tmp/next`
 
-    if [ ! -z "$next" ]; then
-        cd $next
-    else
-        go.impl.exe 
-        exit 0
-    fi
+    cd "$next"
 
     arr=($transist)
     for f in "${arr[@]}"; do

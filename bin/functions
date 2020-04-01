@@ -61,12 +61,11 @@ go()
     transist=`cat /$WORK_LETTER/tmp/transist`
     next=`cat /$WORK_LETTER/tmp/next`
 
-    if [ ! -z $next ]; then
-        eval 'cd $next'
-    else
-        go.impl.exe 
-        return 0
+    args=''
+    if [ ! -z "$next" ]; then
+        args='cd $next'
     fi
+    go.impl.exe $args
 
     arr=($transist)
     for f in "${arr[@]}"; do

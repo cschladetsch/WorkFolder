@@ -1,4 +1,39 @@
+
+alias gs='git status --short --branch'
+alias gl='git lg'
+alias gu='git pull'
+alias gp='git push'
+
+WORK_ROOT=/$WORK_LETTER
+WORK_DIR=$WORK_ROOT
+
+
+#export PS1='\e[0m \[\033]0;$TITLEPREFIX:$PWD\[\007\]\n\[\033[32m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[1m\]λ\[\e[0m\] \e[2m'
+export PS1='\e[0m \[\033]0;$TITLEPREFIX:$PWD\[\007\]\n\e[0m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[2m\]λ \e[0m\] \e[1m'
+
+export PS2='-->'
 trap 'echo -n -e "\e[0m"' DEBUG
-cd "/w"
-source "/w/bin/startup"
-export PATH=$PATH:~/work/bin
+
+#export PATH=$PATH:~/bin/android-ndk-r18b-windows-x86_64\android-ndk-r18b
+
+WORK_LETTER=w
+WORK_ROOT=/$WORK_LETTER
+WORK_NAME='Local'
+WORK_DIR=$WORK_ROOT
+
+#export PATH=$PATH:~/bin/platform-tools
+
+export PATH=$PATH:'/c/Program\ Files \(x86\)/Android/android-sdk/platform-tools'
+
+export WORK_ROOT
+export WORK_LETTER
+export WORK_NAME
+export WORK_DIR
+
+source $WORK_ROOT/bin/startup
+
+cd $WORK_ROOT
+go
+
+
+

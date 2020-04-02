@@ -5,6 +5,7 @@
 base_cmd='hub issue create'
 target_branch='develop'
 msg_fname="/$WORK_LETTER/tmp/issue.md"
+echo WORK_LETTER="$WORK_LETTER"
 template_msg_fname="/$WORK_LETTER/doc/default/Issue.md"
 
 cp $template_msg_fname $msg_fname

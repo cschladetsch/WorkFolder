@@ -43,6 +43,7 @@ alias r='root'
 alias git-tip='~/AppData/Roaming/npm/git-tip'
 alias gt='show-git-tip'
 alias msbuild='msbuild.exe'
+alias issues='hub issue --color'
 
 alias bfg='java -jar /w/bin/bfg-1.13.0.jar'
 

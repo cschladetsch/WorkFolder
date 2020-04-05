@@ -46,6 +46,7 @@ alias msbuild='msbuild.exe'
 alias issues='hub issue --color'
 
 alias bfg='java -jar /w/bin/bfg-1.13.0.jar'
+alias gad='git add * |& sed "/The following/,/want to add them./d"'
 
 echo_verbose 2 "...aliases"
 

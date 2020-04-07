@@ -91,8 +91,7 @@ gacp()
         echo "Need commit message"
         exit 1
     fi
-    gad
-    git commit -m "$*"
+    git commit -a -m "$*"
     git push
 }
 

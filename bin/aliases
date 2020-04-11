@@ -44,6 +44,7 @@ alias git-tip='~/AppData/Roaming/npm/git-tip'
 alias gt='show-git-tip'
 alias msbuild='msbuild.exe'
 alias issues='hub issue --color'
+alias gcm='git commit --amend -m '
 
 alias bfg='java -jar /w/bin/bfg-1.13.0.jar'
 alias ga='git add $* |& sed "/The following/,/want to add them./d"'

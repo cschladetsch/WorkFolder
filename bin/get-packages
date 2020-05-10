@@ -1,6 +1,6 @@
 #!/bin/sh
 
-declare -a packages=(colib Dekuple Flow NUnit UniRx Augment)
+declare -a packages=(colib Dekuple Flow UniRx Augment)
 
 for pkg in "${packages[@]}"
 do

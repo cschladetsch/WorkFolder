@@ -75,7 +75,7 @@ namespace go
         {
             GetRepos();
 
-            if (args.Count == 1)
+            if (args.Count == 0)
                 return ShowRepos();
 
             switch (args[0])

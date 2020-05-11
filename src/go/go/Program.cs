@@ -173,9 +173,11 @@ namespace go
             var repos = _repos.Where(r => !r.FullPath.Contains("Packages")).ToList();
             var packages = _repos.Where(r => r.FullPath.Contains("Packages")).ToList();
 
-            WriteLineFormat($"\n> Repos", new List<string> { ColorFormat.Blue, ColorFormat.Bold });
+            WriteLineFormat($"\n   Repos", new List<string> { ColorFormat.Yellow, ColorFormat.Bold });
             var defaultFormat = new List<string> { ColorFormat.LightGrey };
             var curFormat = new List<string> { "\x1b[48;5;240m", ColorFormat.White, ColorFormat.Bold };
+            //var numFormat = new List<string> { "\x1b[48;5;240m", ColorFormat.Green, ColorFormat.Bold };
+            var numFormat = new List<string> { ColorFormat.Green, ColorFormat.Bold };
             int count = 0;
             foreach (var repo in repos)
             {
@@ -184,12 +186,13 @@ namespace go
                     format = curFormat;
 
                 var pathFormat = new List<string>(format) { ColorFormat.Dim };
-                WriteFormat(count < 10 ? $"{count: 0} {repo.Name}" : $"{count:00} {repo.Name}", format);
+                WriteFormat(count < 10 ? $"{count: 0}" : $"{count:00}", numFormat);
+                WriteFormat($" {repo.Name}", format);
                 WriteLineFormat($" @{Substring(repo).Replace("\\", "/").Replace("\n", "")}", pathFormat);
                 ++count;
             }
 
-            WriteLineFormat($"\n> Packages", new List<string> { ColorFormat.Blue, ColorFormat.Bold });
+            WriteLineFormat($"\n   Packages", new List<string> { ColorFormat.Yellow, ColorFormat.Bold });
             foreach (var package in packages)
             {
                 var format = defaultFormat;
@@ -197,7 +200,8 @@ namespace go
                     format = curFormat;
 
                 var pathFormat = new List<string>(format) { ColorFormat.Dim };
-                WriteFormat(count < 10 ? $"{count: 0} {package.Name}" : $"{count:00} {package.Name}", format);
+                WriteFormat(count < 10 ? $"{count: 0}" : $"{count:00}", numFormat);
+                WriteFormat($" {package.Name}", format);
                 WriteLineFormat($" @{Substring(package).Replace("\\", "/").Replace("\n", "")}", pathFormat);
                 ++count;
             }

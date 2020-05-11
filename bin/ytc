@@ -1,0 +1,37 @@
+#!/bin/sh
+
+if [$1 == ""]; then
+	echo "No input given"
+	exit 1
+fi
+
+input=$1
+output=out.mkv
+
+# see https://trac.ffmpeg.org/wiki/Encode/YouTube
+
+ffmpeg \
+	-i $input \
+	-c:v libx264 \
+	-preset slow \
+	-crf 18 \
+	-c:a copy \
+	-pix_fmt yuv420p\
+	$output
+
+exit 0
+
+# Same as above, but also re-encode the audio using AAC instead of stream copying it:
+ffmpeg \
+	-i $input \
+	-c:v libx264 \
+	-preset slow \
+	-crf 18 \
+	-c:a aac \
+	-b:a 192k \
+	-pix_fmt yuv420p\
+	$output
+
+exit 0
+
+

@@ -1,5 +1,16 @@
 # Useful Git Commands
 
+## Logging
+
+Add the following to your ~/.gitconfig
+
+```bash
+[alias]
+    lg = log --graph --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
+```
+
+## Useful things
+
 ```bash
 $ git remote update	# update remote refs
 $ git status -uno	# tell if you're ahead or behind or diverged

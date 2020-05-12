@@ -82,12 +82,11 @@ namespace go
             {
                 case "-":
                     return GotoPrev();
-                case "-c":
-                case "-current":
+                case "-r":
                 case "-root":
                     WriteLine($"/{_rootLetter}" + GetCurrentRepo().Substring(2).Replace("\\", "/"));
                     return 0;
-                case "-k":
+                case "-c":
                 case "-clear":
                     return ClearCurrents();
                 case "-u":

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+input_folder=/c/Users/chris/Videos/XSplit\ Videos\ -\ sp4mfilt3r
+cd "$input_folder"
+last=`ls -t *.mp4 | head -1`
+echo "Converting $last"
+vidcomp $last

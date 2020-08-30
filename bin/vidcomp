@@ -1,0 +1,7 @@
+#!/bin/sh
+
+perf=-r 14 -preset ultrafast -s1024x768
+ffmpeg -i "$1" -c:v libx264 -b:v 128k -maxrate 2M -bufsize 1M $perf output.mp4
+#ffmpeg -i "$1" -vcodec libx265 -crf 28 output.mp4
+#ffmpeg -i "$1" -c:v libx264 -b:v 128K -maxrate 128K -bufsize 1M output.mp4
+

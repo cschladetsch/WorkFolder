@@ -1,3 +1,4 @@
+alias typora="/c/Program\ Files/Typora/Typora.exe"
 alias gagi='git add .gitignore'
 alias ls='ls --color -h'
 alias h='history'

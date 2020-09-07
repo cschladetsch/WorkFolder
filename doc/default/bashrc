@@ -1,4 +1,4 @@
-
+```bash
 alias gs='git status --short --branch'
 alias gl='git lg'
 alias gu='git pull'
@@ -34,6 +34,4 @@ source $WORK_ROOT/bin/startup
 
 cd $WORK_ROOT
 go
-
-
-
+```

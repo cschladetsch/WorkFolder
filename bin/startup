@@ -1,11 +1,17 @@
 #!/bin/bash
+
 # Source this from your .bashrc file.
 
+. get-os
+echo ...startup $WORK_OS
+
 export WORK_BIN=$WORK_ROOT/bin
-export PATH=$PATH:$WORK_BIN
 
 source $WORK_BIN/functions
 source $WORK_BIN/aliases
+
+echo_verbose 1 "Started $WORK_NAME"
+echo
 
 # Create a gobal gitignore from the default if there isn't one.
 if [ ! -f ~/.gitignore ]; then
@@ -24,17 +30,16 @@ DIR='\w'
 MAGENTA='\[\e[35m\]'
 STATUS='$?'
 
-export GIT_PS1_SHOWDIRTYSTATE=true
-#export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM="auto name"
-export GIT_PS1_SHOWCOLORHINTS=true
-BRANCH='`__git_ps1`'
+if [[ $WORK_OS == "WINDOWS" ]]; then
+	export GIT_PS1_SHOWDIRTYSTATE=true
+	#export GIT_PS1_SHOWUNTRACKEDFILES=true
+	export GIT_PS1_SHOWUPSTREAM="auto name"
+	export GIT_PS1_SHOWCOLORHINTS=true
+	BRANCH='`__git_ps1`'
+	export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
+fi
 
-export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '
-
-echo_verbose 1 "Started $WORK_NAME"
-echo
 
 show-git-tip()
 {
@@ -55,7 +60,9 @@ show-git-tip()
     unset IFS
 }
 
-show-git-tip
+if [[ $WORK_OS != "DARWIN" ]]; then
+	show-git-tip
+fi
 
 run-git-help()
 {
@@ -64,6 +71,7 @@ run-git-help()
     eval "$cmd"
 }
 
-alias gte=run-git-help
+
+cd $WORK_ROOT
 
 

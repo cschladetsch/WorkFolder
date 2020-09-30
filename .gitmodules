@@ -1,0 +1,3 @@
+[submodule "src/go-cpp"]
+	path = src/go-cpp
+	url = git@github.com:cschladetsch/GoRepo.git

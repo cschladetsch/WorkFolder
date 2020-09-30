@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo ...aliases
-
 #if [ -nz $WORK_DARWIN 
 
 #alias ls='ls --color -h'
@@ -61,4 +59,6 @@ alias gcm='git commit --amend -m '
 
 alias bfg='java -jar /w/bin/bfg-1.13.0.jar'
 alias ga='git add $* |& sed "/The following/,/want to add them./d"'
+
+echo_verbose 2 ...aliases
 

@@ -2,11 +2,9 @@
 
 # Source this from your .bashrc file.
 
-. get-os
-echo ...startup $WORK_OS
-
 export WORK_BIN=$WORK_ROOT/bin
 
+source $WORK_BIN/get-os
 source $WORK_BIN/functions
 source $WORK_BIN/aliases
 
@@ -73,5 +71,7 @@ run-git-help()
 
 
 cd $WORK_ROOT
+
+echo_verbose 2 ...startup $WORK_OS
 
 

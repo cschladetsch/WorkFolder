@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         export WORK_OS=LINUX
 elif [[ "$OSTYPE" == "darwin"* ]]; then

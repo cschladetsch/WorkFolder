@@ -1,7 +1,4 @@
 #!/bin/sh
 
-perf=-r 14 -preset ultrafast -s1024x768
-ffmpeg -i "$1" -c:v libx264 -b:v 128k -maxrate 2M -bufsize 1M $perf output.mp4
-#ffmpeg -i "$1" -vcodec libx265 -crf 28 output.mp4
-#ffmpeg -i "$1" -c:v libx264 -b:v 128K -maxrate 128K -bufsize 1M output.mp4
-
+# from https://virag.si/2015/06/encoding-videos-for-youtube-with-ffmpeg/
+ffmpeg -i $1 -codec:v libx264 -crf 23 -bf 2 -flags +cgop -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart output.mp4

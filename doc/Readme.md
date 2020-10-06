@@ -32,7 +32,18 @@ There are a number of default files that are used to populate a new project:
 * **Readme-default.md**. Default Readme.md file for a sub-system.
 * **Readme-Project-default.md**. Default Readme.md file for either a project.
 
-## Todo
-Nothing at the moment.
+## Aliases
+
+TODO
+
+## Functions
+
+TODO
+
+## Scripts
+
+TODO
+
+
 
 

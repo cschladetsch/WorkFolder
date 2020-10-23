@@ -5,6 +5,10 @@
 
 export WORK_VERBOSE=1
 
+lint() {
+	cpplint --filter=-build/include_order,-readability/utf8,-whitespace/indent,-whitespace/line_length,-runtime/references $*
+}
+
 #
 # Condtionally echo
 #

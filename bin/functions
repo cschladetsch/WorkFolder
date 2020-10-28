@@ -132,5 +132,5 @@ first()
 # Export functions
 export gacp f help unity_log go statuscs first
 
-echo_verbose 2 "...functions"
+#echo_verbose 2 "...functions"
 

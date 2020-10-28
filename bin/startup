@@ -55,7 +55,7 @@ show-git-tip()
     unset IFS
 }
 
-show-git-tip
+#show-git-tip
 
 run-git-help()
 {

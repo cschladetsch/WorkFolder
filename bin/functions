@@ -46,50 +46,22 @@ statuscs()
 }
 
 #
-# Go to a repository.
+# Goto a repository.
 # 
-# If no arguments are given, a list of repos
-# is shown to select from. God help you if you
-# have more than 9 repos.
-#
-# If an argument is given, it is interpreted as
-# a repo number.
-#
-# The current directory is saved and restored as
-# you switch between repos in `current_repo`.current.
-#
-go()
-{
-    if [ -z "$*" ]; then
-        go.impl.exe
-        return 0
-    fi
-    cmd="go.impl.exe $*"
-    eval $cmd 1> /$WORK_LETTER/tmp/next 2> /$WORK_LETTER/tmp/transist
-    transist=`cat /$WORK_LETTER/tmp/transist`
-    next=`cat /$WORK_LETTER/tmp/next`
-
-    cd "$next"
-
-    arr=($transist)
-    for f in "${arr[@]}"; do
-       [[ -f $f ]] && . $f --source-only || echo "$f not found."
-    done
-}
+# TODO(cjs) move to $WORK_ROOT/src
+[ -e $WORK_ROOT/repos/go-cpp ] && source $WORK_ROOT/repos/go-cpp/fun.sh
 
 #
 # Goto root of current repo
 #
-gor()
-{
+gor() {
     cd `current_repo`
 }
 
 #
 # Git Add, Commit and Push
 #
-gacp()
-{
+gacp() {
     if [ "$*" == "" ]; then
         # TODO: use vi to make a message
         echo "Need commit message"
@@ -103,29 +75,25 @@ gacp()
 #
 # Show the end of the current Unity3d log
 #
-unity_log()
-{
+unity_log() {
     tail $* ~/AppData/Local/Unity/Editor/Editor.log
 }
 
 #
 # Should probably be an alias.
 #
-f()
-{
+f() {
     find . -name $*
 }
 
 #
 # Show help
 #
-help()
-{
+help() {
     start $WORK_DIR/doc/Readme.md
 }
 
-first()
-{
+first() {
     cd `find . $2 -name $1 -print -quit`
 }
 

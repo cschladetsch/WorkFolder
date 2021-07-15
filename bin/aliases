@@ -8,6 +8,7 @@
 
 alias h='history'
 alias g='git'
+alias gc='git commit'
 alias ls='ls --color -h'
 
 alias gll='g lg'

@@ -4,7 +4,7 @@ REM  batch script for loading git-bash and the vs tools in the same window
 REM  inspiration: http://www.drrandom.org/post/2011/11/16/Grappling-with-multiple-remotes-in-git-tfs.aspx
 
 
-call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+call "c:\Program Files (x86)\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
 
 rem cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\"
 rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vcvarsall.bat" x86

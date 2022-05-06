@@ -62,6 +62,7 @@ gor() {
 # Git Add, Commit and Push
 #
 gacp() {
+    echo "gacp"
     if [ "$*" == "" ]; then
         # TODO: use vi to make a message
         echo "Need commit message"

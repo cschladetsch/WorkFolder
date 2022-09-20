@@ -46,5 +46,7 @@ alias gcm='git commit --amend -m '
 alias bfg='java -jar $WORK_ROOR/bin/bfg-1.13.0.jar'
 alias ga='git add $* |& sed "/The following/,/want to add them./d"'
 
-#echo_verbose 2 "...aliases"
+alias brls='br -sdp'
+
+echo_verbose 2 "...aliases"
 

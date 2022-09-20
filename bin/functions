@@ -3,8 +3,6 @@
 # Remember to export functions at the end,
 # if you wish them to be used outside of this script.
 
-export WORK_VERBOSE=1
-
 lint() {
 	cpplint --filter=-build/include_order,-readability/utf8,-whitespace/indent,-whitespace/line_length,-runtime/references $*
 }
@@ -101,5 +99,5 @@ first() {
 # Export functions
 export gacp f help unity_log go statuscs first
 
-#echo_verbose 2 "...functions"
+echo_verbose 2 "...functions"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Source this from your .bashrc file.
 
-export WORK_BIN=$WORK_ROOT/bin
+export WORK_BIN=$WORK_FOLDER/bin
 export PATH=$PATH:$WORK_BIN
 
 source $WORK_BIN/functions

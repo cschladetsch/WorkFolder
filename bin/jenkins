@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function start {
+    # Start Jenkins server
+    /etc/init.d/jenkins start
+
+    # Start local Jenkins Node
+    cd && java -jar agent.jar -jnlpUrl http://localhost:8080/computer/Win10/jenkins-agent.jnlp -secret 869116de52e1cb4dafe8014e504a27db33d86b29f3992fbb5b2777631cc2aa66 -workDir "d:\jenkins"
+}
+
+function stop {
+    # Stop Jenkins Node
+    echo *** TODO: Stop node
+    
+    # Stop Jenkins server
+    /etc/init.d/jenkins stop
+}
+
+case $1 in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    *)
+        echo -e "usage: jenkins [start|stop]"
+        exit 1
+        ;;
+esac
+

@@ -1,16 +1,7 @@
-#alias typora="/c/Program\ Files/Typora/Typora.exe"
-#alias python='winpty python.exe'
-
-#alias git-tip='git-tip | sed 1,2d'
-#alias git-tip='~/AppData/Roaming/npm/git-tip'
-#alias gt='show-git-tip'
-#alias st='status.impl.exe'
-
 alias h='history'
 alias g='git'
 alias gc='git commit'
 alias ls='ls --color -h'
-
 alias gll='g lg'
 alias gl='gll | head -5'
 alias gd='g difftool -y'
@@ -39,14 +30,7 @@ alias cdr='cd $WORK_FOLDER/repos'
 alias unity='go -unity'
 alias root='cd `go -current`'
 alias repos='cd $WORK_FOLDER/repos'
-
 alias issues='hub issue --color'
 alias gcm='git commit --amend -m '
-
-alias bfg='java -jar $WORK_ROOR/bin/bfg-1.13.0.jar'
 alias ga='git add $* |& sed "/The following/,/want to add them./d"'
-
-alias brls='br -sdp'
-
-echo_verbose 2 "...aliases"
 

@@ -1,5 +1,11 @@
 #!/bin/bash
+
 # Source this from your .bashrc file.
+
+if [ "$WORK_FOLDER" == "" ]; then
+	echo "WORK_FOLDER not set."
+	exit -1
+fi
 
 export WORK_BIN=$WORK_FOLDER/bin
 export PATH=$PATH:$WORK_BIN
@@ -12,22 +18,22 @@ if [ ! -f ~/.gitignore ]; then
 	cp $WORK_FOLDER/doc/default/gitignore-global ~/.gitignore
 fi
 
-CLEAR='\[\e[0m\]'
-YELLOW='\[\e[33m\]'
-CYAN='\[\e[36m\]'
-DIM='\[\e[2m\]'
-LAMBDA='λ'
-BOLD='\[\e[1m\]'
-TITLE="\[\e]0;\w\a"
-HIST='\!'
-DIR='\w'
-MAGENTA='\[\e[35m\]'
-STATUS='$?'
+export CLEAR="\[\e[0m\]"
+export YELLOW="\[\e[33m\]"
+export CYAN="\[\e[36m\]"
+export DIM="\[\e[2m\]"
+export LAMBDA="λ"
+export BOLD="\[\e[1m\]"
+export TITLE="\[\e]0;\w\a"
+export HIST="\!"
+export DIR="\w"
+export MAGENTA="\[\e[35m\]"
+export STATUS="$?"
 
 export GIT_PS1_SHOWDIRTYSTATE=true
-#export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="auto name"
 export GIT_PS1_SHOWCOLORHINTS=true
+
 BRANCH='`__git_ps1`'
 
 export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
@@ -65,5 +71,4 @@ run-git-help()
 }
 
 alias gte=run-git-help
-
 

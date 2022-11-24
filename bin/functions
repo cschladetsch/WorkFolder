@@ -12,6 +12,10 @@ lint() {
 #
 echo_verbose()
 {
+    if [ "$WORK_VERBOSE" == "" ]; then
+	    return
+    fi
+
     if [ "$WORK_VERBOSE" -ge "$1" ]; then
         shift
         echo -e "$*"

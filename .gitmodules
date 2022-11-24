@@ -1,0 +1,3 @@
+[submodule "bin/git-tips"]
+	path = bin/git-tips
+	url = git@github.com:git-tips/tips.git

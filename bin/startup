@@ -72,12 +72,4 @@ run-git-help()
 
 alias gte=run-git-help
 
-# Platform-specific start
-os=`uname -o`
-if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
-	echo -e "${RED}Failed to find support for your platform."
-	exit -1
-fi
-
-source $WORK_FOLDER/bin/platform/$os/startup
-
+source $WORK_FOLDER/bin/platform-start

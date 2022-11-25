@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Cygwin (GitBash) start script
+
+echo -e "Starting GitBash."
+
+

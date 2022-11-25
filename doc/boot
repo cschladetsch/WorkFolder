@@ -1,0 +1,6 @@
+# Bootstrap
+
+```powershell
+choco install ripgrep
+```
+

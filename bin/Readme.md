@@ -1,5 +1,7 @@
 # Work/Bin
 
+TODO: Update with changes from upstream
+
 This is part of the [WorkFolder](<https://github.com/cschladetsch/WorkFolder>) system, which in turn is based on `git-bash`.
 
 Contains a set of:

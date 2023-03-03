@@ -15,7 +15,7 @@ Move dotfile to ~/.dotfile. For example, vimrc moves to ~/.vimrc
 
 ## Installers
 
-Installing `git-tip`.
+I:qnstalling `git-tip`.
 
 First, install [npm](https://nodejs.org/en/). Then install `git-tip` via:
 

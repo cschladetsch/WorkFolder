@@ -1,6 +1,8 @@
-# Bootstrap
+#!/bin/bash
 
-```powershell
+# Run as Admin for windows
+
 choco install ripgrep
-```
-
+choco install bat
+cp ~/.vimrc ~/.vimrc.bak
+cp dotfiles/vimrc ~/.vimrc

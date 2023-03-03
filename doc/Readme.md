@@ -9,6 +9,10 @@ When an update is made, the user updates their work folder with:
 $ cd $WORK_DRIVE && git pull
 ```
 
+## DotFiles
+
+Move dotfile to ~/.dotfile. For example, vimrc moves to ~/.vimrc
+
 ## Installers
 
 Installing `git-tip`.

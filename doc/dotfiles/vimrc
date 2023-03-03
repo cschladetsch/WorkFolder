@@ -1,0 +1,49 @@
+set number
+set relativenumber
+set nobackup
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+
+" Pick a leader key
+let mapleader = ","
+
+syntax on
+
+												    	
+set showbreak=↪
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:•
+
+" Visualize tabs and newlines
+" set listchars=eol:¬,tab:>,trail:~,extends:>,precedes:<,space:␣
+" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
+" set listchars=eol:¬,tab:>,space:␣
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+" Encoding
+set encoding=utf-8
+
+" esc in insert & visual mode
+inoremap kj <esc>
+vnoremap kj <esc>
+inoremap jk <esc>
+vnoremap jk <esc>
+
+" esc in command mode
+cnoremap kj <C-C>
+cnoremap jk <C-C>
+" Note: In command mode mappings to esc run the command for some odd
+" historical vi compatibility reason. We use the alternate method of
+" existing which is Ctrl-C
+
+" if you really want to type jk or kj just wait a couple hundred 
+" milliseconds between letters
+set timeoutlen=200
+

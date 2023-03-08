@@ -1,6 +1,6 @@
 # Repositories
 
-The location of the repos.
+The location of the repos. This folder is ignored by Git for `WorkFolder`.
 
 ## Contents
 

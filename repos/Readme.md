@@ -1,14 +1,7 @@
 # Repositories
 
-The location of the repos https://github.com/Ched-Services.
+The location of the repos.
 
 ## Contents
 
-Welcome
-Varsity
-
-Dekuple
-Flow
-Gather
-Pyro
-
+TODO

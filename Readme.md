@@ -6,6 +6,15 @@ This repo is intended to be at the root of their work folder. In many cases this
 
 Internal packages are always at `$WORK_FOLDER/Packages`.
 
+Currently supported platforms include:
+
+* GitBash
+* WSL
+* Ubuntu
+* Debian
+* macOS
+* Plan9
+
 ## Contents
 
 * [bin/](bin) Often used [shell scripts](bin/Readme.md) and other tools

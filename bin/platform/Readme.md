@@ -1,6 +1,6 @@
 # Platform-Specific Scripts
 
-Contains folders specific to each supported platform.
+Contains folders containing scripts specific to each supported platform, such that there isa common syntax across all platforms.
 
 * Darwin. macOS
 * Msys. Git-Bash (Cygwin)

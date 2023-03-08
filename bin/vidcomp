@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# from https://virag.si/2015/06/encoding-videos-for-youtube-with-ffmpeg/
+
 ffmpeg -i $1 -codec:v libx264 -crf 23 -bf 2 -flags +cgop -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart output.mp4

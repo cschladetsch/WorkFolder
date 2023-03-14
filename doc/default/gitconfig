@@ -1,7 +1,7 @@
 [user]
-	name = Your Name
-	email = yname@powercor.com.au
-	username = yname
+	name = Christian Schladetsch
+	email = c.schladetsch@tektindustries.com
+	username = cschladetsch
 [init]
 	defaultBranch = master
 [core]
@@ -31,10 +31,6 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-	oldMoved = "#ff0077 #222222"
-	oldMovedAlternative = "#ff3322 #222a00"
-	newMoved = "#00cc77 #222222"
-	newMovedAlternative = "#66aa00 #222a00"
 [color "status"]
 	added = green bold
 	changed = yellow bold
@@ -43,7 +39,7 @@
 	rebase = true
 [diff]
 	tool = vimdiff
-	colorMoved = zebracolorMoved = zebra
+	colorMoved = zebra
 	colorMovedWS = ignore-space-change
 [difftool]
 	prompt = false

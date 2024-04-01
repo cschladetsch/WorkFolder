@@ -2,7 +2,8 @@
 
 # Source this from your .bashrc file.
 
-if [ "$WORK_FOLDER" == "" ]; then
+if ["$WORK_FOLDER" == "" X:wq]; then
+#if ["$WORK_FOLDER" == ""]; then
 	echo "WORK_FOLDER not set."
 	exit -1
 fi
@@ -73,3 +74,4 @@ run-git-help()
 alias gte=run-git-help
 
 source $WORK_FOLDER/bin/platform-start
+

@@ -2,7 +2,6 @@
 os=`uname -o`
 if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
 	os=`uname`
-
 	if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
 		echo -e "${RED}Failed to find support for your platform."
 		exit -1

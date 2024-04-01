@@ -2,6 +2,6 @@
 
 # TODO: perform one-off setup, then touch $WORK_ROOT/.proj/booted
 
-source $WORK_ROOT/bin/startup
+source $WORK_FOLDER/bin/startup
 
 

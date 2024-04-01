@@ -65,7 +65,7 @@ gor() {
 #
 gacp() {
     echo "gacp"
-    if [ "$*" == "" ]; then
+    if [ -z "$*" ]; then
         # TODO: use vi to make a message
         echo "Need commit message"
         exit 1
@@ -103,5 +103,4 @@ first() {
 # Export functions
 export gacp f help unity_log go statuscs first
 
-echo_verbose 2 "...functions"
 

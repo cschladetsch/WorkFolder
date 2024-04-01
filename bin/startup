@@ -2,8 +2,8 @@
 
 # Source this from your .bashrc file.
 
-if ["$WORK_FOLDER" == "" X:wq]; then
-#if ["$WORK_FOLDER" == ""]; then
+#if ["$WORK_FOLDER" == "" X:wq]; then
+if [ -z "$WORK_FOLDER" ]; then
 	echo "WORK_FOLDER not set."
 	exit -1
 fi
@@ -40,7 +40,7 @@ BRANCH='`__git_ps1`'
 export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '
 
-echo_verbose 1 "Started $WORK_NAME"
+echo "Started $WORK_NAME"
 echo
 
 #show-git-tip()

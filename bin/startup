@@ -64,6 +64,10 @@ echo
 #
 #show-git-tip
 
+function clip() {
+    cat "$1" | xclip -selection clipboard
+}
+
 run-git-help()
 {
     cmd=`cat $WORK_FOLDER/tmp/last-gt-cmd`

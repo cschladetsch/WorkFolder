@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Check if a filename is provided
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+filename="$1"
+new_filename="${filename// /_}"  # Replace spaces with underscores
+
+# Check if the new filename is different from the original filename
+if [ "$filename" != "$new_filename" ]; then
+    mv -i "$filename" "$new_filename"  # Rename the file
+    echo "Spaces replaced with underscores in filename: $filename --> $new_filename"
+else
+    echo "No spaces found in filename: $filename"
+fi
+
+

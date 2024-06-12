@@ -40,9 +40,6 @@ BRANCH='`__git_ps1`'
 export PS1="$TITLE$CLEAR\n$HIST $DIM$STATUS$CLEAR $YELLOW$DIR$CYAN$BRANCH$CLEAR\n$DIM$LAMBDA$CLEAR $BOLD"
 export PS2='»»» '
 
-echo "Started $WORK_NAME"
-echo
-
 #show-git-tip()
 #{
 #    if [ ! -z $1 ]; then
@@ -65,17 +62,15 @@ echo
 #show-git-tip
 
 function clip() {
-    cat "$1" | xclip -selection clipboard
+	cat "$1" | xclip -selection clipboard
 }
 
-run-git-help()
-{
-    cmd=`cat $WORK_FOLDER/tmp/last-gt-cmd`
-    echo -e "\e[2mRunning \e[0;35m$cmd\e[0m"
-    eval "$cmd"
+run-git-help() {
+	cmd=$(cat $WORK_FOLDER/tmp/last-gt-cmd)
+	echo -e "\e[2mRunning \e[0;35m$cmd\e[0m"
+	eval "$cmd"
 }
 
 alias gte=run-git-help
 
 source $WORK_FOLDER/bin/platform-start
-

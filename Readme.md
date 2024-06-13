@@ -36,10 +36,9 @@ sh work/bin/bootstrap
 If all else fails, you just the following in your ~/.bashrc:
 
 ```bash
-export WORK_FOLDER=~/local $		# wherever you cloned WorkFoler to
+export WORK_FOLDER=~/local 		# wherever you cloned WorkFoler to
 source $WORK_FOLDER/bin/startup
-
-````
+```
 
 This will ensure that the environment variable WORK\_FOLDER is set on shell start.
 

@@ -71,7 +71,7 @@ gacp() {
         exit 1
     fi
     git add -A
-    git commit -v "$*"
+    git commit -m "$*"
     git push
 }
 

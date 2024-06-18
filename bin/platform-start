@@ -8,5 +8,5 @@ if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
 	fi
 fi
 source $WORK_FOLDER/bin/platform/$os/startup
-echo -e "Started ${os}"
+#echo -e "Started ${os}"
 

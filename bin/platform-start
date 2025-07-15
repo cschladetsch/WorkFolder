@@ -1,9 +1,30 @@
 # Platform-specific start
 os=`uname -o`
-if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
-	echo -e "${RED}Failed to find support for your platform."
-	exit -1
+
+# Detect WSL
+if grep -qi microsoft /proc/version 2>/dev/null; then
+    os="WSL"
 fi
+
+# Define colors
+RED="\e[31m"
+GREEN="\e[32m"
+CLEAR="\e[0m"
+
+if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
+	echo -e "${RED}Failed to find support for your platform: $os${CLEAR}"
+	echo "Available platforms:"
+	ls -1 $WORK_FOLDER/bin/platform/ 2>/dev/null || echo "  (none found)"
+	
+	# Try to fallback to a generic Linux startup if available
+	if [ "$os" = "GNU/Linux" ] && [ -d $WORK_FOLDER/bin/platform/Linux ]; then
+		echo "Using generic Linux platform..."
+		os="Linux"
+	else
+		exit 1
+	fi
+fi
+
 source $WORK_FOLDER/bin/platform/$os/startup
-echo -e "Started ${os}"
+echo -e "${GREEN}Started ${os}${CLEAR}"
 

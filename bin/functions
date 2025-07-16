@@ -65,7 +65,7 @@ gor() {
 #
 gacp() {
     echo "gacp"
-    if [ "$*" == "" ]; then
+    if [ "$*" = "" ]; then
         # TODO: use vi to make a message
         echo "Need commit message"
         exit 1

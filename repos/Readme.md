@@ -1,14 +1,4 @@
 # Repositories
 
-The location of the repos https://github.com/Ched-Services.
-
-## Contents
-
-Welcome
-Varsity
-
-Dekuple
-Flow
-Gather
-Pyro
+This is where repos are stored. They are ignored by git.
 

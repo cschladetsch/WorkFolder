@@ -4,8 +4,7 @@ alias gl='git lg'
 alias gu='git pull'
 alias gp='git push'
 
-WORK_ROOT=/$WORK_LETTER
-WORK_DIR=$WORK_ROOT
+WORK_FOLDER=/$WORK_LETTER
 
 
 #export PS1='\e[0m \[\033]0;$TITLEPREFIX:$PWD\[\007\]\n\[\033[32m\]\! \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n\[\e[1m\]λ\[\e[0m\] \e[2m'
@@ -17,21 +16,19 @@ trap 'echo -n -e "\e[0m"' DEBUG
 #export PATH=$PATH:~/bin/android-ndk-r18b-windows-x86_64\android-ndk-r18b
 
 WORK_LETTER=w
-WORK_ROOT=/$WORK_LETTER
+WORK_FOLDER=/$WORK_LETTER
 WORK_NAME='Local'
-WORK_DIR=$WORK_ROOT
 
 #export PATH=$PATH:~/bin/platform-tools
 
 export PATH=$PATH:'/c/Program\ Files \(x86\)/Android/android-sdk/platform-tools'
 
-export WORK_ROOT
+export WORK_FOLDER
 export WORK_LETTER
 export WORK_NAME
-export WORK_DIR
 
-source $WORK_ROOT/bin/startup
+source $WORK_FOLDER/bin/startup
 
-cd $WORK_ROOT
+cd $WORK_FOLDER
 go
 ```

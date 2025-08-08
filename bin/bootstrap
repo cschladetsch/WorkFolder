@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# TODO: perform one-off setup, then touch $WORK_ROOT/.proj/booted
+# TODO: perform one-off setup, then touch $WORK_FOLDER/.proj/booted
 
-source $WORK_ROOT/bin/startup
+source $WORK_FOLDER/bin/startup
 
 

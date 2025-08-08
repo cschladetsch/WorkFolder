@@ -34,15 +34,15 @@ There are a number of default files that are used to populate a new project:
 
 ## Aliases
 
-TODO
+Common aliases are defined in `/bin/aliases` and are automatically loaded when using the WorkFolder system.
 
 ## Functions
 
-TODO
+Common functions are defined in `/bin/functions` and are automatically loaded when using the WorkFolder system.
 
 ## Scripts
 
-TODO
+Scripts are located in `/bin/` and provide various utilities for repository management and development workflow.
 
 
 

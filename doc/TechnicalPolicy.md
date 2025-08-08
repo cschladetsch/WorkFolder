@@ -58,42 +58,42 @@ There are some common rules that apply in all cases:
 1. Must add new clauses or sub-clauses at the end of any list in this document.
 	<u>Rationale</u>: Existing references to clauses must not break due to reformatting of this source text.
 1. Should use correct English: e.g. Realise rather than Realize, etc. Consider your language usage.
-1. All general documents must be stored on [_GoogleDocs_](http://docs.google.com).
-1. Should not use spaces or any punctuation in any file-name or object-name.
+4. All general documents must be stored on [_GoogleDocs_](http://docs.google.com).
+5. Should not use spaces or any punctuation in any file-name or object-name.
 	1. Such names should consist of alpha-numeric characters only, starting with a non-numeric character, and use UpperCamelCase.
-4. Technical documentation should be concise and correct.
+6. Technical documentation should be concise and correct.
 	1. Update older documentation when things change.
 	2. Internal documents stored in any git repository must use [_MarkDown_](https://en.wikipedia.org/wiki/Markdown).
-6. Should provide links whenever you can. Read about how to add links to GoogleDocs and MarkDown.
-6. Should use _Italics_ when referring to companies or when initially referring to some external library or technology like [_Microsoft .Net_](https://dotnet.microsoft.com/).
+7. Should provide links whenever you can. Read about how to add links to GoogleDocs and MarkDown.
+8. Should use _Italics_ when referring to companies or when initially referring to some external library or technology like [_Microsoft .Net_](https://dotnet.microsoft.com/).
 	1. Should also use this as a link.
-7. Do not repeat yourself.
+9. Do not repeat yourself.
 	1. Use links to refer to other [documentation](https://docs.google.com/document/d/1w4MYPKsW-Prj6z9XlJjeuN-h4Fbtoas38aWgHTlMEjg/edit#).
-9. _GoogleDocs_ should use the default font: Arial 11-pt.
-9. Should use fixed-width fonts, preferably Courier New 11pt, when referring to
+10. _GoogleDocs_ should use the default font: Arial 11-pt.
+11. Should use fixed-width fonts, preferably Courier New 11pt, when referring to
 	1. Files.
 	2. [_Unity3d_](http://www.unity3d.com) Object names.
 	3. Script names or script contents, or
 	4. git branch names.
 	5. When using Markdown, use \``backticks`\` around such items.
 12. Should not use any underscores, dashes, spaces, or full stops in any names.
-12. Acronyms such as ABC should be spelled Abc.
+13. Acronyms such as ABC should be spelled Abc.
 	1. Note that SI units are not acronyms. So, to indicate mega-bytes, it is correct to say &quot;MB&quot; and incorrect to say &quot;Mb&quot; - which is a different thing.
 14. Do not use emoticons or curse in any formal writing, including code or scripts, or when communicating with clients.
 15. Should use indicative and consistent avatar images across all platforms, like _Trello_, _Slack_, _GitHub_, _Gmail_ etc.
-15. Text files should be UTF-8, UTF-16, or ASCII encoded, in that order of preference.
+16. Text files should be UTF-8, UTF-16, or ASCII encoded, in that order of preference.
 	1. Must not use UNICODE for anything.
-17. Line endings on all files created or used by [_Windows_](https://www.microsoft.com/en-au/windows)must use \r\n line-endings.
+17. Line endings on all files created or used by [_Windows_](https://www.microsoft.com/en-au/windows) must use \r\n line-endings.
 18. Line endings on all [_Linux_](https://www.linux.org/)- or [_macOS_](https://www.apple.com/au/macos/)-based text files must end with \n.
 19. Should use [WorkFolder](https://github.com/cschladetsch/WorkFolder) system.
-19. Must use [_Iso-8601_](https://en.wikipedia.org/wiki/ISO_8601) for dates and times.
+20. Must use [_Iso-8601_](https://en.wikipedia.org/wiki/ISO_8601) for dates and times.
 	1. Store all date-time values as [_Utc_](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). Do not use local time, which may include daylight savings. At Melbourne, Australia we are typically Utc+11.
 	2. YY-MM-DD for dates.
 	3. YY-MM-DDTHH-mm-ss for date and time for filenames.
 	4. Note that Americans use MM-DD-YY. This is wrong and it causes confusion.
 21. Internal copyright notices must be of the form _© [year] [Company] Pty Ltd._
 22. Do not include any whitespace at the ends of any text lines, except a newline sequence.
-22. Should use [_IEC_](https://en.wikipedia.org/wiki/International_Electrotechnical_Commission) binary prefixes for base-2 quantities and [_SI_](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes for base-10 quantities.
+23. Should use [_IEC_](https://en.wikipedia.org/wiki/International_Electrotechnical_Commission) binary prefixes for base-2 quantities and [_SI_](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes for base-10 quantities.
 	<u>Rationale</u>: Disambiguation. See [Mebibyte](https://en.wikipedia.org/wiki/Mebibyte). Basically, if you mean 1000 bytes, say a kilobyte (KB). If you mean 2^10 or 1024 bytes, say [kibibyte](https://www.google.com/search?q=kibibyte) (KiB).
 24. When referencing a policy item from this document, use e.g. §1.2.3. The section symbol § is available by:
     1. Windows: Alt+0167 or Alt+21
@@ -170,10 +170,10 @@ Git is assuredly complicated. There are ways to make it easier to use:
 ## 5. Maya/Modelling
 
 1. Must use 1 unit = 1 meter.
-1. Must export using [_Left-handed Coordinates_](https://www.evl.uic.edu/ralph/508S98/coordinates.html)
+2. Must export using [_Left-handed Coordinates_](https://www.evl.uic.edu/ralph/508S98/coordinates.html)
 	1. Right is +x, Up is +y, Forward is +z.
-1. Should Must use [.fbx](https://en.wikipedia.org/wiki/FBX) for source.
-1. Items should must import and work without needing to be scaled/rotated/offset Unity3d-side.
+3. Must use [.fbx](https://en.wikipedia.org/wiki/FBX) for source.
+4. Items must import and work without needing to be scaled/rotated/offset Unity3d-side.
 
 ## 6. Photoshop/Images
 
@@ -204,49 +204,49 @@ Feel free to correct any problems and submit a _Pull Request_.
   1. Tab must be 4 spaces.
      <u>Rationale</u>: Consistent readability across all platforms and editors, both local and remote, such as GitHub Pull Requests.
      
-  4. You will be fired if you mix tabs and spaces in the same file.
+  2. You will be fired if you mix tabs and spaces in the same file.
 
-4. If a given code-line has over 90 characters, it should be wrapped.
+3. If a given code-line has over 90 characters, it should be wrapped.
      1. If it has over 110 it must be wrapped.
    <u>Rationale</u>: Readability within the context of a vertically-split tab in _Visual Studio_.
    
-5. Do read other internal code bases.
+4. Do read other internal code bases.
    <u>Rationale</u>: Learn the specs.
    
-6. Do follow syntax and formatting conventions used in any file you modify, even if doing so contravenes conventions stated in this document.
+5. Do follow syntax and formatting conventions used in any file you modify, even if doing so contravenes conventions stated in this document.
      1. If it&#39;s an internal file, follow convention of the local file and make a separate PR for the formatting change.
    <u>Rationale</u>: Commits should be atomic. Separate logical changes/additions from formatting changes.
    
-7. Do use your intuition after reading common libraries such as [Flow](https://github.com/cschladetsch/Flow).
+6. Do use your intuition after reading common libraries such as [Flow](https://github.com/cschladetsch/Flow).
    <u>Rationale</u>: I am not going to write pages and pages of explicit instructions about how to write and format every aspect of C# code.
    The standards for C#, and C# itself, changes over time, so that is a pointless endeavor in any case.
    Read existing code and always follow conventions around any changes you make, even if they contradict what is in this document.
    
-8. Do not make arbitrary formatting changes which pollute the git commit history.
+7. Do not make arbitrary formatting changes which pollute the git commit history.
      1. Put these in a new commit called &quot;Reformatting&quot;.
      2. Such commits must not change any logic.
      
-9. Should provide complexity guarantees using [_big-O notation_](https://en.wikipedia.org/wiki/Big_O_notation) for all properties or methods that are prefixed with _Calc_.
+8. Should provide complexity guarantees using [_big-O notation_](https://en.wikipedia.org/wiki/Big_O_notation) for all properties or methods that are prefixed with _Calc_.
    <u>Rationale</u>: Allows a developer to know what he&#39;s in for.
    
-10. Namespaces must use UpperCamelCase.
+9. Namespaces must use UpperCamelCase.
     <u>Rationale</u>: Consistency in naming.
     
-11. Assemblies that may be consumed by other projects must use a unique top-level namespace.
+10. Assemblies that may be consumed by other projects must use a unique top-level namespace.
     <u>Rationale</u>: If an assembly is not consumed by another project, it doesn&#39;t matter what namespace it uses. Conversely, it does matter.
     
-13. All symbols should be in a namespace.
+11. All symbols should be in a namespace.
 
-13. All public classes, interfaces, delegates, and enumerations in an assembly must have [_Xml comments_](https://docs.microsoft.com/en-us/visualstudio/ide/reference/generate-xml-documentation-comments?view=vs-2019).
+12. All public classes, interfaces, delegates, and enumerations in an assembly must have [_Xml comments_](https://docs.microsoft.com/en-us/visualstudio/ide/reference/generate-xml-documentation-comments?view=vs-2019).
     <u>Rationale</u>: Provide more information to the reader.
     
-14. All other public symbols should also have Xml Comments.
+13. All other public symbols should also have Xml Comments.
     <u>Rationale</u>: Provide more information to the reader. Also will help any automation tools used to produce documentation.
     
-15. **Enumerations** must start with the letter &#39;E&#39;.
+14. **Enumerations** must start with the letter &#39;E&#39;.
     <u>Rationale</u>: Makes it clear to the reader that the given symbol name is an Enumeration type.
     
-16.  **Interfaces** must start with the letter &#39;I&#39; (capital-i).
+15. **Interfaces** must start with the letter &#39;I&#39; (capital-i).
     <u>Rationale</u>: Makes it clear to the reader that the given symbol name is an Interface type.
     
 17.  **Public** methods must use UpperCamelCase in verb-noun form.
@@ -269,7 +269,7 @@ Do not use a property that does much work every time it is referenced.
 	
   24. Stops situations like: one method has an expression body on same line, the next one has an expression body on the next line, the next has a code block.
 
-25. Should May use braces {} on single-line code-blocks.
+25. May use braces {} on single-line code-blocks.
 
 26. Must add a space after keywords.
 

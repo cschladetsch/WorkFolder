@@ -1,7 +1,5 @@
 # Work/Bin
 
-TODO: Update with changes from upstream
-
 This is part of the [WorkFolder](<https://github.com/cschladetsch/WorkFolder>) system, which in turn is based on `git-bash`.
 
 Contains a set of:
@@ -58,7 +56,7 @@ For some reason the `sed` command doesn't work with `git-bash` and this is a wor
 
 ## Verbosity
 
-Change global environment variable `WORK_DIR_VERBOSE`:
+Change global environment variable `WORK_VERBOSE`:
 
  **= 0** Show no messages.
 

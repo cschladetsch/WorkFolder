@@ -8,7 +8,7 @@ This document describes the process to make a new project.
 $ cdr
 $ new-project ProjectName
 ```
-* Create a Unity3d Project in `$WORK\_DIR/ProjectName/ProjectName`
+* Create a Unity3d Project in `$WORK_FOLDER/ProjectName/ProjectName`
 * Push `master`.
 * Change to `develop`.
 

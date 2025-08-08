@@ -50,8 +50,8 @@ statuscs()
 #
 # Goto a repository.
 # 
-# TODO(cjs) move to $WORK_ROOT/src
-[ -e $WORK_ROOT/repos/go-cpp ] && source $WORK_ROOT/repos/go-cpp/fun.sh
+# TODO(cjs) move to $WORK_FOLDER/src
+[ -e $WORK_FOLDER/repos/go-cpp ] && source $WORK_FOLDER/repos/go-cpp/fun.sh
 
 #
 # Goto root of current repo
@@ -93,7 +93,7 @@ f() {
 # Show help
 #
 help() {
-    start $WORK_DIR/doc/Readme.md
+    start $WORK_FOLDER/doc/Readme.md
 }
 
 first() {

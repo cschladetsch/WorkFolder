@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-# TODO: anything macOS specific here for every new shell
+alias clip='pbcopy'
+alias paste='pbpaste'

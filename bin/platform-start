@@ -26,5 +26,5 @@ if [ ! -d $WORK_FOLDER/bin/platform/$os ]; then
 fi
 
 source $WORK_FOLDER/bin/platform/$os/startup
-echo -e "${GREEN}Started ${os}${CLEAR}"
+#echo -e "${GREEN}Started ${os}${CLEAR}"
 

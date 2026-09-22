@@ -8,6 +8,8 @@
 
 !/doc
 !/doc/**
+!/docs
+!/docs/**
 !/bin
 !/bin/**
 !/.proj

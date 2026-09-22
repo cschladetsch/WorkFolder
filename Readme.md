@@ -1,5 +1,8 @@
 # Working Folder ![Icon](/doc/icon.png)
 
+📖 [Docs & diagrams](https://cschladetsch.github.io/WorkFolder/)
+
+
 Contains common functionality used by developers, to assist with dealing with many repositories. It also contains common scripts and aliases so that any dev can work confidently on another's machine.
 
 This repo is intended to be at the root of their work folder. In many cases this will be at `~/work`, or more verbosely `/c/Users/user-name/work`. Note that it could also be at `e:\Projects`, (`/e/Projects` in git-bash syntax) or wherever. Specifically: *Never hard-code `~/work` into any script*. Rather, use `$WORK_FOLDER`.
